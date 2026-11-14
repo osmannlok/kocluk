@@ -1,0 +1,164 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Çocuklar için Python ile Programlama - KUM Academy{% endblock %}
+{% block meta_description %}Çocuklar için Python ile Programlama kursu ile kodlamayı eğlenceli bir şekilde öğrenin! KUM Academy ile analitik düşünme ve problem çözme becerilerinizi geliştirin.{% endblock %}
+{% block og_title %}Çocuklar için Python ile Programlama - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin çocuklar için Python kursu ile oyunlar, projeler ve eğlenceli alıştırmalarla kodlama becerilerinizi geliştirin.{% endblock %}
+{% block canonical_url %}{% url 'kurs-genc-yetenekler-python' %}{% endblock %}
+
+{% block content %}
+<section id="kurs-genc-yetenekler-python" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Çocuklar için Python ile Programlama</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-muted mb-4">
+                    <small>
+                        <strong>Yayın Tarihi:</strong> Ağustos 08, 2025, 15:50 | 
+                        <strong>Yazar:</strong> kumacademy | 
+                        <strong>Kategori:</strong> Çocuklar için Eğitim | 
+                        <strong>Yorum:</strong> Yorum yapılmamış
+                    </small>
+                </p>
+                <p>
+                    Çocukların Python öğrenmesi, onların analitik düşünme ve problem çözme yeteneklerini geliştirmeleri için harika bir fırsattır. Python, basit ve anlaşılır bir dil olduğu için çocuklar için öğrenmesi kolaydır ve yaratıcılıklarını kodlama ile birleştirmelerine olanak tanır. Erken yaşta Python öğrenmek, teknolojiye olan ilgilerini artırır ve gelecekteki kariyerlerinde onlara güçlü bir temel sağlar. Ayrıca, Python ile projeler yaparak somut sonuçlar elde edebilir ve başarı duygusunu yaşayabilirler.
+                </p>
+                <img src="{% static 'main/images/kurs-genc-yetenekler-python.jpg' %}" class="img-fluid rounded mb-4" alt="Çocuklar için Python ile Programlama Kursu">
+                <h2>Kurs Detayları</h2>
+                <ul>
+                    <li><strong>Kurs Süresi:</strong> 12 hafta</li>
+                    <li><strong>Canlı Dersler:</strong> 24 saat</li>
+                    <li><strong>Canlı Ders Platformu:</strong> Zoom</li>
+                    <li><strong>Self Study:</strong> anaconda.com</li>
+                    <li><strong>Seviye:</strong> Başlangıç</li>
+                    <li><strong>Ödev – Alıştırma Paylaşımları:</strong> Slack</li>
+                </ul>
+                
+                <h2>Eğitimin Avantajları</h2>
+                <ul>
+                    <li><strong>Güncel İçerik ve Sürekli Yenilik:</strong> KUM Academy’de eğitimlerimizi düzenli olarak güncelliyoruz. Python programlamaya eklenen yeni özellikleri ve teknikleri öğrenme fırsatını bu kursumuzda yakalayabilirsin.</li>
+                    <li><strong>Canlı Destek ve Soru-Cevap Oturumları:</strong> Eğitime kaydolduğunda, düzenli olarak gerçekleştirdiğimiz canlı yayınlara ve soru-cevap oturumlarına katılabilir, eğitmenlerimize sorularını sorabilirsin.</li>
+                    <li><strong>Sertifikalı Eğitim:</strong> Eğitimi başarıyla tamamladığında, ismine özel ve eğitmen imzalı katılım belgesine sahip olarak Python programlama bilginizi belgeleyebilirsin.</li>
+                    <li><strong>Başlangıç Seviyesinden İleri Seviyeye:</strong> Kodlama hakkında hiçbir bilgin olmayabilir. Eğitimimizde, temel kodlama ilkelerinden başlayarak ileri seviye konulara kadar bilmen gereken her şeyi anlatıyoruz.</li>
+                    <li><strong>Eğlenceli ve Etkileşimli Öğrenme:</strong> Eğitici oyunlar, gerçek dünya uygulamaları ve pratik alıştırmalarla, hem eğlenip hem de etkili bir şekilde öğrenebilirsin.</li>
+                    <li><strong>İleri Düzey Eğitimlere Hazırlık:</strong> Bu kursu başarıyla tamamladığında, Robotik Kodlama kursuna katılmak için yeterli bilgi ve beceriye sahip olacaksın.</li>
+                </ul>
+                <!-- Sekmeli Bölüm Başlangıcı -->
+                <ul class="nav nav-tabs mb-3" id="gencYeteneklerPythonTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Tanım</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Müfredat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">SSS</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">Yorumlar</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="gencYeteneklerPythonTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>
+                            Çocuklar için Python ile Programlama kursu, 8-14 yaş arasındaki çocuklar için tasarlanmış, kodlamayı eğlenceli ve erişilebilir hale getiren bir eğitim programıdır. KUM Academy’nin uzman eğitmenleri eşliğinde, çocuklar Python’un temellerini öğrenir ve oyunlar, projeler ve alıştırmalarla kodlama becerilerini geliştirir. Bu kurs, çocukların analitik düşünme ve problem çözme yeteneklerini güçlendirirken teknolojiye olan ilgilerini artırır.
+                        </p>
+                        <p>
+                            Kurs, kodlamaya yeni başlayan çocuklar için uygundur. Eğlenceli ve etkileşimli yöntemlerle, çocuklar Python ile yaratıcı projeler geliştirerek hem öğrenir hem de eğlenir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <h3>Bu Eğitimde Neler Öğreneceksin?</h3>
+                        <ul>
+                            <li>Kodlamanın Büyülü Dünyasına İlk Adım: Anaconda ve Jupyter Notebook ile tanışarak, programlamanın temellerini öğreneceksin.</li>
+                            <li>Python ile Tanışma: Python’un eğlenceli yanlarını keşfedecek ve kodlamaya keyifli bir başlangıç yapacaksın.</li>
+                            <li>Verilerle Oynamak: Temel veri tiplerini öğrenerek, verileri nasıl kullanabileceğini keşfedeceksin.</li>
+                            <li>Kendi Hesap Makinen: Aritmetik işlemlerle matematik problemlerini çözmeyi ve kendi hesap makineni yapmayı öğreneceksin.</li>
+                            <li>İlk Uygulamalarını Yap: Print fonksiyonunu kullanarak, ekran çıktılarıyla eğlenecek ve çeşitli alıştırmalarla pratik yapacaksın.</li>
+                            <li>Eğlenceli Alıştırmalar: Hikaye yazmak, trafik lambası yapmak, sihirbazlık oyunları ve daha birçok eğlenceli alıştırma ile kodlama yeteneklerini geliştireceksin.</li>
+                            <li>Mantıklı Düşünme ve Koşullar: Boolean mantık ifadeleri ve koşullu yapıların nasıl çalıştığını öğrenerek, mantıklı düşünme becerilerini geliştireceksin.</li>
+                            <li>Programlarını Zenginleştir: Stringlerle çalışarak, metinleri nasıl işleyeceğini ve manipüle edeceğini öğreneceksin.</li>
+                            <li>Döngülerle Tanış: While ve For döngüleriyle, tekrarlayan işlemleri kolayca yapmayı öğreneceksin.</li>
+                            <li>Listelerle Düzenli Veri: Listelerle tanışarak, verilerini düzenli bir şekilde saklamayı ve yönetmeyi öğreneceksin.</li>
+                            <li>Gerçek Dünya Problemleri: Doğum tarihleriyle sihirbazlık oyunları, araba yolculukları hesaplamaları ve daha birçok gerçek dünya problemiyle pratik yapacaksın.</li>
+                            <li>Kodlama ile Eğlen: Kodlama öğrenirken, aynı zamanda eğlenmenin de mümkün olduğunu göreceksin.</li>
+                        </ul>
+                        <h3>Kurs İçeriği</h3>
+                        <h4>Modül 1</h4>
+                        <ul>
+                            <li>VS Code Kullanımı</li>
+                            <li>Kodlamaya İlk Adımlar</li>
+                            <li>Python’da Tırnaklar</li>
+                            <li>Python’da Temel Veri Tipleri</li>
+                            <li>Python’da Değişkenler</li>
+                            <li>Python’da Aritmetik İşlemler</li>
+                            <li>Print Fonksiyonunu İnceleme</li>
+                            <li>ALIŞTIRMA: 1 Haftada Kaç Dakika Var?</li>
+                            <li>ALIŞTIRMA: Araba ile Yolculuğun Ne Kadar Süreceğini Nasıl Hesaplayabiliriz?</li>
+                            <li>ALIŞTIRMA: Minik Bir Sihirbazlık Oyunu</li>
+                            <li>ALIŞTIRMA: Doğum Tarihleri ile Minik Bir Sihirbazlık Oyunu</li>
+                            <li>Input Fonksiyonu</li>
+                            <li>ALIŞTIRMA: Hikaye Çalışması</li>
+                            <li>Stringleri İnceleme</li>
+                            <li>Boolean Mantık İfadeleri</li>
+                            <li>Koşullu İfade Yapıları</li>
+                            <li>ALIŞTIRMA: İki Cümle Aynı mı?</li>
+                            <li>ALIŞTIRMA: Trafik Lambası Yapımı</li>
+                            <li>ALIŞTIRMA: Oyun Ödülleri</li>
+                            <li>ALIŞTIRMA: Masal Tamamlama</li>
+                            <li>ALIŞTIRMA: Hava Sıcaklığı Kontrol Etme</li>
+                            <li>ALIŞTIRMA: Trafik Kuralları</li>
+                            <li>ALIŞTIRMA: Sihirbazlık Okulu</li>
+                            <li>ALIŞTIRMA: Uyku Programı</li>
+                            <li>ALIŞTIRMA: Sinema Bileti</li>
+                            <li>ALIŞTIRMA: İşe Alım Programı</li>
+                            <li>ALIŞTIRMA: Yılın Mevsimini Belirle</li>
+                            <li>ALIŞTIRMA: Takıma Futbolcu Seçme</li>
+                            <li>While Döngüsü</li>
+                            <li>ALIŞTIRMA: 1’den 10’a Kadar Sayan Bir Program Yazalım</li>
+                            <li>ALIŞTIRMA: 1 ile 100 Arasındaki Çift Sayıları Ekrana Yazdıran Bir Program Yazalım</li>
+                            <li>ALIŞTIRMA: Doğru Şifre Programı</li>
+                            <li>For Döngüsü</li>
+                        </ul>
+                        <h4>Modül 2</h4>
+                        <ul>
+                            <li>Aritmetik Operatörler – Çarpım Tablosu Oyunu, Kalan Bulma Oyunu</li>
+                            <li>Listeler – Alıştırmalar – Hazine Avı Oyunu, Kelime Tahmin</li>
+                            <li>Fonksiyonlar – Harf Bulmaca Oyunu, Labirent Oyunu, Sayı Tahmin Oyunu</li>
+                            <li>Python Dates – Doğum Günü Hatırlatıcısı, Tarih Bulma Oyunu</li>
+                            <li>String Metotları – Şifre Çözme Oyunu, Kelime Sayacı Oyunu, Anagram Oyunu</li>
+                            <li>For Loop – Harf Avcısı Oyunu</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <h3>1. Python kursu kimler için uygundur?</h3>
+                        <p>
+                            Python kursumuz, 8-14 yaş arasındaki öğrenciler için uygundur. Bu kurs, öğrencilerin mantık yürütme, problem çözme becerilerini geliştirmelerine ve kodlamaya ilgi duymalarına yardımcı olmak için tasarlanmıştır. Başlangıç seviyesinden başlayarak, adım adım Python dilini öğrenmeleri sağlanır.
+                        </p>
+                        <h3>2. Kurs süresi ne kadar?</h3>
+                        <p>
+                            Kursumuz, haftada 2 ders şeklinde işlenmektedir. Kurs süresi 3, 6 ve 9 aylık periyotlarla ilerlemektedir.
+                        </p>
+                        <h3>3. Python kursunda neler öğreneceğiz?</h3>
+                        <p>
+                            Öğrenciler, temel programlama kavramlarını öğrenirken aynı zamanda eğlenceli projeler üzerinde çalışacaklar. Oyun yapımı, animasyonlar ve basit uygulamalar geliştirerek programlama dünyasına adım atacaklar. Bu sayede teknik beceriler kazanırken öğrendiklerini yaratıcı bir şekilde uygulama fırsatı bulacaklar. Kurs sonunda, her öğrenciye tamamlaması gereken 2 proje verilecektir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                        <p>
+                            Henüz yorum yapılmamış. Kurs hakkındaki düşüncelerinizi paylaşmak için lütfen bizimle iletişime geçin!
+                        </p>
+                    </div>
+                </div>
+                <!-- Sekmeli Bölüm Bitişi -->
+                <h2>Python ile Kodlama Macerasına Başlamak İçin Hemen Kayıt Olun!</h2>
+                <div class="text-center mt-4">
+                    <a href="{% url 'kurs-genc-yetenekler-python' %}" class="btn btn-primary">Kursa Katılın</a>
+                    <a href="{% url 'iletisim' %}" class="btn btn-outline-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

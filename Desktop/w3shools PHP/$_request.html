@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP $_REQUEST - w3schools.com (Türkçe Çeviri)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #04AA6D;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-left: 4px solid #04AA6D;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .w3-btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .w3-btn:hover {
+            background-color: #03985c;
+        }
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="#">PHP</a>
+    <a href="#">Öğreticiler</a>
+    <a href="#">$_REQUEST</a>
+</div>
+
+<h1>PHP $_REQUEST</h1>
+
+<p><strong>$_REQUEST</strong> değişkeni, bir HTTP isteğiyle gönderilen verileri (GET, POST veya COOKIE) almak için kullanılır.</p>
+
+<hr>
+
+<h2>PHP $_REQUEST Nedir?</h2>
+
+<p>PHP <code>$_REQUEST</code> değişkeni, form verilerini (GET, POST ve COOKIE) toplamak için kullanılan bir süper global değişkendir.</p>
+
+<p>Varsayılan olarak <code>$_REQUEST</code>, <code>$_GET</code>, <code>$_POST</code> ve <code>$_COOKIE</code> değişkenlerinin değerlerini içerir.</p>
+
+<p>Form verileri <code>method="post"</code> veya <code>method="get"</code> ile gönderildiğinde, bu veriler <code>$_REQUEST</code> ile alınabilir.</p>
+
+<div class="example">
+<h3>Örnek</h3>
+<p>HTML formu ile veri gönderin ve PHP ile alın:</p>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Test Formu&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form action="welcome.php" method="post"&gt;
+  İsim: &lt;input type="text" name="name"&gt;&lt;br&gt;
+  Yaş: &lt;input type="text" name="age"&gt;&lt;br&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p><strong>welcome.php</strong> dosyası:</p>
+<pre>
+&lt;html&gt;
+&lt;body&gt;
+
+Hoş geldiniz &lt;?php echo $_REQUEST["name"]; ?&gt;.&lt;br&gt;
+Yaşınız: &lt;?php echo $_REQUEST["age"]; ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<a href="#" class="w3-btn">Örneği Çalıştır »</a>
+</div>
+
+<hr>
+
+<h2>$_REQUEST Ne Zaman Kullanılır?</h2>
+
+<p>Formun hem GET hem de POST ile çalışmasını istiyorsanız <code>$_REQUEST</code> kullanabilirsiniz. Ancak güvenlik açısından <code>$_GET</code> veya <code>$_POST</code>'u doğrudan kullanmak daha iyidir.</p>
+
+<div class="example">
+<h3>Örnek (GET ile)</h3>
+<pre>
+&lt;a href="test_get.php?subject=PHP&web=W3schools.com"&gt;Test $GET&lt;/a&gt;
+</pre>
+
+<p><strong>test_get.php</strong>:</p>
+<pre>
+&lt;?php
+echo "Çalışılan konu: " . $_REQUEST['subject'] . "&lt;br&gt;";
+echo "Web sitesi: " . $_REQUEST['web'];
+?&gt;
+</pre>
+
+<a href="#" class="w3-btn">Örneği Çalıştır »</a>
+</div>
+
+<hr>
+
+<h2>Önemli Notlar</h2>
+
+<ul>
+  <li><code>$_REQUEST</code> varsayılan olarak <code>$_GET</code>, <code>$_POST</code> ve <code>$_COOKIE</code>'yi içerir.</li>
+  <li><code>php.ini</code> dosyasında <code>request_order</code> veya <code>variables_order</code> ayarlarıyla <code>$_REQUEST</code>'in içeriği değiştirilebilir.</li>
+  <li>Güvenlik nedeniyle, kullanıcı girdilerini her zaman doğrulamalı ve temizlemelisiniz (örneğin: <code>htmlspecialchars()</code>, <code>filter_input()</code>).</li>
+</ul>
+
+<hr>
+
+<h2>İlgili Sayfalar</h2>
+<ul>
+  <li><a href="#">PHP $_GET</a></li>
+  <li><a href="#">PHP $_POST</a></li>
+  <li><a href="#">PHP Form İşleme</a></li>
+  <li><a href="#">PHP Form Doğrulama</a></li>
+</ul>
+
+<div class="footer">
+    <p>Bu sayfa w3schools.com'daki orijinal <a href="https://www.w3schools.com/php/php_superglobals_request.asp" style="color:#fff;">PHP $_REQUEST</a> sayfasının Türkçe çevirisidir.</p>
+    <p>Çeviri: Grok (xAI) • Tarih: 29 Ekim 2025</p>
+</div>
+
+</body>
+</html>

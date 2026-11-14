@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Genel İngilizce Kursları - KUM Academy{% endblock %}
+{% block meta_description %}KUM Academy ile A1, A2, B1, B2 seviyelerinde Genel İngilizce kursları! Kariyer ve günlük yaşam için İngilizce öğrenin.{% endblock %}
+{% block canonical_url %}{% url 'kurs-genel-ingilizce-a1' %}{% endblock %}
+
+{% block content %}
+<section id="kurs-genel-ingilizce" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Genel İngilizce Kursları</h2>
+        <p class="text-center lead text-muted">KUM Academy ile A1’den B2’ye kadar Genel İngilizce kurslarıyla dil becerilerinizi geliştirin. Kariyer, eğitim ve günlük yaşam için ideal!</p>
+        <div class="row">
+            <!-- Genel İngilizce A1 -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'kurs-genel-ingilizce-a1' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/kurs-genel-ingilizce-a1.jpg' %}" class="card-img-top" alt="Genel İngilizce A1">
+                        <div class="card-body">
+                            <h5 class="card-title">Genel İngilizce - A1 Seviyesi</h5>
+                            <p class="card-text">Başlangıç seviyesinde İngilizce ile temelleri öğrenin. Günlük ifadeler ve temel iletişim becerileri.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Genel İngilizce A2 -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'kurs-genel-ingilizce-a2' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/kurs-genel-ingilizce-a2.jpg' %}" class="card-img-top" alt="Genel İngilizce A2">
+                        <div class="card-body">
+                            <h5 class="card-title">Genel İngilizce - A2 Seviyesi</h5>
+                            <p class="card-text">Temel İngilizce bilgisini geliştirin. Günlük yaşamda daha fazla iletişim kurma becerisi kazanın.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Genel İngilizce B1 -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'kurs-genel-ingilizce-b1' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/kurs-genel-ingilizce-b1.jpg' %}" class="card-img-top" alt="Genel İngilizce B1">
+                        <div class="card-body">
+                            <h5 class="card-title">Genel İngilizce - B1 Seviyesi</h5>
+                            <p class="card-text">Orta seviyede akıcı iletişim kurun. İş ve sosyal ortamlarda İngilizce kullanma becerisi.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Genel İngilizce B2 -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'kurs-genel-ingilizce-b2' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/kurs-genel-ingilizce-b2.jpg' %}" class="card-img-top" alt="Genel İngilizce B2">
+                        <div class="card-body">
+                            <h5 class="card-title">Genel İngilizce - B2 Seviyesi</h5>
+                            <p class="card-text">İleri seviyede İngilizce ile karmaşık konuları tartışın. Kariyer ve akademik başarı için ideal.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'iletisim' %}" class="btn btn-primary btn-lg">Daha Fazla Bilgi Alın</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

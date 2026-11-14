@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Blog - KUM Academy{% endblock %}
+{% block meta_description %}KUM Academy blog sayfasında İngilizce öğrenimi, teknoloji kursları, SEO ve IT desteği hakkında en güncel bilgileri keşfedin!{% endblock %}
+{% block canonical_url %}{% url 'blog' %}{% endblock %}
+
+{% block content %}
+<section id="blog" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">KUM Academy Blog</h2>
+        <p class="text-center lead text-muted">KUM Academy ile İngilizce öğrenimi, teknoloji kursları, SEO ve IT desteği hakkında en güncel bilgileri keşfedin. Eğitim ve kariyer yolculuğunuzu güçlendirecek ipuçları burada!</p>
+        <div class="row">
+            <!-- Blog 1: Genel İngilizce -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog-genel-ingilizce' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/blog/2.jpg' %}" class="card-img-top" alt="Genel İngilizce Öğrenmenin Faydaları">
+                        <div class="card-body">
+                            <h5 class="card-title">Genel İngilizce Öğrenmenin Faydaları</h5>
+                            <p class="card-text">İngilizce öğrenmek neden önemli? Kariyer ve kişisel gelişim için Genel İngilizce’nin avantajlarını keşfedin.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Blog 2: SEO Nedir -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog-seo-nedir' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/blog/6.jpg' %}" class="card-img-top" alt="SEO Nedir">
+                        <div class="card-body">
+                            <h5 class="card-title">SEO Nedir?</h5>
+                            <p class="card-text">Arama motoru optimizasyonunun temellerini öğrenin ve dijital dünyada nasıl fark yaratabileceğinizi keşfedin.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Blog 3: IT Destek -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog-it-support-destegi-nedir' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/blog/4.jpg' %}" class="card-img-top" alt="IT Destek Nedir">
+                        <div class="card-body">
+                            <h5 class="card-title">IT Destek (BT Desteği) Nedir?</h5>
+                            <p class="card-text">İşletmeler için IT desteğinin önemini ve temel unsurlarını öğrenin. Teknik becerilerinizi geliştirin!</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Blog 4: SEO’nun Önemi -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog-seonun-onemi' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/blog/3.jpg' %}" class="card-img-top" alt="SEO’nun Önemi">
+                        <div class="card-body">
+                            <h5 class="card-title">SEO’nun Önemi, Dijital Başarının Anahtarı</h5>
+                            <p class="card-text">SEO’nun işletmeler için neden kritik olduğunu ve dijital başarıya nasıl katkı sağladığını keşfedin.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Blog 5: IT İngilizcesi -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog-it-ingilizcesinin-onemi' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/blog/5.jpg' %}" class="card-img-top" alt="IT İngilizcesi">
+                        <div class="card-body">
+                            <h5 class="card-title">IT İngilizcesi: Teknoloji Dünyasında Başarı</h5>
+                            <p class="card-text">Teknoloji dünyasında fark yaratmak için IT İngilizcesi becerilerinizi geliştirin. Teknik terimler ve daha fazlası!</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- Blog 6: Çocuklar İçin Speaking -->
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'blog-ingilizce-konusma-becerilerini-gelistirin' %}" class="text-decoration-none">
+                    <div class="card">
+                        <img src="{% static 'main/images/blog/1.jpg' %}" class="card-img-top" alt="Çocuklar İçin Speaking">
+                        <div class="card-body">
+                            <h5 class="card-title">Çocuklar İçin Speaking Kursları</h5>
+                            <p class="card-text">Çocuklarınızın İngilizce konuşma becerilerini eğlenceli ve etkili kurslarla geliştirin. Özgüven kazanın!</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'iletisim' %}" class="btn btn-primary btn-lg">Detaylı Bilgi Alın</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,599 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Young Learners Placement Test - KUM Academy{% endblock %}
+{% block meta_description %}6-12 yaş arası öğrenciler için İngilizce seviye belirleme testi. Dinleme, okuma ve dilbilgisi ile seviyenizi keşfedin!{% endblock %}
+{% block og_title %}Young Learners Placement Test - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin 6-12 yaş grubu için hazırladığı İngilizce seviye belirleme testine katılın ve uygun öğrenme grubunuzu bulun.{% endblock %}
+{% block canonical_url %}{% url 'test-young' %}{% endblock %}
+
+{% block content %}
+<section id="test-young" class="py-5 bg-warning bg-opacity-25">
+    <div class="container">
+        <!-- Üstte Yatay Görsel -->
+        <div class="text-center mb-4">
+            <img src="{% static 'images/test-header.jpg' %}" alt="Young Learners Test Header" class="img-fluid" style="max-width: 100%;">
+        </div>
+
+        <!-- Test Başlığı ve Açıklama -->
+        <div class="mb-4 bg-warning bg-opacity-25 p-3 rounded">
+            <h2 class="text-center">Young Learners (6-12 age) Placement Test</h2>
+            <p class="text-center lead">Merhaba değerli öğrencimiz. Bu test, senin İngilizce seviyesini değerlendirmek amacıyla hazırlanmıştır. Test toplam 25 sorudan oluşmakta olup, dinleme, okuma ve dilbilgisi alanlarını kapsamaktadır. Sonuçlar, en uygun İngilizce öğrenme grubuna yerleştirilmene yardımcı olacaktır.</p>
+            <p class="text-center"><strong>Lütfen unutma:</strong></p>
+            <ul class="text-center list-unstyled">
+                <li>Soruları cevaplarken acele etme</li>
+                <li>Her soru için en doğru olduğunu düşündüğün cevabı seç</li>
+            </ul>
+            <p class="text-center">Başarılar dileriz! İngilizce öğrenme yolculuğunda yanındayız!</p>
+            
+        </div>
+
+        <!-- Puan Dağılımı -->
+        <div class="mb-4 bg-warning bg-opacity-25 p-3 rounded">
+            <h3 class="text-center">Puan Dağılımı</h3>
+            <ul class="list-group">
+                <li class="list-group-item">45-60 puan: "Harika İş Çıkardın! A2 Seviyesine Hazırsın! Muhteşem bir iş başardın ve bir sonraki zorluğa hazırsın. Daha ileri seviyelere doğru ilerlemeye devam et”</li>
+                <li class="list-group-item">30-44 puan: “Aferin! A1 Seviyesindesin! Temel bilgileri sağlam bir şekilde anladın ve güzel ilerliyorsun. Temellerini güçlendirirken becerilerini geliştirmeye devam edelim!”</li>
+                <li class="list-group-item">15-29 puan: “Devam Et! Pre-A1 Seviyesindesin! Doğru yoldasın! Daha fazla pratik yaparak yakında temel bilgileri tam anlamıyla kavrayacaksın. Hadi birlikte çalışarak becerilerini geliştirelim.”</li>
+                <li class="list-group-item">0-14 puan: “Güzel Başlangıç! Pratik Yapmaya Devam Et! Her yolculuk ilk adımla başlar. Güzel bir başlangıç yaptın, daha fazla pratikle her gün daha iyi olacaksın. Hadi birlikte çalışarak becerilerini geliştirelim.”</li>
+            </ul>
+            <p class="text-danger">* Zorunlu soruyu belirtir</p>
+        </div>
+
+        <!-- Form -->
+         
+        <form action="{% url 'test-young' %}" method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="test" value="young">
+            <div class="container mb-4 bg-warning bg-opacity-25 p-3 rounded">
+            <div class="mb-3 ">
+                <label for="name" class="form-label">İsim Soyisim <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="invalid-feedback">Lütfen isim soyisminizi girin.</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Mail Adresi <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="invalid-feedback">Lütfen geçerli bir e-posta adresi girin.</div>
+            </div>
+            <div class="mb-3 ">
+                <label for="whatsapp" class="form-label">Whatsapp İletişim Hattı <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
+                <div class="invalid-feedback">Lütfen geçerli bir telefon numarası girin.</div>
+            </div>
+            </div>
+            <!-- Sorular -->
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">1. Look at the picture. What is this? <span class="text-danger">*</span> (1 puan)</label>
+                <div>
+                    <img src="{% static 'main/images/test/young-1.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q1" id="q1_cat" value="cat" required>
+                        <label class="form-check-label" for="q1_cat">cat</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q1" id="q1_dog" value="dog">
+                        <label class="form-check-label" for="q1_dog">dog</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q1" id="q1_fish" value="fish">
+                        <label class="form-check-label" for="q1_fish">fish</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q1" id="q1_bird" value="bird">
+                        <label class="form-check-label" for="q1_bird">bird</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">2. Which color is this? <span class="text-danger">*</span> (1 puan)</label>
+                <div>
+                    <img src="{% static 'main/images/test/young-2.jpg' %}" alt="Question 2 Image" class="img-fluid mb-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q2" id="q2_red" value="red" required>
+                        <label class="form-check-label" for="q2_red">red</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q2" id="q2_yellow" value="yellow">
+                        <label class="form-check-label" for="q2_yellow">yellow</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q2" id="q2_blue" value="blue">
+                        <label class="form-check-label" for="q2_blue">blue</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q2" id="q2_green" value="green">
+                        <label class="form-check-label" for="q2_green">green</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">3. Choose your answer. What is this animal? <span class="text-danger">*</span> (1 puan)</label>
+                <div>
+                    <img src="{% static 'main/images/test/young-3.jpg' %}" alt="Question 3 Image" class="img-fluid mb-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q3" id="q3_elephant" value="elephant" required>
+                        <label class="form-check-label" for="q3_elephant">elephant</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q3" id="q3_cat" value="cat">
+                        <label class="form-check-label" for="q3_cat">cat</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q3" id="q3_tiger" value="tiger">
+                        <label class="form-check-label" for="q3_tiger">tiger</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q3" id="q3_butterfly" value="butterfly">
+                        <label class="form-check-label" for="q3_butterfly">butterfly</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">4. Choose the correct word for this image. <span class="text-danger">*</span> (1 puan)</label>
+                <div>
+                    <img src="{% static 'main/images/test/young-4.jpg' %}" alt="Question 4 Image" class="img-fluid mb-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q4" id="q4_on" value="on the table" required>
+                        <label class="form-check-label" for="q4_on">on the table</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q4" id="q4_under" value="under the table">
+                        <label class="form-check-label" for="q4_under">under the table</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q4" id="q4_next" value="next to the table">
+                        <label class="form-check-label" for="q4_next">next to the table</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q4" id="q4_in" value="in the table">
+                        <label class="form-check-label" for="q4_in">in the table</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">5. What is the weather like? <span class="text-danger">*</span> (2 puan)</label>
+                <div>
+                    <img src="{% static 'main/images/test/young-5.jpg' %}" alt="Question 5 Image" class="img-fluid mb-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q5" id="q5_sunny" value="It's a sunny day" required>
+                        <label class="form-check-label" for="q5_sunny">It's a sunny day</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q5" id="q5_rainy" value="Its a rainy day">
+                        <label class="form-check-label" for="q5_rainy">It's a rainy day</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q5" id="q5_snowy" value="It's a snowy day">
+                        <label class="form-check-label" for="q5_snowy">It's a snowy day</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q5" id="q5_windy" value="It's a windy day">
+                        <label class="form-check-label" for="q5_windy">It's a windy day</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">6. Choose the correct sentence: <span class="text-danger">*</span> (2 puan)</label>
+                <div>
+                    <img src="{% static 'main/images/test/young-6.jpg' %}" alt="Question 6 Image" class="img-fluid mb-2">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q6" id="q6_running" value="The boy is running." required>
+                        <label class="form-check-label" for="q6_running">The boy is running.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q6" id="q6_sleeping" value="The boy is sleeping.">
+                        <label class="form-check-label" for="q6_sleeping">The boy is sleeping.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q6" id="q6_swimming" value="The boy is swimming.">
+                        <label class="form-check-label" for="q6_swimming">The boy is swimming.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="q6" id="q6_jumping" value="The boy is jumping">
+                        <label class="form-check-label" for="q6_jumping">The boy is jumping</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">7. Did you like the movie? <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_yes_you" value="Yes, you did" required>
+                    <label class="form-check-label" for="q7_yes_you">Yes, you did</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_yes_me" value="Yes, me too">
+                    <label class="form-check-label" for="q7_yes_me">Yes, me too</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_yes_much" value="Yes, very much">
+                    <label class="form-check-label" for="q7_yes_much">Yes, very much</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_yes_she" value="Yes, she does">
+                    <label class="form-check-label" for="q7_yes_she">Yes, she does</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">8. “She ____ a sandwich everyday. <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_eat" value="eat" required>
+                    <label class="form-check-label" for="q8_eat">eat</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_eats" value="eats">
+                    <label class="form-check-label" for="q8_eats">eats</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_eating" value="eating">
+                    <label class="form-check-label" for="q8_eating">eating</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_is_eat" value="is eat">
+                    <label class="form-check-label" for="q8_is_eat">is eat</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">9. What is your favourite season? <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_may" value="May" required>
+                    <label class="form-check-label" for="q9_may">May</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_saturday" value="Saturday">
+                    <label class="form-check-label" for="q9_saturday">Saturday</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_time" value="at 10.00 pm">
+                    <label class="form-check-label" for="q9_time">at 10.00 pm</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_summer" value="Summer">
+                    <label class="form-check-label" for="q9_summer">Summer</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">10. Tom is a happy boy. He loves playing football with his friends in the park. After school, he always goes to the park with his best friend, Jack. They play football until it gets dark.”<br> Where does Tom play football? <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_home" value="At home" required>
+                    <label class="form-check-label" for="q10_home">At home</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_park" value="In the park">
+                    <label class="form-check-label" for="q10_park">In the park</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_garden" value="In the garden">
+                    <label class="form-check-label" for="q10_garden">In the garden</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_school" value="At school">
+                    <label class="form-check-label" for="q10_school">At school</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">11. Tom is a happy boy. He loves playing football with his friends in the park. After school, he always goes to the park with his best friend, Jack. They play football until it gets dark.” <br>What does Tom love to do? <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_basketball" value="Play basketball" required>
+                    <label class="form-check-label" for="q11_basketball">Play basketball</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_bike" value="Ride bike">
+                    <label class="form-check-label" for="q11_bike">Ride bike</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_football" value="Play football">
+                    <label class="form-check-label" for="q11_football">Play football</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_books" value="Read books">
+                    <label class="form-check-label" for="q11_books">Read books</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">12. When does Tom play football? <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_before" value="Before school" required>
+                    <label class="form-check-label" for="q12_before">Before school</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_after" value="After school">
+                    <label class="form-check-label" for="q12_after">After school</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_weekends" value="On weekends">
+                    <label class="form-check-label" for="q12_weekends">On weekends</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_morning" value="In the morning">
+                    <label class="form-check-label" for="q12_morning">In the morning</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">13. What is your father like? <span class="text-danger">*</span> (4 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_tall" value="He is tall" required>
+                    <label class="form-check-label" for="q13_tall">He is tall</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_kind" value="He is kind and friendly">
+                    <label class="form-check-label" for="q13_kind">He is kind and friendly</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_bowling" value="He likes playing bowling">
+                    <label class="form-check-label" for="q13_bowling">He likes playing bowling</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_company" value="He works in a company">
+                    <label class="form-check-label" for="q13_company">He works in a company</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">14. The sun _15_ ________up in the morning and gives us light. At night, we see the moon and stars in the sky. There are no animals or plants ______ the moon. People _____ to the moon for the first time many years ago. <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_come" value="come" required>
+                    <label class="form-check-label" for="q14_come">come</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_comes" value="comes">
+                    <label class="form-check-label" for="q14_comes">comes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_coming" value="coming">
+                    <label class="form-check-label" for="q14_coming">coming</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">15. The sun ___come/comes/coming__ up in the morning and gives us light. At night, we see the moon and stars in the sky. There are no animals or plants _16_________ the moon. People _______ to the moon for the first time many years ago. <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_in" value="in" required>
+                    <label class="form-check-label" for="q15_in">in</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_on" value="on">
+                    <label class="form-check-label" for="q15_on">on</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_at" value="at">
+                    <label class="form-check-label" for="q15_at">at</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">16. The sun __come/comes/coming____ up in the morning and gives us light. At night, we see the moon and stars in the sky. There are no animals or plants _____in/on /at__ the moon. People _16___________ to the Moon for the first time many years ago. <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_go" value="go" required>
+                    <label class="form-check-label" for="q16_go">go</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_goes" value="goes">
+                    <label class="form-check-label" for="q16_goes">goes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_went" value="went">
+                    <label class="form-check-label" for="q16_went">went</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">17. Choose the correct word:<br> “She is a very ____ girl.” <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_smart" value="smart" required>
+                    <label class="form-check-label" for="q17_smart">smart</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_run" value="run">
+                    <label class="form-check-label" for="q17_run">run</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_understand" value="understand">
+                    <label class="form-check-label" for="q17_understand">understand</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_long" value="long">
+                    <label class="form-check-label" for="q17_long">long</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">18. Choose the correct sentence:<br> “____ I go to the bathroom, please?” <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_may" value="May" required>
+                    <label class="form-check-label" for="q18_may">May</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_should" value="Should">
+                    <label class="form-check-label" for="q18_should">Should</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_can" value="Can">
+                    <label class="form-check-label" for="q18_can">Can</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_will" value="Will">
+                    <label class="form-check-label" for="q18_will">Will</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">19. This plant looks dead. <span class="text-danger">*</span> (5 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_room" value="It is in the room" required>
+                    <label class="form-check-label" for="q19_room">It is in the room</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_walking" value="It is walking">
+                    <label class="form-check-label" for="q19_walking">It is walking</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_water" value="It only needs water">
+                    <label class="form-check-label" for="q19_water">It only needs water</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">20. Who gave you this book, Kate? <span class="text-danger">*</span> (4 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_mum" value="My mum did" required>
+                    <label class="form-check-label" for="q20_mum">My mum did</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_birthday" value="For my birthday">
+                    <label class="form-check-label" for="q20_birthday">For my birthday</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_sold" value="I sold it">
+                    <label class="form-check-label" for="q20_sold">I sold it</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">21. You will listen to a short conversation. After listening, choose the correct image that matches what you heard. <span class="text-danger">*</span> (3 puan)</label>
+                <div>
+                    <a href="https://youtu.be/-0KFgWwL9Fg" target="_blank">Click and listen the conversation</a>
+                    <div class="form-check">
+                        <img src="{% static 'main/images/test/young-21-1.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                        <input type="radio" class="form-check-input" name="q21" id="q21_opt1" value="1" required>
+                        <label class="form-check-label" for="q21_opt1">1. seçenek</label>
+                    </div>
+                    <div class="form-check">
+                        <img src="{% static 'main/images/test/young-21-2.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                        <input type="radio" class="form-check-input" name="q21" id="q21_opt2" value="2">
+                        <label class="form-check-label" for="q21_opt2">2. seçenek</label>
+                    </div>
+                    <div class="form-check">
+                        <img src="{% static 'main/images/test/young-21-3.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                        <input type="radio" class="form-check-input" name="q21" id="q21_opt3" value="3">
+                        <label class="form-check-label" for="q21_opt3">3. seçenek</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">22. What’s the girl’s favourite toy? <span class="text-danger">*</span> (3 puan)</label>
+                <div>
+                    <a href="https://youtu.be/ES7Y0BBP6iU" target="_blank">Click and listen the conversation</a>
+                    <div class="form-check">
+                        <img src="{% static 'main/images/test/young-22-1.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                        <input type="radio" class="form-check-input" name="q22" id="q22_opt1" value="1" required>
+                     <label class="form-check-label" for="q22_opt1">1. seçenek</label>
+                    </div>
+                    <div class="form-check">
+                        <img src="{% static 'main/images/test/young-22-2.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                        <input type="radio" class="form-check-input" name="q22" id="q22_opt2" value="2">
+                        <label class="form-check-label" for="q22_opt2">2. seçenek</label>
+                    </div>
+                    <div class="form-check">
+                        <img src="{% static 'main/images/test/young-22-3.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+                        <input type="radio" class="form-check-input" name="q22" id="q22_opt3" value="3">
+                        <label class="form-check-label" for="q22_opt3">3. seçenek</label>
+                    </div>
+                </div>
+            </div>
+
+<div class="mb-3 bg-light p-3 rounded">
+    <label class="form-label">23. What time is the basketball match? <span class="text-danger">*</span> (3 puan)</label>
+    <div>
+        <a href="https://youtu.be/62jLAkb7cBg" target="_blank">Click and listen the conversation</a>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-23-1.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q23" id="q23_opt1" value="1" required>
+            <label class="form-check-label" for="q23_opt1">1. seçenek</label>
+        </div>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-23-2.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q23" id="q23_opt2" value="2">
+            <label class="form-check-label" for="q23_opt2">2. seçenek</label>
+        </div>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-23-3.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q23" id="q23_opt3" value="3">
+            <label class="form-check-label" for="q23_opt3">3. seçenek</label>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3 bg-white p-3 rounded">
+    <label class="form-label">24. Which picture shows what she is buying? <span class="text-danger">*</span> (3 puan)</label>
+    <div>
+        <a href="https://youtu.be/LGXw97RgUTU" target="_blank">Click and listen the conversation</a>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-24-1.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q24" id="q24_opt1" value="1" required>
+            <label class="form-check-label" for="q24_opt1">1. seçenek</label>
+        </div>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-24-2.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q24" id="q24_opt2" value="2">
+            <label class="form-check-label" for="q24_opt2">2. seçenek</label>
+        </div>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-24-3.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q24" id="q24_opt3" value="3">
+            <label class="form-check-label" for="q24_opt3">3. seçenek</label>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3 bg-light p-3 rounded">
+    <label class="form-label">25. Where can the children go now? <span class="text-danger">*</span> (3 puan)</label>
+    <div>
+        <a href="https://www.youtube.com/watch?v=XfijulfKNLQ" target="_blank">Click and listen the conversation</a>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-25-1.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q25" id="q25_opt1" value="1" required>
+            <label class="form-check-label" for="q25_opt1">1. seçenek</label>
+        </div>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-25-2.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q25" id="q25_opt2" value="2">
+            <label class="form-check-label" for="q25_opt2">2. seçenek</label>
+        </div>
+        <div class="form-check">
+            <img src="{% static 'main/images/test/young-25-3.jpg' %}" alt="Question 1 Image" class="img-fluid mb-2">
+            <input type="radio" class="form-check-input" name="q25" id="q25_opt3" value="3">
+            <label class="form-check-label" for="q25_opt3">3. seçenek</label>
+        </div>
+    </div>
+</div>
+            <!-- Diğer sorular benzer şekilde eklenebilir, burada kısaltılmıştır -->
+            <!-- Örnek 6-25 için aynı yapı kullanılabilir, görseller eklenecek -->
+
+            <button type="submit" class="btn btn-primary w-25">Testi Gönder</button><button type="reset" style="float:right" class="btn btn-secondary w-25 ">Formu Temizle</button>
+        </form>
+
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Form doğrulama için Bootstrap
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+{% endblock %}

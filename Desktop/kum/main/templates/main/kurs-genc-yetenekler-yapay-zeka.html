@@ -1,0 +1,124 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Genç Yetenekler - Projelerle Yapay Zeka'ya Giriş - KUM Academy{% endblock %}
+{% block meta_description %}Genç Yetenekler - Projelerle Yapay Zeka'ya Giriş kursu ile mBlock platformunda yapay zeka ve makine öğrenmesini öğrenin! KUM Academy ile geleceğe hazır olun.{% endblock %}
+{% block og_title %}Genç Yetenekler - Projelerle Yapay Zeka'ya Giriş - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin Projelerle Yapay Zeka'ya Giriş kursu ile mBlock ile yapay zeka projeleri geliştirin ve teknolojiye adım atın.{% endblock %}
+{% block canonical_url %}{% url 'kurs-genc-yetenekler-yapay-zeka' %}{% endblock %}
+
+{% block content %}
+<section id="kurs-genc-yetenekler-yapay-zeka" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Genç Yetenekler - Projelerle Yapay Zeka'ya Giriş</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-muted mb-4">
+                    <small>
+                        <strong>Yayın Tarihi:</strong> August 13, 2025, 15:06 | 
+                        <strong>Yazar:</strong> kumacademy | 
+                        <strong>Kategori:</strong> Genç Yetenekler | 
+                        <strong>Yorum:</strong> Yorum yapılmamış
+                    </small>
+                </p>
+                <p>
+                    Bu kurs, çocuklara yapay zeka, makine öğrenmesi ve ilgili teknolojiler hakkında temel bilgiler kazandırmayı amaçlamaktadır. Katılımcılar, yapay zekanın çalışma prensiplerini öğrenecek ve kendi projelerini geliştirerek bu teknolojileri pratiğe dökme şansı yakalayacaklardır. mBlock platformu aracılığıyla görsel programlama yaparak eğlenceli ve interaktif bir öğrenme süreci yaşayacaklar.
+                </p>
+                <img src="{% static 'main/images/kurs-genc-yetenekler-yapay-zeka.jpg' %}" class="img-fluid rounded mb-4" alt="Genç Yetenekler - Projelerle Yapay Zeka'ya Giriş Kursu">
+                <h2>KURS DETAYLARI</h2>
+                <ul>
+                    <li><strong>Kurs süresi:</strong> 10 hafta</li>
+                    <li><strong>Canlı Dersler:</strong> 20 saat</li>
+                    <li><strong>Canlı Ders Platformu:</strong> Zoom</li>
+                    <li><strong>Self Study:</strong> mBlock Uygulaması</li>
+                    <li><strong>Seviye:</strong> Başlangıç seviyesinden ileri seviyeye</li>
+                    <li><strong>Ödev ve Araştırma Paylaşımları:</strong> Slack</li>
+                </ul>
+                
+                <h2>EĞİTİMİN AVANTAJLARI</h2>
+                <ul>
+                    <li><strong>Güncel ve Pratik Odaklı İçerik:</strong> Yapay zeka ve görsel programlama konularında en yeni bilgileri öğreneceksin.</li>
+                    <li><strong>Canlı Destek ve Soru-Cevap Oturumları:</strong> Kurs boyunca sorularını uzman eğitmenlere sorabilir, birebir rehberlik alabilirsin.</li>
+                    <li><strong>Sertifikalı Eğitim:</strong> Kursu tamamladığında, ismine özel ve eğitmen imzalı bir katılım belgesi alacaksın.</li>
+                    <li><strong>Başlangıç Seviyesinden İleri Seviyeye:</strong> Hiçbir deneyimin olmasa bile bu kurs sayesinde yapay zeka ve kodlama becerilerini geliştirerek profesyonel düzeye ulaşabileceksin.</li>
+                    <li><strong>Eğlenceli ve Etkileşimli Öğrenme:</strong> Uygulamalı projeler, interaktif alıştırmalar ve gerçek dünya senaryoları ile öğrenmeyi keyifli hale getiriyoruz!</li>
+                    <li><strong>Sonraki Adım:</strong> Kursu tamamladıktan sonra daha ileri seviye yapay zeka ve programlama kurslarına katılabilir, öğrendiklerini geliştirerek kariyerine yön verebilirsin.</li>
+                </ul>
+                <!-- Sekmeli Bölüm Başlangıcı -->
+                <ul class="nav nav-tabs mb-3" id="gencYeteneklerYapayZekaTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Tanım</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Müfredat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">SSS</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">Yorumlar</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="gencYeteneklerYapayZekaTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>
+                            Genç Yetenekler - Projelerle Yapay Zeka'ya Giriş kursu, 10-16 yaş arasındaki gençler için tasarlanmıştır. Bu kurs, mBlock platformu üzerinden görsel programlama ile yapay zeka ve makine öğrenmesi kavramlarını öğretir. Katılımcılar, eğlenceli projelerle teknolojiye adım atar.
+                        </p>
+                        <p>
+                            Kurs, kodlama bilgisi gerektirmeyen, başlangıç seviyesinden ileri seviyeye ulaşmak isteyenler için uygundur. Interaktif öğrenme ile YZ becerileri geliştirilir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <h3>BU EĞİTİMDE NELER ÖĞRENECEKSİN?</h3>
+                        <h4>Yapay Zeka Temelleri</h4>
+                        <ul>
+                            <li><strong> Yapay Zekaya Giriş:</strong> Yapay zeka ve makine öğrenmesinin temel kavramlarını keşfedeceksin.</li>
+                            <li><strong> Yapay Zeka Alanındaki Gelişmeler:</strong> Günümüzde yapay zeka nerelerde kullanılıyor, avantajları ve sınırlamaları neler?</li>
+                            <li><strong> mBlock ile Tanışma:</strong> mBlock’un kurulumu, arayüzü ve temel bileşenlerini öğreneceksin.</li>
+                            <li><strong> Kod Bloklarıyla Çalışma:</strong> Görsel programlama yaparak kodlamaya kolay bir başlangıç yapacaksın.</li>
+                        </ul>
+                        <h4>mBlock ile Programlama ve Yapay Zeka Uygulamaları</h4>
+                        <ul>
+                            <li><strong> Koordinat Sistemi ve Hareket Blokları:</strong> Karakterleri nasıl yönlendireceğini ve etkileşimli projeler oluşturmayı öğreneceksin.</li>
+                            <li><strong> Döngüler ve Koşullu Yapılar:</strong> Yapay zeka projelerinde sık kullanılan kontrol yapıları ile algoritmalar geliştireceksin.</li>
+                            <li><strong> Sensörler ve Algılama:</strong> mBlock ile çarpışma, renk algılama ve mesafe ölçme gibi sensör kullanımlarını öğreneceksin.</li>
+                            <li><strong> Yapay Zeka Destekli Oyunlar:</strong> Basit oyunlar ve simülasyonlar yaparak öğrendiklerini pratiğe dökeceksin.</li>
+                        </ul>
+                        <h4>Gerçek Dünya Projeleri</h4>
+                        <ul>
+                            <li><strong> Sosyal Etkileşimli Uygulamalar:</strong> Ses algılama, duygu analizi ve yapay zeka destekli interaktif projeler geliştireceksin.</li>
+                            <li><strong> Gerçek Zamanlı Veri İşleme:</strong> Sensörlerden ve harici veri kaynaklarından gelen bilgileri kullanarak projelerini daha akıllı hale getireceksin.</li>
+                            <li><strong> Kendi Yapay Zeka Modellerini Oluşturma:</strong> Basit yapay zeka sistemleri oluşturarak geleceğin teknolojilerini yakından tanıyacaksın.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <h3>1. Bu kurs kimler için uygundur?</h3>
+                        <p>
+                            Kurs, 10-16 yaş arasındaki gençler için uygundur. Kodlama veya yapay zeka deneyimi gerektirmez; başlangıç seviyesinden ileri seviyeye ulaşmak isteyenler için idealdir.
+                        </p>
+                        <h3>2. Kurs süresi ne kadar?</h3>
+                        <p>
+                            Kurs, 10 hafta sürer ve haftada 2 saatlik canlı derslerle toplam 20 saatlik eğitim içerir.
+                        </p>
+                        <h3>3. Kurs sonunda ne öğreneceğim?</h3>
+                        <p>
+                            Kurs sonunda, mBlock ile görsel programlama yaparak yapay zeka projeleri geliştirebilecek, sensörler ve veri işleme ile interaktif uygulamalar oluşturabileceksin.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                        <p>
+                            Henüz yorum yapılmamış. Kurs hakkındaki düşüncelerinizi paylaşmak için lütfen bizimle iletişime geçin!
+                        </p>
+                    </div>
+                </div>
+                <!-- Sekmeli Bölüm Bitişi -->
+                <h2>Geleceğin teknolojilerini keşfetmek için hemen kaydolun!</h2>
+                <div class="text-center mt-4">
+                    <a href="{% url 'kurs-genc-yetenekler-yapay-zeka' %}" class="btn btn-primary">Kursa Katılın</a>
+                    <a href="{% url 'iletisim' %}" class="btn btn-outline-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

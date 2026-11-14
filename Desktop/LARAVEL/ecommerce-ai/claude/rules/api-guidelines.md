@@ -1,0 +1,4 @@
+- Use RESTful conventions
+- Proper HTTP status codes
+- Validate all inputs
+- Return consistent JSON structure

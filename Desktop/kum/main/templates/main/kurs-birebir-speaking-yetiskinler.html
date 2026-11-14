@@ -1,0 +1,115 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Birebir Speaking Dersleri (Yetişkinler) - KUM Academy{% endblock %}
+{% block meta_description %}Yetişkinler için Birebir Speaking Dersleri ile İngilizce konuşma becerilerinizi kişiselleştirilmiş eğitimle geliştirin! KUM Academy ile akıcı İngilizce konuşun.{% endblock %}
+{% block og_title %}Birebir Speaking Dersleri (Yetişkinler) - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin birebir speaking dersleri ile iş İngilizcesi, günlük konuşmalar ve daha fazlasında akıcı bir şekilde iletişim kurmayı öğrenin.{% endblock %}
+{% block canonical_url %}{% url 'kurs-birebir-speaking-yetiskinler' %}{% endblock %}
+
+{% block content %}
+<section id="kurs-birebir-speaking-yetiskinler" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Birebir Speaking Dersleri (Yetişkinler)</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-muted mb-4">
+                    <small>
+                        <strong>Yayın Tarihi:</strong> Ağustos 08, 2025, 15:50 | 
+                        <strong>Yazar:</strong> kumacademy | 
+                        <strong>Kategori:</strong> Yetişkinler için Eğitim | 
+                        <strong>Yorum:</strong> Yorum yapılmamış
+                    </small>
+                </p>
+                <p>
+                    İngilizce, küresel iletişimin ve bilgi paylaşımının ana dilidir. İş dünyasından akademik çalışmalara, teknolojiden eğitime kadar pek çok alanda İngilizce bilmek, bireylere uluslararası fırsatlar sunar. İnternet üzerindeki kaynakların büyük bir kısmı İngilizce olduğu için, bu dili bilmek, bilgiye erişimi kolaylaştırır ve bireyin kendini geliştirmesine olanak tanır. Ayrıca, İngilizce bilmek, farklı kültürlerle iletişim kurmayı ve küresel düşünce yapısına sahip olmayı sağlar.
+                </p>
+                <img src="{% static 'main/images/kurs-birebir-speaking-yetiskinler.jpg' %}" class="img-fluid rounded mb-4" alt="Birebir Speaking Dersleri (Yetişkinler) Kursu">
+                <h2>Kurs Detayları</h2>
+                <ul>
+                    <li><strong>Kurs Süresi:</strong> 12 hafta</li>
+                    <li><strong>Canlı Dersler:</strong> 24 saat</li>
+                    <li><strong>Canlı Ders Platformu:</strong> Zoom</li>
+                    <li><strong>Self Study:</strong> ellii.com</li>
+                    <li><strong>Seviye:</strong> Değişken</li>
+                    <li><strong>Ödev – Alıştırma Paylaşımları:</strong> Slack</li>
+                </ul>
+                
+                <h2>Eğitimin Avantajları</h2>
+                <ul>
+                    <li><strong>Birebir Destek:</strong> Eğitmenimizle birebir dersler sayesinde kişisel ihtiyaçlarınıza yönelik eğitim almanızı sağlıyoruz.</li>
+                    <li><strong>Esnek Program:</strong> Ders saatleri sizin ihtiyaçlarınıza ve programınıza göre esnek bir şekilde düzenlenir.</li>
+                    <li><strong>Güncel İçerik:</strong> İş hayatı, seyahat ve günlük yaşam konularında güncellenmiş içerikler sunuyoruz.</li>
+                    <li><strong>Katılım Belgesi:</strong> Eğitimi başarıyla tamamladığınızda, eğitmen imzalı katılım belgesine sahip olursunuz.</li>
+                    <li><strong>Kişisel Gelişim:</strong> Konuşma becerilerinizi geliştirerek özgüven kazanmanızı sağlıyoruz.</li>
+                    <li><strong>Uygulamalı Öğrenme:</strong> Gerçek hayattan örneklerle ve pratiklerle öğrendiklerinizi hemen uygulama fırsatı bulacaksınız.</li>
+                </ul>
+                <!-- Sekmeli Bölüm Başlangıcı -->
+                <ul class="nav nav-tabs mb-3" id="birebirSpeakingYetiskinlerTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Tanım</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Müfredat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">SSS</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">Yorumlar</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="birebirSpeakingYetiskinlerTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>
+                            Birebir Speaking Dersleri (Yetişkinler), İngilizce konuşma becerilerini kişiselleştirilmiş bir yaklaşımla geliştirmek isteyen yetişkinler için tasarlanmıştır. KUM Academy’nin uzman eğitmenleri eşliğinde, birebir derslerle ihtiyaçlarınıza özel bir öğrenme deneyimi yaşarsınız. İş hayatı, seyahat veya günlük iletişim için İngilizceyi akıcı bir şekilde kullanmayı öğrenmek isteyenler için ideal bir programdır.
+                        </p>
+                        <p>
+                            Kurs, her seviyeden katılımcıya uygundur ve kişisel hedeflerinize göre özelleştirilmiş içeriklerle İngilizce konuşma becerilerinizi güçlendirir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <h3>Kurs İçeriği</h3>
+                        <ul>
+                            <li><strong>Konuşma Becerileri:</strong> Günlük konuşmalar, iş İngilizcesi.</li>
+                            <li><strong>Konular:</strong> İş hayatı, seyahat, kültür, haberler.</li>
+                            <li><strong>Aktiviteler:</strong> Rol oyunları, tartışmalar, sunumlar.</li>
+                        </ul>
+                        <h3>Öğrenim Hedefleri</h3>
+                        <ul>
+                            <li>Kişisel ve profesyonel konularda akıcı konuşabilme.</li>
+                            <li>İletişim becerilerini geliştirme.</li>
+                            <li>Farklı durumlarda İngilizceyi etkin kullanabilme.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <h3>1. Speaking derslerinizde hangi grup formatları sunuluyor?</h3>
+                        <p>
+                            Speaking derslerimizde öğrencilerimizin ihtiyacına göre farklı grup formatları sunuyoruz. Bu formatlar, birebir dersler, 3’lü ve 5’li gruplar olarak çeşitlenmektedir. Öğrencinin seviyesine ve hedeflerine göre en uygun grup belirlenir, böylece daha etkili ve verimli bir konuşma pratiği sağlanır. Eğitmen eşliğinde, her grup formatı öğrencilere konuşma becerilerini geliştirmede önemli fırsatlar sunar.
+                        </p>
+                        <h3>2. Speaking derslerinde haftalık ders saati nasıl belirleniyor?</h3>
+                        <p>
+                            Speaking derslerinin haftalık saati, öğrencinin mevcut seviyesine, hedeflerine ve tercihine göre belirleniyor. Birebir derslerde daha yoğun bir eğitim alabilirken, grup derslerinde bu süre biraz daha esnek olabilir. 3’lü ve 5’li gruplar için genellikle haftada 1-2 ders önerilmektedir. Eğitmenler, her öğrencinin ilerlemesini yakından takip ederek, en verimli süreyi önerirler.
+                        </p>
+                        <h3>3. Speaking gruplarında eğitmen nasıl bir rol üstleniyor?</h3>
+                        <p>
+                            Speaking gruplarında eğitmen, öğrencilerin her biriyle bireysel olarak ilgilenirken aynı zamanda grup dinamiklerini de yönetir. Her öğrencinin konuşma becerilerini doğru bir şekilde geliştirebilmesi için sürekli geri bildirimde bulunur ve pratiği yönlendirir. Ayrıca, konuşma sırasında öğrencilerin doğru teknikleri kullanmalarını sağlamak için grup içinde aktif bir rehberlik yapar.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                        <p>
+                            Henüz yorum yapılmamış. Kurs hakkındaki düşüncelerinizi paylaşmak için lütfen bizimle iletişime geçin!
+                        </p>
+                    </div>
+                </div>
+                <!-- Sekmeli Bölüm Bitişi -->
+                <h2>İngilizce Konuşma Becerilerinizi Birebir Derslerle Geliştirin!</h2>
+                <div class="text-center mt-4">
+                    <a href="{% url 'kurs-birebir-speaking-yetiskinler' %}" class="btn btn-primary">Kursa Katılın</a>
+                    <a href="{% url 'iletisim' %}" class="btn btn-outline-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

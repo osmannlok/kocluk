@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Hakkımızda - KUM Academy{% endblock %}
+{% block meta_description %}KUM Academy ile online İngilizce ve teknoloji kursları hakkında bilgi edinin. Misyonumuz, vizyonumuz ve hizmetlerimizle tanışın.{% endblock %}
+{% block og_title %}Hakkımızda - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy, online İngilizce ve teknoloji kurslarıyla herkesin eğitimine katkıda bulunuyor. IT İngilizcesi, IELTS, konuşma dersleri ve daha fazlası için bize katılın!{% endblock %}
+
+{% block content %}
+<section id="hakkimizda" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Hakkımızda</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2>KUM Academy Kimdir?</h2>
+                <p>KUM Academy, online eğitimde yenilikçi bir platform olarak, İngilizce ve teknoloji alanında dünya çapında erişilebilir kurslar sunmaktadır. Amacımız, öğrencilerimizin İngilizce dil becerilerini geliştirmelerine ve teknoloji dünyasında fark yaratmalarına olanak tanımaktır. IT İngilizcesi, Genel İngilizce, IELTS hazırlık, birebir ve grup konuşma kurslarının yanı sıra Amazon E-ticaret, IT Support, Dijital Pazarlama ve Çocuklar için Python gibi teknoloji odaklı programlarla geniş bir yelpazede hizmet veriyoruz.</p>
+
+                <h2>Misyonumuz</h2>
+                <p>KUM Academy olarak misyonumuz, her öğrencinin potansiyelini ortaya çıkararak İngilizce ve teknoloji becerilerini geliştirmelerine yardımcı olmaktır. Online öğrenme platformumuz sayesinde, öğrencilerimizin zaman ve mekan kısıtlamaları olmadan, kişiselleştirilmiş ve etkili bir eğitim deneyimi yaşamalarını sağlıyoruz. Eğitim sürecinde rehberlik ederken, sadece akademik başarıyı değil, aynı zamanda özgüvenli iletişim ve küresel bir vizyon kazanmalarını hedefliyoruz.</p>
+
+                <h2>Vizyonumuz</h2>
+                <p>Eğitimde sınırları kaldırarak, herkesin İngilizce ve teknoloji alanında donanımlı bireyler olmasını sağlıyoruz. KUM Academy, online eğitimde en güvenilir ve yenilikçi platform olmayı hedefler. Öğrencilerimizin uluslararası arenada kendilerini ifade edebilen, teknolojiye hakim ve özgüvenli bireyler olmalarını desteklemek için durmaksızın çalışıyoruz.</p>
+
+                <h2>Neden KUM Academy?</h2>
+                <ul>
+                    <li><strong>Uzman Eğitmenler:</strong> Alanında deneyimli eğitmenlerimiz, size en iyi öğrenme deneyimini sunar.</li>
+                    <li><strong>Kişiselleştirilmiş Eğitim:</strong> Her öğrencinin seviyesine ve ihtiyaçlarına özel ders planları hazırlıyoruz.</li>
+                    <li><strong>Esnek ve Erişilebilir:</strong> Online platformumuz sayesinde dilediğiniz yerden, dilediğiniz zaman öğrenin.</li>
+                    <li><strong>Geniş Kurs Yelpazesi:</strong> İngilizce konuşma kurslarından teknoloji eğitimlerine kadar çeşitlilik sunuyoruz.</li>
+                    <li><strong>Kapsamlı Destek:</strong> Ders seçimi, teknik destek ve öğrenme sürecinde 7/24 yanınızdayız.</li>
+                </ul>
+
+                <h2>Hizmetlerimiz</h2>
+                <p>KUM Academy olarak, İngilizce ve teknoloji alanında geniş bir kurs portföyü sunuyoruz. IT İngilizcesi, Genel İngilizce, IELTS ve SAT hazırlık, birebir ve grup konuşma dersleri ile dil becerilerinizi geliştiriyoruz. Ayrıca, Amazon E-ticaret, IT Support, Dijital Pazarlama ve Çocuklar için Python kurslarıyla teknoloji dünyasında kariyer yapma fırsatını sunuyoruz. Online derslerimiz, Zoom üzerinden canlı olarak verilir ve interaktif öğrenme materyalleriyle desteklenir. Eğitim sürecinizde size rehberlik ederek, öğrenme deneyiminizi kolay ve keyifli hale getiriyoruz.</p>
+
+                <h2>Bizimle Geleceğinizi Şekillendirin</h2>
+                <p>KUM Academy, İngilizce ve teknoloji becerilerinizi geliştirerek hayallerinize ulaşmanız için en büyük destekçinizdir. Online eğitimle yeni bir dil öğrenmek, kariyerinizi güçlendirmek veya teknoloji dünyasında fark yaratmak için bizimle iletişime geçin. KUM Academy ile eğitim yolculuğunuzu unutulmaz bir deneyime dönüştürün!</p>
+                <div class="text-center">
+                    <a href="{% url 'iletisim' %}" class="btn btn-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

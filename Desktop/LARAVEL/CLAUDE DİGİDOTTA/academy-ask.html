@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soru Sor — DigiDotta Akademi</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0e1a'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2300d4ff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%2300ff9d'/%3E%3Cpath d='M30 20 L30 80 Q30 80 50 80 Q75 80 75 50 Q75 20 50 20 Z' fill='none' stroke='%2300d4ff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.form-page-hero{background:radial-gradient(ellipse 70% 60% at 70% 50%,rgba(0,255,157,.06),transparent 70%),radial-gradient(ellipse 50% 70% at 20% 30%,rgba(0,180,255,.07),transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2))}
+
+/* Form page specific */
+.form-page-hero{position:relative;z-index:1;padding:120px 5% 0;overflow:hidden;min-height:100vh;display:flex;align-items:flex-start}
+.form-page-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;max-width:1100px;margin:0 auto;width:100%;padding-bottom:80px}
+.form-info{padding-top:20px}
+.form-info-tag{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--green);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.form-info-tag::before{content:'';height:1px;width:30px;background:var(--green)}
+.form-info h1{font-family:'Orbitron',monospace;font-weight:900;font-size:clamp(22px,3.5vw,42px);letter-spacing:4px;line-height:1.15;background:linear-gradient(135deg,var(--text),var(--blue) 55%,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
+.form-info p{font-size:14px;line-height:1.95;color:var(--text3);margin-bottom:32px}
+.form-info-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.form-info-list li{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--text3);line-height:1.6}
+.form-info-list li::before{content:'✓';color:var(--green);font-family:'Orbitron',monospace;font-weight:700;flex-shrink:0;margin-top:1px}
+.form-card{background:var(--bg2);border:1px solid var(--border);padding:44px 40px;position:relative;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--green),var(--blue))}
+.form-card h2{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;letter-spacing:3px;color:var(--text);margin-bottom:28px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);margin-bottom:7px}
+.ff{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:13px 16px;font-family:'Exo 2',sans-serif;font-size:13px;outline:none;width:100%;transition:all .3s;border-radius:2px}
+.ff:focus{border-color:var(--blue);background:var(--surface2);box-shadow:0 0 18px rgba(0,180,255,.08)}
+.ff::placeholder{color:var(--text4)}
+.ff.invalid{border-color:#ff6b6b!important;box-shadow:0 0 10px rgba(255,60,60,.15)}
+[data-theme="light"] .ff.invalid{border-color:#c00!important}
+select.ff option{background:var(--bg);color:var(--text)}
+textarea.ff{resize:vertical;min-height:100px}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-submit{width:100%;margin-top:8px;font-family:'Orbitron',monospace;font-size:11px;letter-spacing:4px;padding:17px;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;cursor:pointer;transition:all .3s;font-weight:700}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,180,255,.35)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.form-note{font-size:11px;color:var(--text4);margin-top:14px;text-align:center;line-height:1.7}
+.form-note a{color:var(--blue);text-decoration:none}
+.form-note a:hover{text-decoration:underline}
+#form-status{display:none;padding:14px 18px;margin-top:12px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;border-radius:2px;text-align:center}
+#form-status.success{background:rgba(0,255,157,.12);border:1px solid rgba(0,255,157,.35);color:#00ff9d}
+#form-status.error{background:rgba(255,60,60,.1);border:1px solid rgba(255,60,60,.3);color:#ff6b6b}
+#form-status.loading{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:#00d4ff}
+[data-theme="light"] #form-status.success{background:rgba(0,120,60,.1);border:1px solid rgba(0,120,60,.3);color:#005a20}
+[data-theme="light"] #form-status.error{background:rgba(180,0,0,.08);border:1px solid rgba(180,0,0,.25);color:#900}
+[data-theme="light"] #form-status.loading{background:rgba(0,104,200,.08);border:1px solid rgba(0,104,200,.25);color:#0068c8}
+.course-chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.course-chip{padding:8px 16px;border:1px solid var(--border);background:var(--surface);font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1.5px;color:var(--text3);cursor:pointer;transition:all .25s;user-select:none}
+.course-chip.selected{border-color:var(--blue);background:rgba(0,180,255,.12);color:var(--blue)}
+[data-theme="light"] .course-chip.selected{background:rgba(0,104,200,.12)}
+.success-panel{display:none;text-align:center;padding:40px 20px}
+.success-panel .check{font-size:56px;margin-bottom:20px}
+.success-panel h3{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;letter-spacing:3px;color:var(--green);margin-bottom:14px}
+.success-panel p{font-size:14px;line-height:1.85;color:var(--text3);max-width:460px;margin:0 auto 28px}
+.trust-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text4)}
+.trust-item span:first-child{font-size:18px}
+@media(max-width:900px){.form-page-inner{grid-template-columns:1fr}.form-info{padding-top:0}}
+@media(max-width:600px){.form-card{padding:28px 20px}.form-row-2{grid-template-columns:1fr}}
+
+.topic-chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:4px}
+.topic-chip{padding:7px 14px;border:1px solid var(--border);background:var(--surface);font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text3);cursor:pointer;transition:all .25s;user-select:none;border-radius:2px}
+.topic-chip.selected{border-color:var(--green);background:rgba(0,255,157,.08);color:var(--green)}
+[data-theme="light"] .topic-chip.selected{background:rgba(0,120,60,.08);color:#005a20}
+.faq-mini{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border2)}
+.faq-mini li{font-size:12px;color:var(--text4);display:flex;gap:8px;line-height:1.6}
+.faq-mini li::before{content:'?';color:var(--blue);font-family:'Orbitron',monospace;font-weight:700;flex-shrink:0}
+</style>
+</head>
+<body>
+<div id="cursor"></div><div id="cdot"></div><canvas id="particles"></canvas>
+
+<div id="lang-bar">
+  <button id="theme-btn" class="lb theme-lb" onclick="toggleTheme()" title="Tema"><span id="theme-icon">☀</span></button>
+  <div style="width:1px;background:var(--gborder);margin:4px 2px"></div>
+  <button class="lb" onclick="setLang('en')">EN</button>
+  <button class="lb active" onclick="setLang('tr')">TR</button>
+  <button class="lb" onclick="setLang('de')">DE</button>
+</div>
+
+<nav>
+  <a class="nlogo" href="digidotta.html"><svg width="36" height="36" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="14" fill="#060b18"/><path d="M22 18L22 82Q22 82 50 82Q80 82 80 50Q80 18 50 18Z" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="none" stroke="#00b8a9" stroke-width="2.5"/><rect x="43" y="43" width="14" height="14" rx="3" fill="#00ff9d"/></svg><span class="nlogo-text">DIGIDOTTA</span></a>
+  <div class="nlinks-wrap">
+    <ul class="nlinks">
+      <li><a href="digidotta.html#services" data-en="SERVICES" data-tr="HİZMETLER" data-de="LEISTUNGEN">HİZMETLER</a></li>
+      <li><a href="digidotta.html#academy" data-en="ACADEMY" data-tr="AKADEMİ" data-de="AKADEMIE">AKADEMİ</a></li>
+      <li><a href="digidotta.html#portfolio" data-en="PORTFOLIO" data-tr="PORTFÖY" data-de="PORTFOLIO">PORTFÖY</a></li>
+      <li><a href="digidotta.html#contact" data-en="CONTACT" data-tr="İLETİŞİM" data-de="KONTAKT">İLETİŞİM</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="form-page-hero">
+  <div class="form-page-inner">
+
+    <!-- Sol: Bilgi paneli -->
+    <div class="form-info">
+      <div class="form-info-tag" data-en="DIGIDOTTA ACADEMY" data-tr="DİGİDOTTA AKADEMİ" data-de="DIGIDOTTA AKADEMIE">DİGİDOTTA AKADEMİ</div>
+      <h1 data-en="ASK A QUESTION" data-tr="SORU SOR" data-de="FRAGE STELLEN">SORU SOR</h1>
+      <p data-en="Not sure which course to choose? Want to know more about the curriculum or payment options? Ask away — we respond to all questions within 24 hours." data-tr="Hangi kursu seçeceğinizden emin değil misiniz? Müfredat veya ödeme seçenekleri hakkında daha fazla bilgi almak ister misiniz? Sorun — tüm sorulara 24 saat içinde yanıt veriyoruz." data-de="Unsicher bei der Kurswahl? Fragen zum Lehrplan oder zur Zahlung? Stellen Sie sie — wir antworten innerhalb von 24 Stunden.">Hangi kursu seçeceğinizden emin değil misiniz? Müfredat veya ödeme seçenekleri hakkında daha fazla bilgi almak ister misiniz? Sorun — tüm sorulara 24 saat içinde yanıt veriyoruz.</p>
+
+      <ul class="form-info-list">
+        <li data-en="Which course is right for me?" data-tr="Hangi kurs bana uygun?" data-de="Welcher Kurs passt zu mir?">Hangi kurs bana uygun?</li>
+        <li data-en="Is there an installment payment option?" data-tr="Taksit ödeme seçeneği var mı?" data-de="Gibt es eine Ratenzahlungsoption?">Taksit ödeme seçeneği var mı?</li>
+        <li data-en="When do the next sessions start?" data-tr="Bir sonraki dönem ne zaman başlıyor?" data-de="Wann beginnt die nächste Runde?">Bir sonraki dönem ne zaman başlıyor?</li>
+        <li data-en="Is there a discount for group/company enrollment?" data-tr="Grup/kurumsal kayıt indirimi var mı?" data-de="Gibt es Rabatt für Gruppen/Unternehmen?">Grup/kurumsal kayıt indirimi var mı?</li>
+        <li data-en="What if I miss a live session?" data-tr="Canlı oturumu kaçırırsam ne olur?" data-de="Was passiert wenn ich eine Live-Session verpasse?">Canlı oturumu kaçırırsam ne olur?</li>
+      </ul>
+
+      <ul class="faq-mini">
+        <li data-en="Responses are given by Monday–Saturday 09:00–22:00." data-tr="Yanıtlar Pazartesi–Cumartesi 09:00–22:00 arasında verilir." data-de="Antworten werden Mo–Sa 09:00–22:00 Uhr gegeben.">Yanıtlar Pazartesi–Cumartesi 09:00–22:00 arasında verilir.</li>
+        <li data-en="No question is too simple — we love questions." data-tr="Hiçbir soru basit değildir — sorularınızı seviyoruz." data-de="Keine Frage ist zu simpel — wir lieben Fragen.">Hiçbir soru basit değildir — sorularınızı seviyoruz.</li>
+        <li data-en="You can also reach us via WhatsApp: 0546 744 67 22" data-tr="WhatsApp üzerinden de ulaşabilirsiniz: 0546 744 67 22" data-de="Sie können uns auch per WhatsApp erreichen: 0546 744 67 22">WhatsApp üzerinden de ulaşabilirsiniz: 0546 744 67 22</li>
+      </ul>
+    </div>
+
+    <!-- Sağ: Form kartı -->
+    <div class="form-card">
+      <h2 data-en="QUESTION FORM" data-tr="SORU FORMU" data-de="FRAGEFORMULAR">SORU FORMU</h2>
+
+      <form id="ask-form" novalidate>
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-row-2">
+          <div class="fg">
+            <label data-en="FIRST & LAST NAME *" data-tr="AD SOYAD *" data-de="VOR- & NACHNAME *">AD SOYAD *</label>
+            <input class="ff" type="text" id="a-name" name="name"
+                   data-placeholder-tr="Adınız Soyadınız" data-placeholder-en="Your Full Name" data-placeholder-de="Vor- und Nachname"
+                   placeholder="Adınız Soyadınız" required>
+          </div>
+          <div class="fg">
+            <label data-en="E-MAIL *" data-tr="E-POSTA *" data-de="E-MAIL *">E-POSTA *</label>
+            <input class="ff" type="email" id="a-email" name="email"
+                   data-placeholder-tr="ornek@email.com" data-placeholder-en="your@email.com" data-placeholder-de="ihre@email.de"
+                   placeholder="ornek@email.com" required>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label data-en="PHONE (optional)" data-tr="TELEFON (isteğe bağlı)" data-de="TELEFON (optional)">TELEFON (isteğe bağlı)</label>
+          <input class="ff" type="tel" id="a-phone" name="phone"
+                 data-placeholder-tr="05XX XXX XX XX" data-placeholder-en="+90 5XX XXX XX XX" data-placeholder-de="+90 5XX XXX XX XX"
+                 placeholder="05XX XXX XX XX">
+        </div>
+
+        <div class="fg">
+          <label data-en="RELATED COURSE (optional)" data-tr="İLGİLİ KURS (isteğe bağlı)" data-de="KURS (optional)">İLGİLİ KURS (isteğe bağlı)</label>
+          <select class="ff" id="a-course" name="course">
+            <option value="" data-en="— All courses / General —" data-tr="— Tüm kurslar / Genel —" data-de="— Alle Kurse / Allgemein —">— Tüm kurslar / Genel —</option>
+            <option value="HTML & CSS">HTML & CSS</option><option value="JavaScript">JavaScript</option><option value="Python">Python</option><option value="PHP & MySQL">PHP & MySQL</option><option value="React & Node.js">React & Node.js</option><option value="Dijital Pazarlama">Dijital Pazarlama</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label data-en="QUESTION TOPIC" data-tr="SORU KONUSU" data-de="FRAGENTHEMA">SORU KONUSU</label>
+          <div class="topic-chips" id="topic-chips">
+            <span class="topic-chip" data-val="Kurs seçimi" data-en="Course choice" data-tr="Kurs seçimi" data-de="Kurswahl">Kurs seçimi</span>
+            <span class="topic-chip" data-val="Fiyat & taksit" data-en="Price & installment" data-tr="Fiyat & taksit" data-de="Preis & Raten">Fiyat & taksit</span>
+            <span class="topic-chip" data-val="Dönem & takvim" data-en="Term & schedule" data-tr="Dönem & takvim" data-de="Zeitplan">Dönem & takvim</span>
+            <span class="topic-chip" data-val="Sertifika" data-en="Certificate" data-tr="Sertifika" data-de="Zertifikat">Sertifika</span>
+            <span class="topic-chip" data-val="Müfredat" data-en="Curriculum" data-tr="Müfredat" data-de="Lehrplan">Müfredat</span>
+            <span class="topic-chip" data-val="Teknik gereksinimler" data-en="Technical requirements" data-tr="Teknik gereksinimler" data-de="Techn. Anforderungen">Teknik gereksinimler</span>
+            <span class="topic-chip" data-val="Kurumsal kayıt" data-en="Corporate enrollment" data-tr="Kurumsal kayıt" data-de="Firmenanmeldung">Kurumsal kayıt</span>
+            <span class="topic-chip" data-val="Diğer" data-en="Other" data-tr="Diğer" data-de="Sonstiges">Diğer</span>
+          </div>
+          <input type="hidden" id="a-topic" name="topic" value="">
+        </div>
+
+        <div class="fg">
+          <label data-en="YOUR QUESTION *" data-tr="SORUNUZ *" data-de="IHRE FRAGE *">SORUNUZ *</label>
+          <textarea class="ff" id="a-question" name="question" rows="5"
+                    data-placeholder-tr="Sorunuzu mümkün olduğunca ayrıntılı yazarsanız daha iyi yardımcı olabiliriz..."
+                    data-placeholder-en="Write your question in as much detail as possible so we can help better..."
+                    data-placeholder-de="Schreiben Sie Ihre Frage so detailliert wie möglich..."
+                    placeholder="Sorunuzu mümkün olduğunca ayrıntılı yazarsanız daha iyi yardımcı olabiliriz..." required></textarea>
+        </div>
+
+        <div id="form-status"></div>
+
+        <button type="submit" class="form-submit" id="ask-submit"
+                data-en="SEND QUESTION" data-tr="SORU GÖNDER" data-de="FRAGE SENDEN">SORU GÖNDER</button>
+
+        <p class="form-note" data-en="Ready to enroll? <a href='academy-enroll.html'>Go to enrollment form.</a>" data-tr="Kayıt olmaya hazır mısınız? <a href='academy-enroll.html'>Kayıt formuna gidin.</a>" data-de="Bereit zur Anmeldung? <a href='academy-enroll.html'>Zum Anmeldeformular.</a>">Kayıt olmaya hazır mısınız? <a href="academy-enroll.html">Kayıt formuna gidin.</a></p>
+
+        <!-- Başarı paneli -->
+        <div class="success-panel" id="success-panel">
+          <div class="check">💬</div>
+          <h3 data-en="QUESTION SENT!" data-tr="SORUNUZ ALINDI!" data-de="FRAGE GESENDET!">SORUNUZ ALINDI!</h3>
+          <p data-en="Thank you! We'll respond to your question within 24 hours by email." data-tr="Teşekkürler! Sorunuzu 24 saat içinde e-posta ile yanıtlayacağız." data-de="Danke! Wir antworten auf Ihre Frage innerhalb von 24 Stunden per E-Mail.">Teşekkürler! Sorunuzu 24 saat içinde e-posta ile yanıtlayacağız.</p>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+            <a class="btn-p" href="academy-enroll.html" data-en="Enroll Now" data-tr="Kayıt Ol" data-de="Jetzt Anmelden">Kayıt Ol</a>
+            <a class="btn-s" href="digidotta.html#academy" data-en="Back to Academy" data-tr="Akademiye Dön" data-de="Zur Akademie">Akademiye Dön</a>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-main">
+    <div class="fbrand">
+      <div class="nlogo" style="margin-bottom:4px"><svg width="38" height="38" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="14" fill="#060b18"/><path d="M22 18L22 82Q22 82 50 82Q80 82 80 50Q80 18 50 18Z" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="none" stroke="#00b8a9" stroke-width="2.5"/><rect x="43" y="43" width="14" height="14" rx="3" fill="#00ff9d"/></svg><span class="nlogo-text" style="font-size:17px">DIGIDOTTA</span></div>
+      <p data-en="A futuristic digital agency crafting web experiences, social media strategies and tech education." data-tr="Web deneyimleri, sosyal medya stratejileri ve teknoloji eğitimiyle fütüristik dijital ajans." data-de="Eine futuristische Digitalagentur für Web-Erlebnisse und Tech-Bildung.">Web deneyimleri, sosyal medya stratejileri ve teknoloji eğitimiyle fütüristik dijital ajans.</p>
+      <div class="fsoc">
+        <a class="soc" href="https://instagram.com/digidotta" target="_blank">◎</a>
+        <a class="soc" href="https://x.com/digidotta" target="_blank">𝕏</a>
+        <a class="soc" href="https://linkedin.com/company/digidotta" target="_blank">in</a>
+        <a class="soc" href="https://youtube.com/@digidotta" target="_blank">▶</a>
+        <a class="soc" href="https://tiktok.com/@digidotta" target="_blank">♪</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-en="ACADEMY" data-tr="AKADEMİ" data-de="AKADEMIE">AKADEMİ</h4>
+      <ul>
+        <li><a href="academy-html-css.html">HTML &amp; CSS</a></li>
+        <li><a href="academy-javascript.html">JavaScript</a></li>
+        <li><a href="academy-python.html">Python</a></li>
+        <li><a href="academy-php-mysql.html">PHP &amp; MySQL</a></li>
+        <li><a href="academy-react-nodejs.html">React &amp; Node.js</a></li>
+        <li><a href="academy-digital-marketing.html" data-en="Digital Marketing" data-tr="Dijital Pazarlama" data-de="Digital Marketing">Dijital Pazarlama</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4 data-en="SERVICES" data-tr="HİZMETLER" data-de="LEISTUNGEN">HİZMETLER</h4>
+      <ul>
+        <li><a href="web-design.html" data-en="Web Design" data-tr="Web Tasarım" data-de="Web Design">Web Tasarım</a></li>
+        <li><a href="social-content.html" data-en="SM Content" data-tr="SM İçerik" data-de="SM-Inhalte">SM İçerik</a></li>
+        <li><a href="digital-strategy.html" data-en="Digital Strategy" data-tr="Dijital Strateji" data-de="Digitalstrategie">Dijital Strateji</a></li>
+        <li><a href="data-analytics.html" data-en="Data Analytics" data-tr="Veri Analitiği" data-de="Datenanalyse">Veri Analitiği</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4 data-en="CONTACT" data-tr="İLETİŞİM" data-de="KONTAKT">İLETİŞİM</h4>
+      <ul>
+        <li><a href="mailto:digidotta@gmail.com">digidotta@gmail.com</a></li>
+        <li><a href="tel:+905467446722">0546 744 67 22</a></li>
+        <li><a href="tel:+905468999511">0546 899 95 11</a></li>
+        <li style="margin-top:6px"><a href="academy-enroll.html" data-en="Enroll Now" data-tr="Kayıt Ol" data-de="Jetzt Anmelden">Kayıt Ol</a></li>
+        <li><a href="academy-ask.html" data-en="Ask a Question" data-tr="Soru Sor" data-de="Frage Stellen">Soru Sor</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="copy" data-en="COPYRIGHT © 2024 DIGIDOTTA" data-tr="TELİF HAKKI © 2024 DIGIDOTTA" data-de="COPYRIGHT © 2024 DIGIDOTTA">TELİF HAKKI © 2024 DIGIDOTTA</div>
+    <div class="flinks">
+      <a href="#" data-en="Privacy" data-tr="Gizlilik" data-de="Datenschutz">Gizlilik</a>
+      <a href="#" data-en="Terms" data-tr="Koşullar" data-de="Nutzungsbedingungen">Koşullar</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+const cur=document.getElementById('cursor'),dot=document.getElementById('cdot');
+cur.style.left='50%';cur.style.top='50%';dot.style.left='50%';dot.style.top='50%';
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'});
+document.querySelectorAll('button,a,.course-chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='30px';cur.style.height='30px';cur.style.borderColor='#00ff9d'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.borderColor='#00d4ff'});
+});
+const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}rsz();window.addEventListener('resize',rsz);
+const pts=Array.from({length:80},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,sz:Math.random()*1.2+.3,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,op:Math.random()*.3+.07,c:Math.random()>.7?'#00ff9d':'#00d4ff'}));
+function dp(){ctx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=p.op;ctx.fill()});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<65){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='#00d4ff';ctx.globalAlpha=(1-d/65)*.04;ctx.lineWidth=.5;ctx.stroke()}}requestAnimationFrame(dp)}dp();
+let theme=localStorage.getItem('dg-theme')||'dark';
+function applyTheme(t){theme=t;document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');const ic=document.getElementById('theme-icon');if(ic)ic.textContent=t==='light'?'🌙':'☀';localStorage.setItem('dg-theme',t);}
+function toggleTheme(){applyTheme(theme==='dark'?'light':'dark');}
+applyTheme(theme);
+let lang='tr';
+function setLang(l){lang=l;document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));document.querySelector(`.lb[onclick="setLang('${l}')"]`).classList.add('active');document.querySelectorAll('[data-en]').forEach(el=>{if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.tagName==='SELECT')return;el.textContent=el.dataset[l]||el.dataset.en;});document.querySelectorAll('[data-placeholder-en]').forEach(el=>{const k='placeholder'+l.charAt(0).toUpperCase()+l.slice(1);el.placeholder=el.dataset[k]||el.dataset.placeholderEn;});document.documentElement.lang=l;}
+setLang('tr');
+
+// ── Topic chip seçimi ─────────────────────────────────────────
+document.querySelectorAll('.topic-chip').forEach(function(chip){
+  chip.addEventListener('click',function(){
+    chip.classList.toggle('selected');
+    var selected=[];
+    document.querySelectorAll('.topic-chip.selected').forEach(function(c){selected.push(c.dataset.val);});
+    document.getElementById('a-topic').value=selected.join(', ');
+  });
+});
+
+// URL param'dan kurs ön seçimi
+var params=new URLSearchParams(window.location.search);
+var c=params.get('course');
+if(c){var sel=document.getElementById('a-course');for(var i=0;i<sel.options.length;i++){if(sel.options[i].value.toLowerCase().includes(c.toLowerCase())){sel.selectedIndex=i;break;}}}
+
+// ── Soru Formu AJAX ───────────────────────────────────────────
+(function(){
+  var form=document.getElementById('ask-form');
+  var status=document.getElementById('form-status');
+  var submitBtn=document.getElementById('ask-submit');
+  var successPanel=document.getElementById('success-panel');
+  if(!form)return;
+
+  var msgs={
+    sending:{tr:'GÖNDERİLİYOR...',en:'SENDING...',de:'WIRD GESENDET...'},
+    err:{tr:'GÖNDERIM HATASI. LÜTFEN TEKRAR DENEYİN.',en:'SEND ERROR. PLEASE TRY AGAIN.',de:'SENDEFEHLER. BITTE ERNEUT VERSUCHEN.'},
+    val:{tr:'AD SOYAD, E-POSTA VE SORU ALANLARI ZORUNLUDUR.',en:'FULL NAME, EMAIL AND QUESTION ARE REQUIRED.',de:'NAME, E-MAIL UND FRAGE SIND PFLICHTFELDER.'}
+  };
+  function showStatus(type,msg){status.className=type;status.textContent=msg;status.style.display='block';}
+  function getMsg(k){return msgs[k][lang]||msgs[k]['tr'];}
+
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var fn=document.getElementById('a-name');
+    var fe=document.getElementById('a-email');
+    var fq=document.getElementById('a-question');
+    [fn,fe,fq].forEach(function(el){el.classList.remove('invalid');});
+    var valid=true;
+    if(!fn.value.trim()||fn.value.trim().length<2){fn.classList.add('invalid');valid=false;}
+    var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRe.test(fe.value.trim())){fe.classList.add('invalid');valid=false;}
+    if(!fq.value.trim()||fq.value.trim().length<10){fq.classList.add('invalid');valid=false;}
+    if(!valid){showStatus('error',getMsg('val'));return;}
+    submitBtn.disabled=true;
+    showStatus('loading',getMsg('sending'));
+    var data=new FormData(form);
+    data.append('form_type','question');
+    try{
+      var res=await fetch('ask.php',{method:'POST',body:data});
+      var json=await res.json();
+      if(json.success){
+        status.style.display='none';
+        form.querySelectorAll('.fg,label,#ask-submit,.form-note,.topic-chips').forEach(function(el){el.style.display='none';});
+        successPanel.style.display='block';
+        window.scrollTo({top:0,behavior:'smooth'});
+      }else{showStatus('error',json.message||getMsg('err'));}
+    }catch(err){showStatus('error',getMsg('err'));}
+    finally{submitBtn.disabled=false;}
+  });
+})();
+</script>
+</body></html>

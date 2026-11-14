@@ -1,0 +1,49 @@
+# public/uploads/.htaccess
+# Yüklenen dosyalar için sertleştirme. Amaç: sızsa bile hiçbir betik çalışmasın, yalnızca görsel servis edilsin.
+
+# Dizin listeleme, CGI ve SSI kapalı
+Options -Indexes -ExecCGI -Includes
+
+# --- Betik motorunu kapat (mod_php) ---
+# Neden: yükleme filtresi aşılsa bile PHP bu dizinde yorumlanmaz
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+# --- İşleyicileri kaldır ---
+# Neden: üst dizinden miras kalan AddHandler/AddType tanımları geçersiz kılınır
+<IfModule mod_mime.c>
+    RemoveHandler .php .phtml .pht .phps .phar .php3 .php4 .php5 .php7 .php8 .cgi .pl .py .sh
+    RemoveType .php .phtml .pht .phps .phar .php3 .php4 .php5 .php7 .php8
+</IfModule>
+SetHandler None
+
+# --- Beyaz liste: yalnızca görsel uzantıları servis edilir ---
+# Neden: önce her şey reddedilir (.htaccess, .html, .svg, .php dahil), sonra yalnızca görseller açılır
+<FilesMatch ".*">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(?i:jpe?g|png|webp|gif)$">
+    Require all granted
+</FilesMatch>
+
+# --- Betik uzantıları her koşulda reddedilir ---
+# Neden: "shell.php.jpg" gibi çift uzantılar beyaz listeden geçmesin; PHP-FPM'de de çalışır
+# (bu blok yukarıdakinden sonra gelir, Apache'de sonraki eşleşme kazanır)
+<FilesMatch "\.(?i:php[0-9]?|phtml|pht|phps|phar|cgi|pl|py|sh|asp|aspx|jsp|shtml)(\.|$)">
+    Require all denied
+</FilesMatch>
+
+# --- Başlıklar ---
+<IfModule mod_headers.c>
+    # Tarayıcı içerik türünü tahmin etmesin (görsel gibi görünen betik çalışmasın)
+    Header always set X-Content-Type-Options "nosniff"
+    # Doğrudan açılan dosyada hiçbir betik/kaynak yüklenemesin
+    Header always set Content-Security-Policy "default-src 'none'; img-src 'self'; style-src 'none'; sandbox"
+</IfModule>

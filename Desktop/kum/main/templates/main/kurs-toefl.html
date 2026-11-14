@@ -1,0 +1,121 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Online TOEFL Kursları - KUM Academy Blog{% endblock %}
+{% block meta_description %}Online TOEFL kursları ile sınavda başarıya ulaşın! KUM Academy’nin blog yazısında TOEFL hazırlık detaylarını ve kurs avantajlarını keşfedin.{% endblock %}
+{% block og_title %}Online TOEFL Kursları - KUM Academy Blog{% endblock %}
+{% block og_description %}TOEFL sınavına hazırlanmak için online kurslar! KUM Academy ile dinleme, okuma, yazma ve konuşma becerilerinizi geliştirin.{% endblock %}
+{% block canonical_url %}{% url 'kurs-toefl' %}{% endblock %}
+
+{% block content %}
+<section id="blog-online-toefl-kurslari" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Online TOEFL Kursları</h1>
+        <h2 class="text-center mb-4">Online TOEFL Kursları ile hedeflerinize ulaşın!</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-muted mb-4">
+                    <small>
+                        <strong>Yayın Tarihi:</strong> August 13, 2025, 14:01 | 
+                        <strong>Yazar:</strong> kumacademy | 
+                        <strong>Kategori:</strong> TOEFL Hazırlık | 
+                        <strong>Yorum:</strong> Yorum yapılmamış
+                    </small>
+                </p>
+                <p>
+                    Yurt dışı eğitim, akademik kariyer fırsatları veya iş başvuruları için gerekli olan TOEFL sınavına en iyi şekilde hazırlanın. KUM Academy olarak, alanında uzman eğitmenlerimizle hem grup dersleri hem de birebir özel ders seçenekleri sunuyoruz. İngilizce seviyenizi TOEFL sınavına uygun hale getirerek, sınavın dört ana becerisine (Dinleme, Okuma, Yazma, Konuşma) odaklanan kapsamlı bir eğitim sağlıyoruz.
+                </p>
+                <img src="{% static 'main/images/kurs-toefl.jpg' %}" class="img-fluid rounded mb-4" alt="Online TOEFL Kursları">
+                <h2>Kurs Detayları</h2>
+                <ul>
+                    <li><strong>Kurs süresi:</strong> Öğrenci seviyesine göre</li>
+                    <li><strong>Canlı Dersler:</strong> Öğrenci seviyesine göre (30-40-50 saatlik programlar)</li>
+                    <li><strong>Canlı Ders Platformu:</strong> Zoom</li>
+                    <li><strong>Self Study:</strong> ellii.com</li>
+                    <li><strong>Seviye:</strong> B1 ve B2 (B1 altındakiler için farklı program)</li>
+                    <li><strong>Only English Chat:</strong> Slack</li>
+                </ul>
+                <h2>TOEFL Grup Dersleri</h2>
+                <p>
+                    Birlikte çalışarak motivasyonunuzu artırmak istiyorsanız, grup derslerimiz tam size göre! Küçük gruplar halinde gerçekleştirilen derslerimizde, sınav stratejileri ve pratikler eşliğinde ilerleyerek hem kendinizi geliştirin hem de başkalarının tecrübelerinden faydalanın.
+                </p>
+                <h2>TOEFL Birebir Dersler</h2>
+                <p>
+                    Kişisel hedeflerinize yönelik, tamamen size özel bir plan mı istiyorsunuz? Birebir derslerimiz ile eğitmenlerimiz, sadece sizin ihtiyaçlarınıza odaklanarak en verimli öğrenme sürecini sağlar. Programınızı dilediğiniz gibi ayarlayabilir ve TOEFL sınavının her aşamasında profesyonel destek alabilirsiniz.
+                </p>
+                <h2>Avantajlar</h2>
+                <ul>
+                    <li><strong>Uzman Eğitmenler:</strong> Yılların tecrübesine sahip eğitmenlerle çalışma fırsatı.</li>
+                    <li><strong>Esnek Ders Saatleri:</strong> Yoğun programınıza uygun ders saatleri.</li>
+                    <li><strong>Birebir Geri Bildirim:</strong> Sınav simülasyonları ve ayrıntılı geri bildirimlerle sürekli gelişim.</li>
+                    <li><strong>Güncel TOEFL Materyalleri:</strong> En güncel ve etkili kaynaklar ile sınav hazırlığı.</li>
+                </ul>
+                <h2>Online TOEFL Kursu ile Başarıya Ulaşın!</h2>
+                <p>
+                    Online platformumuz üzerinden dilediğiniz yerden TOEFL derslerine katılabilir, sınav için gereken tüm becerileri geliştirebilirsiniz. Grup dersleri veya birebir özel dersler ile hedeflerinize en kısa sürede ulaşmak artık çok daha kolay!
+                </p>
+                <!-- Sekmeli Bölüm Başlangıcı -->
+                <ul class="nav nav-tabs mb-3" id="toeflTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Tanım</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Müfredat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">SSS</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="toeflTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>
+                            TOEFL, dört beceriye odaklanan internet tabanlı bir sınavdır: Okuma, Dinleme, Konuşma ve Yazma. Her bölüm 0-30 puan arasında değerlendirilir ve toplam puan 120 üzerinden hesaplanır. Genellikle 80-100 arası puanlar akademik kabul için yeterli kabul edilir.
+                        </p>
+                        <p>
+                            TOEFL sertifikası, ABD, Kanada ve diğer İngilizce konuşulan ülkelerde üniversite başvuruları, akademik kariyer ve iş fırsatları için yaygın olarak kabul görür. Gerekli puanlar kurumlara göre değişir; örneğin, ABD üniversiteleri genellikle 80-100 puan isterken, bazı prestijli programlar 100+ puan talep edebilir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <p>
+                            TOEFL hazırlığı için iki farklı kurs paketi sunuyoruz: B1 ve B2. B1 seviye paketi, temel yapılara ve dilbilgisine ayrılmış 15 ders ve TOEFL pratiği için 25 ders olmak üzere 40 ders içerir. B2 paketi, temel yapıları gözden geçirmek için 5 ders ve TOEFL pratiği için 25 ders olmak üzere 30 ders içerir.
+                        </p>
+                        <p>
+                            Her öğrencinin seviyesini belirlemek için, seviye belirleme sınavının ardından kısa bir konuşma ve yazma testi yapıyoruz. Öğrencinin seviyesine göre uygun bir çalışma paketi belirliyoruz. Eğer öğrencinin seviyesi B1’in altındaysa, 50 dersten oluşan pre-TOEFL sınıflarına yönlendiriliyor. Bu sınıflarda, Bridge to TOEFL kitabı ile çalışılır. Bu dersleri ve kitabı tamamlayan öğrenciler resmi TOEFL eğitimine başlamaya hazır hale gelirler.
+                        </p>
+                        <p>
+                            TOEFL hazırlığı için ETS resmi materyalleri ve ek kaynaklar (örneğin, TOEFL Practice Online) kullanıyoruz. Okuma ve Dinleme becerileri için stratejik yaklaşımlar öğretilir, Yazma ve Konuşma bölümleri için birebir geri bildirimle pratik yapılır. Sınav simülasyonları ile zaman yönetimi ve sınav teknikleri geliştirilir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <h3>1. TOEFL kurslarınızda hangi seviyeler bulunuyor?</h3>
+                        <p>
+                            TOEFL kurslarımızda, iki farklı paket sunuyoruz: B1 ve B2 seviyeleri. B1 seviyesi temel dilbilgisi ve yapılara odaklanırken, B2 seviyesi daha ileri TOEFL pratiği üzerine yoğunlaşır. B1’in altındaki öğrenciler için ön-TOEFL dersleri mevcuttur.
+                        </p>
+                        <h3>2. B1 ve B2 seviyelerindeki kurslar arasındaki fark nedir?</h3>
+                        <p>
+                            B1 paketi, 15 ders temel yapı ve gramer, 25 ders TOEFL pratiği ile toplam 40 ders içerir. B2 paketi, 5 ders temel gözden geçirme, 25 ders TOEFL pratiği ile toplam 30 ders sunar. Seviyenize göre paket seçimi yapılır.
+                        </p>
+                        <h3>3. TOEFL kursuna başlamadan önce seviye belirleme nasıl yapılıyor?</h3>
+                        <p>
+                            Kursa başlamadan önce bir yerleştirme testi uygulanır. Ardından konuşma ve yazma testi ile seviyeniz belirlenir. B1’in altındaysanız, 50 dersten oluşan ön-TOEFL derslerine yönlendirilirsiniz.
+                        </p>
+                        <h3>4. Kurs sonunda ne tür bir hazırlık yapılıyor?</h3>
+                        <p>
+                            Kurs sonunda, TOEFL simülasyon sınavları ile pratik yapılır. Zaman yönetimi, strateji geliştirme ve birebir geri bildirimlerle sınav için tam hazırlık sağlanır.
+                        </p>
+                    </div>
+                </div>
+                <!-- Sekmeli Bölüm Bitişi -->
+                <h2>Sonuç</h2>
+                <p>
+                    Online TOEFL kursları, yurt dışı eğitim ve akademik hedeflerinize ulaşmak için en etkili yoldur. KUM Academy’nin online TOEFL kursları, uzman eğitmenler ve güncel materyallerle size başarıya giden yolu açar. Hemen kaydolun ve TOEFL hedeflerinize adım adım yaklaşın!
+                </p>
+                <div class="text-center mt-4">
+                    <a href="{% url 'kurs-toefl' %}" class="btn btn-primary">TOEFL Kursuna Katılın</a>
+                    <a href="{% url 'iletisim' %}" class="btn btn-outline-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

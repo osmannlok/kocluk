@@ -1,0 +1,591 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}For Schools (13+) Placement Test - KUM Academy{% endblock %}
+{% block meta_description %}13 yaş üstü öğrenciler için İngilizce seviye belirleme testi. Dinleme, okuma ve dilbilgisi ile seviyenizi keşfedin!{% endblock %}
+{% block og_title %}For Schools (13+) Placement Test - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin 13 yaş üstü öğrenciler için hazırladığı İngilizce seviye belirleme testine katılın ve uygun öğrenme grubunuzu bulun.{% endblock %}
+{% block canonical_url %}{% url 'test-13' %}{% endblock %}
+
+{% block content %}
+<section id="test-13" class="py-5 bg-warning bg-opacity-25">
+    <div class="container">
+        <!-- Üstte Yatay Görsel -->
+        <div class="text-center mb-4">
+            <img src="{% static 'main/images/test/header-13.jpg' %}" alt="For Schools (13+) Test Header" class="img-fluid" style="max-width: 100%;">
+        </div>
+
+        <!-- Test Başlığı ve Açıklama -->
+        <div class="mb-4 bg-warning bg-opacity-25 p-3 rounded">
+            <h2 class="text-center">For Schools (13+) Placement Test</h2>
+            <p class="text-center lead">Bu test, mevcut İngilizce seviyenizi değerlendirmek için hazırlanmıştır. Test toplam 25 sorudan oluşmaktadır. Sonuçlar, sizi en uygun İngilizce öğrenme grubuna yerleştirmemize yardımcı olacaktır.</p>
+            <p class="text-center"><strong>Lütfen dikkat edin:</strong></p>
+            <ul class="text-center list-unstyled">
+                <li>Soruları cevaplarken zamanınızı kullanın, acele etmeyin.</li>
+                <li>Her soru için en doğru olduğunu düşündüğünüz cevabı seçin.</li>
+            </ul>
+            <p class="text-center">Başarılar dileriz! İngilizce öğrenme yolculuğunuzda size destek olmaktan mutluluk duyuyoruz!</p>
+            <p class="text-center">İlerleme durumunu kaydetmek için Google'da oturum açın <a href="https://accounts.google.com" target="_blank">Daha fazla bilgi</a></p>
+        </div>
+
+        <!-- Puan Dağılımı -->
+        <div class="mb-4 bg-warning bg-opacity-25 p-3 rounded">
+            <h3 class="text-center">Puan Dağılımı</h3>
+            <ul class="list-group">
+                <li class="list-group-item">45-60 puan: "Harika İş Çıkardın! B2 Seviyesine Hazırsın! Muhteşem bir iş başardın ve bir sonraki zorluğa hazırsın. Daha ileri seviyelere doğru ilerlemeye devam et”</li>
+                <li class="list-group-item">30-44 puan: “Aferin! B1 Seviyesindesin! Temel bilgileri sağlam bir şekilde anladın ve güzel ilerliyorsun. Temellerini güçlendirirken becerilerini geliştirmeye devam edelim!”</li>
+                <li class="list-group-item">15-29 puan: “Devam Et! A2 Seviyesindesin! Doğru yoldasın! Daha fazla pratik yaparak yakında temel bilgileri tam anlamıyla kavrayacaksın. Hadi birlikte çalışarak becerilerini geliştirelim.”</li>
+                <li class="list-group-item">0-14 puan: “Güzel Başlangıç! Pratik Yapmaya Devam Et! Her yolculuk ilk adımla başlar. Güzel bir başlangıç yaptın, daha fazla pratikle her gün daha iyi olacaksın. Hadi birlikte çalışarak becerilerini geliştirelim.”</li>
+            </ul>
+            <p class="text-danger">* Zorunlu soruyu belirtir</p>
+        </div>
+
+        <!-- Form -->
+        <form action="{% url 'test-13' %}" method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="test" value="onuc">
+            <div class="container mb-4 bg-warning bg-opacity-25 p-3 rounded">
+                <div class="mb-3">
+                    <label for="name" class="form-label">İsim Soyisim <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="invalid-feedback">Lütfen isim soyisminizi girin.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Mail Adresi <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="invalid-feedback">Lütfen geçerli bir e-posta adresi girin.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="whatsapp" class="form-label">Whatsapp İletişim Hattı <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
+                    <div class="invalid-feedback">Lütfen geçerli bir telefon numarası girin.</div>
+                </div>
+            </div>
+
+            <!-- Sorular -->
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">1. Choose the correct word to complete the sentence: I ____ eight years old. <span class="text-danger">*</span> (1 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" id="q1_a" value="a" required>
+                    <label class="form-check-label" for="q1_a">a) is</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" id="q1_b" value="b">
+                    <label class="form-check-label" for="q1_b">b) are</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" id="q1_c" value="c">
+                    <label class="form-check-label" for="q1_c">c) am</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q1" id="q1_d" value="d">
+                    <label class="form-check-label" for="q1_d">d) be</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">2. Choose the correct form of the verb: “She ____ coffee every morning.” <span class="text-danger">*</span> (1 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" id="q2_a" value="a" required>
+                    <label class="form-check-label" for="q2_a">a) drinks</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" id="q2_b" value="b">
+                    <label class="form-check-label" for="q2_b">b) drink</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" id="q2_c" value="c">
+                    <label class="form-check-label" for="q2_c">c) drinking</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q2" id="q2_d" value="d">
+                    <label class="form-check-label" for="q2_d">d) drank</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">3. Choose the correct word based on meaning: “The opposite of ‘cheap’ is ____. <span class="text-danger">*</span> (1 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" id="q3_a" value="a" required>
+                    <label class="form-check-label" for="q3_a">a) expensive</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" id="q3_b" value="b">
+                    <label class="form-check-label" for="q3_b">b) large</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" id="q3_c" value="c">
+                    <label class="form-check-label" for="q3_c">c) old</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q3" id="q3_d" value="d">
+                    <label class="form-check-label" for="q3_d">d) clean</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">4. Choose the correct article: “They live in ____ small house.” <span class="text-danger">*</span> (1 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" id="q4_a" value="a" required>
+                    <label class="form-check-label" for="q4_a">a) a</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" id="q4_b" value="b">
+                    <label class="form-check-label" for="q4_b">b) an</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" id="q4_c" value="c">
+                    <label class="form-check-label" for="q4_c">c) the</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q4" id="q4_d" value="d">
+                    <label class="form-check-label" for="q4_d">d) some</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">5. Choose the correct meaning: “Which word means the opposite of ‘calm’?” <span class="text-danger">*</span> (1 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" id="q5_a" value="a" required>
+                    <label class="form-check-label" for="q5_a">a) angry</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" id="q5_b" value="b">
+                    <label class="form-check-label" for="q5_b">b) sad</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" id="q5_c" value="c">
+                    <label class="form-check-label" for="q5_c">c) joyful</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q5" id="q5_d" value="d">
+                    <label class="form-check-label" for="q5_d">d) tired</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">6. Choose the correct verb tense: “They ____ in London for five years.” <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" id="q6_a" value="a" required>
+                    <label class="form-check-label" for="q6_a">a) lived</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" id="q6_b" value="b">
+                    <label class="form-check-label" for="q6_b">b) has lived</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" id="q6_c" value="c">
+                    <label class="form-check-label" for="q6_c">c) have lived</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q6" id="q6_d" value="d">
+                    <label class="form-check-label" for="q6_d">d) living</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">7. Choose the correct synonym for the word ‘tiny’: <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_a" value="a" required>
+                    <label class="form-check-label" for="q7_a">a) big</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_b" value="b">
+                    <label class="form-check-label" for="q7_b">b) large</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_c" value="c">
+                    <label class="form-check-label" for="q7_c">c) small</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q7" id="q7_d" value="d">
+                    <label class="form-check-label" for="q7_d">d) few</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">8. Which sentence uses the correct comparative form? <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_a" value="a" required>
+                    <label class="form-check-label" for="q8_a">a) My car is more faster than yours.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_b" value="b">
+                    <label class="form-check-label" for="q8_b">b) She is taller than her brother.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_c" value="c">
+                    <label class="form-check-label" for="q8_c">c) This book is the most interesting than that one.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q8" id="q8_d" value="d">
+                    <label class="form-check-label" for="q8_d">d) He runs quicklier than his friend.</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">9. Complete the sentence with the correct preposition: “She’s good ____ playing piano.” <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_a" value="a" required>
+                    <label class="form-check-label" for="q9_a">a) on</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_b" value="b">
+                    <label class="form-check-label" for="q9_b">b) with</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_c" value="c">
+                    <label class="form-check-label" for="q9_c">c) at</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q9" id="q9_d" value="d">
+                    <label class="form-check-label" for="q9_d">d) in</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">10. She didn’t have enough money, ____ she couldn’t buy the dress. <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_a" value="a" required>
+                    <label class="form-check-label" for="q10_a">a) because</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_b" value="b">
+                    <label class="form-check-label" for="q10_b">b) so</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_c" value="c">
+                    <label class="form-check-label" for="q10_c">c) if</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q10" id="q10_d" value="d">
+                    <label class="form-check-label" for="q10_d">d) although</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">11. Choose the correct word to complete the sentence: “The ____ of the story was really exciting.” <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_a" value="a" required>
+                    <label class="form-check-label" for="q11_a">a) end</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_b" value="b">
+                    <label class="form-check-label" for="q11_b">b) plot</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_c" value="c">
+                    <label class="form-check-label" for="q11_c">c) person</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q11" id="q11_d" value="d">
+                    <label class="form-check-label" for="q11_d">d) plotter</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">12. Where did Tom and his family go for their vacation? <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_a" value="a" required>
+                    <label class="form-check-label" for="q12_a">a) The beach</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_b" value="b">
+                    <label class="form-check-label" for="q12_b">b) The mountains</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_c" value="c">
+                    <label class="form-check-label" for="q12_c">c) A big city</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q12" id="q12_d" value="d">
+                    <label class="form-check-label" for="q12_d">d) A national park</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">13. What activity did Tom learn during the vacation? <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_a" value="a" required>
+                    <label class="form-check-label" for="q13_a">a) Swimming</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_b" value="b">
+                    <label class="form-check-label" for="q13_b">b) Fishing</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_c" value="c">
+                    <label class="form-check-label" for="q13_c">c) Cycling</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q13" id="q13_d" value="d">
+                    <label class="form-check-label" for="q13_d">d) Running</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">14. What did they do on the last day of their trip? <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_a" value="a" required>
+                    <label class="form-check-label" for="q14_a">a) Went hiking</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_b" value="b">
+                    <label class="form-check-label" for="q14_b">b) Went fishing</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_c" value="c">
+                    <label class="form-check-label" for="q14_c">c) Watched the sunset</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q14" id="q14_d" value="d">
+                    <label class="form-check-label" for="q14_d">d) Visited a museum</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">15. My friend __________ her book since 6:00 am. <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_a" value="a" required>
+                    <label class="form-check-label" for="q15_a">a) reads</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_b" value="b">
+                    <label class="form-check-label" for="q15_b">b) is reading</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_c" value="c">
+                    <label class="form-check-label" for="q15_c">c) has been reading</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q15" id="q15_d" value="d">
+                    <label class="form-check-label" for="q15_d">d) was reading</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">16. Choose the correct word for the sentence: “The movie was ____; I didn’t enjoy it at all.” <span class="text-danger">*</span> (2 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_a" value="a" required>
+                    <label class="form-check-label" for="q16_a">a) terrible</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_b" value="b">
+                    <label class="form-check-label" for="q16_b">b) fantastic</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_c" value="c">
+                    <label class="form-check-label" for="q16_c">c) amazing</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q16" id="q16_d" value="d">
+                    <label class="form-check-label" for="q16_d">d) wonderful</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">17. Choose the word that best fits the sentence: “She made a ____ decision to leave her job.” <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_a" value="a" required>
+                    <label class="form-check-label" for="q17_a">a) quick</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_b" value="b">
+                    <label class="form-check-label" for="q17_b">b) slowly</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_c" value="c">
+                    <label class="form-check-label" for="q17_c">c) deliberate</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q17" id="q17_d" value="d">
+                    <label class="form-check-label" for="q17_d">d) rarely</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">18. Choose the correct sentence: <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_a" value="a" required>
+                    <label class="form-check-label" for="q18_a">a) He suggested going to the museum.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_b" value="b">
+                    <label class="form-check-label" for="q18_b">b) He suggested to go to the museum.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_c" value="c">
+                    <label class="form-check-label" for="q18_c">c) He suggested we going to the museum.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q18" id="q18_d" value="d">
+                    <label class="form-check-label" for="q18_d">d) He suggested us going to the museum.</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">19. Choose the correct conditional sentence: “If she ____ harder, she would have passed the exam.” <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_a" value="a" required>
+                    <label class="form-check-label" for="q19_a">a) studies</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_b" value="b">
+                    <label class="form-check-label" for="q19_b">b) studied</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_c" value="c">
+                    <label class="form-check-label" for="q19_c">c) had studied</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q19" id="q19_d" value="d">
+                    <label class="form-check-label" for="q19_d">d) has studied</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">20. He __________ his research by the time the library closes. <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_a" value="a" required>
+                    <label class="form-check-label" for="q20_a">a) won't have finished</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_b" value="b">
+                    <label class="form-check-label" for="q20_b">b) hadn't finished</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_c" value="c">
+                    <label class="form-check-label" for="q20_c">c) hasn't finished</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q20" id="q20_d" value="d">
+                    <label class="form-check-label" for="q20_d">d) didn't finish</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">21. Choose the correct word to complete the sentence: “The company will ____ a new policy next month.” <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q21" id="q21_a" value="a" required>
+                    <label class="form-check-label" for="q21_a">a) imply</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q21" id="q21_b" value="b">
+                    <label class="form-check-label" for="q21_b">b) affect</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q21" id="q21_c" value="c">
+                    <label class="form-check-label" for="q21_c">c) implement</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q21" id="q21_d" value="d">
+                    <label class="form-check-label" for="q21_d">d) relate</label>
+                </div>
+            </div>
+
+                        <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">22. Choose the correct sentence: <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q22" id="q22_a" value="a" required>
+                    <label class="form-check-label" for="q22_a">a) Hardly had he left the house when it started to rain.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q22" id="q22_b" value="b">
+                    <label class="form-check-label" for="q22_b">b) Hardly he had left the house when it started to rain.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q22" id="q22_c" value="c">
+                    <label class="form-check-label" for="q22_c">c) He had hardly left the house when it started to rain.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q22" id="q22_d" value="d">
+                    <label class="form-check-label" for="q22_d">d) He hardly had left the house when it started to rain.</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">23. Choose the correct sentence: <span class="text-danger">*</span> (3 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q23" id="q23_a" value="a" required>
+                    <label class="form-check-label" for="q23_a">a) I didn’t need to call her, but I did.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q23" id="q23_b" value="b">
+                    <label class="form-check-label" for="q23_b">b) I needn’t to have called her, but I did.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q23" id="q23_c" value="c">
+                    <label class="form-check-label" for="q23_c">c) I needn’t to call her, but I did.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q23" id="q23_d" value="d">
+                    <label class="form-check-label" for="q23_d">d) I didn’t need to called her, but I did.</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-light p-3 rounded">
+                <label class="form-label">24. Technology has revolutionized the way we communicate. Today, people can send messages across the world in seconds, whereas, in the past, it could take days or even weeks. With the development of smartphones and the internet, communication has become instantaneous, bringing people closer together but also creating new challenges, such as information overload.” What has technology changed? <span class="text-danger">*</span> (4 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q24" id="q24_a" value="a" required>
+                    <label class="form-check-label" for="q24_a">a) Travel times</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q24" id="q24_b" value="b">
+                    <label class="form-check-label" for="q24_b">b) The way people communicate</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q24" id="q24_c" value="c">
+                    <label class="form-check-label" for="q24_c">c) Education systems</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q24" id="q24_d" value="d">
+                    <label class="form-check-label" for="q24_d">d) Business strategies</label>
+                </div>
+            </div>
+
+            <div class="mb-3 bg-white p-3 rounded">
+                <label class="form-label">25. What is one challenge created by modern communication technologies? <span class="text-danger">*</span> (4 puan)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q25" id="q25_a" value="a" required>
+                    <label class="form-check-label" for="q25_a">a) Longer wait times</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q25" id="q25_b" value="b">
+                    <label class="form-check-label" for="q25_b">b) Information overload</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q25" id="q25_c" value="c">
+                    <label class="form-check-label" for="q25_c">c) Lack of contact</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q25" id="q25_d" value="d">
+                    <label class="form-check-label" for="q25_d">d) Fewer interactions</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-25">Testi Gönder</button><button type="reset" style="float:right" class="btn btn-secondary w-25 ">Formu Temizle</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Form doğrulama için Bootstrap
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+{% endblock %}
+
+                    <button type="submit" class="btn btn-primary w-25">Testi Gönder</button><button type="reset" style="float:right" class="btn btn-secondary w-25 ">Formu Temizle</button>

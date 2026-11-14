@@ -1,0 +1,9 @@
+name,barcode,category,unit,purchase_price,sale_price,stock,critical_stock,is_weighed
+Bol Yoğurtlu Tarhana,8690000000011,Yöresel Ürünler,kg,250,350,100,10,1
+Maraş Kırma Zeytin 5 kg,8690000000028,Zeytin,adet,280,350,40,5,0
+Kırmızı Pul Biber,8690000000035,Baharat,kg,180,260,50,5,1
+Çiğköfte Baharatı,8690000000042,Baharat,kg,200,300,30,5,1
+Sumak Eşkisi,8690000000059,Yöresel Ürünler,kg,1200,1600,20,3,1
+Hatay Atom Biber Salçası,8690000000066,Salça,kg,250,350,40,5,1
+Özbek Cevizi 1 kg,8690000000073,Kuruyemiş,kg,600,750,25,5,1
+Siyah Zeytin Büyük,8690000000080,Zeytin,kg,250,350,50,5,1

@@ -1,0 +1,120 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Genç Yetenekler - Dijital Tasarım ve Oyun Dünyası - KUM Academy{% endblock %}
+{% block meta_description %}Genç Yetenekler - Dijital Tasarım ve Oyun Dünyası kursu ile Canva ve CapCut kullanarak yaratıcı içerikler üretin! KUM Academy ile dijital becerilerinizi geliştirin.{% endblock %}
+{% block og_title %}Genç Yetenekler - Dijital Tasarım ve Oyun Dünyası - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin Dijital Tasarım ve Oyun Dünyası kursu ile Canva ve CapCut kullanarak profesyonel tasarımlar ve videolar oluşturun.{% endblock %}
+{% block canonical_url %}{% url 'kurs-genc-yetenekler-dijital-tasarim' %}{% endblock %}
+
+{% block content %}
+<section id="kurs-genc-yetenekler-dijital-tasarim" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Genç Yetenekler - Dijital Tasarım ve Oyun Dünyası</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-muted mb-4">
+                    <small>
+                        <strong>Yayın Tarihi:</strong> August 13, 2025, 14:14 | 
+                        <strong>Yazar:</strong> kumacademy | 
+                        <strong>Kategori:</strong> Genç Yetenekler | 
+                        <strong>Yorum:</strong> Yorum yapılmamış
+                    </small>
+                </p>
+                <p>
+                    Görsel Tasarım ve Video Editleme ile Dijital Yaratıcılığı Keşfedin! Canva ve CapCut, dijital dünya için yaratıcı ve etkileyici içerikler oluşturmanıza yardımcı olan en popüler araçlardan biridir. Bu kurs sayesinde, tasarım ve video düzenleme becerilerinizi geliştirerek sosyal medya, reklam, sunum ve daha birçok alanda profesyonel projeler üretebilirsiniz. Canva bölümü ile görsel tasarım ilkelerini öğrenirken, CapCut bölümü ile profesyonel seviyede video düzenlemeyi keşfedeceksiniz.
+                </p>
+                <img src="{% static 'main/images/kurs-genc-yetenekler-dijital-tasarim.jpg' %}" class="img-fluid rounded mb-4" alt="Genç Yetenekler - Dijital Tasarım ve Oyun Dünyası Kursu">
+                <h2>KURS DETAYLARI</h2>
+                <ul>
+                    <li><strong>Kurs süresi:</strong> 10 hafta</li>
+                    <li><strong>Canlı Dersler:</strong> 20 saat</li>
+                    <li><strong>Canlı Ders Platformu:</strong> Zoom</li>
+                    <li><strong>Self Study:</strong> canva.com & CapCut Uygulaması</li>
+                    <li><strong>Seviye:</strong> Başlangıç</li>
+                    <li><strong>Ödev-Alıştırma Paylaşımları:</strong> Slack</li>
+                </ul>
+                
+                <h2>EĞİTİMİN AVANTAJLARI</h2>
+                <ul>
+                    <li><strong>Güncel ve Pratik Odaklı İçerik:</strong> Canva ve CapCut’un en yeni özellikleriyle çalışacak, endüstri trendlerine uygun beceriler kazanacaksın.</li>
+                    <li><strong>Canlı Destek ve Soru-Cevap Oturumları:</strong> Kurs boyunca sorularını uzman eğitmenlere sorabilir, birebir rehberlik alabilirsin.</li>
+                    <li><strong>Sertifikalı Eğitim:</strong> Kursu tamamladığında, ismine özel ve eğitmen imzalı bir katılım belgesi alacaksın.</li>
+                    <li><strong>Başlangıç Seviyesinden İleri Seviyeye:</strong> Hiçbir deneyimin olmasa bile bu kurs sayesinde Canva ve CapCut becerilerini geliştirerek profesyonel düzeye ulaşabileceksin.</li>
+                    <li><strong>Eğlenceli ve Etkileşimli Öğrenme:</strong> Uygulamalı projeler, interaktif alıştırmalar ve gerçek dünya senaryoları ile öğrenmeyi keyifli hale getiriyoruz!</li>
+                    <li><strong>Sonraki Adım:</strong> Kursu tamamladıktan sonra daha ileri seviye dijital medya ve video editleme kurslarına katılabilir, öğrendiklerinizi geliştirerek kariyerinize yön verebilirsiniz.</li>
+                </ul>
+                <!-- Sekmeli Bölüm Başlangıcı -->
+                <ul class="nav nav-tabs mb-3" id="gencYeteneklerDijitalTasarimTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Tanım</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Müfredat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">SSS</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">Yorumlar</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="gencYeteneklerDijitalTasarimTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>
+                            Genç Yetenekler - Dijital Tasarım ve Oyun Dünyası kursu, 10-16 yaş arasındaki gençler için tasarlanmıştır. Bu kurs, Canva ile görsel tasarım ve CapCut ile video editleme becerilerini öğreterek, dijital dünyada yaratıcı projeler geliştirmeyi amaçlar. KUM Academy’nin uzman eğitmenleri eşliğinde, gençler profesyonel düzeyde içerikler üretebilir.
+                        </p>
+                        <p>
+                            Kurs, tasarım ve video editleme konusunda deneyimi olmayanlar için uygundur. Eğlenceli projeler ve uygulamalı öğrenme ile dijital beceriler geliştirilir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <h3>BU EĞİTİMDE NELER ÖĞRENECEKSİN?</h3>
+                        <h4>Canva Bölümü</h4>
+                        <ul>
+                            <li><strong>Tasarım Dünyasına Giriş:</strong> Canva’nın arayüzünü ve temel tasarım araçlarını keşfedeceksin.</li>
+                            <li><strong>Görsel Tasarım Prensipleri:</strong> Renk teorisi, font kullanımı ve düzgün tasarım için temel prensipleri öğreneceksin.</li>
+                            <li><strong>Profesyonel Sosyal Medya Tasarımları:</strong> Instagram, YouTube ve TikTok için görsel içerikler oluşturmayı keşfedeceksin.</li>
+                            <li><strong>Gelişmiş Canva Teknikleri:</strong> Katman kullanımı, efektler ve premium özelliklerle tasarımlarını profesyonelleştireceksin.</li>
+                            <li><strong>Gerçek Projelerle Uygulama:</strong> Bir sosyal medya kampanyası, sunum veya afiş tasarlayarak gerçek projelerle pratik yapacaksın.</li>
+                        </ul>
+                        <h4>CapCut Bölümü</h4>
+                        <ul>
+                            <li><strong>Video Montaj Dünyasına Adım:</strong> CapCut’un temel düzenleme araçlarını ve arayüzünü öğreneceksin.</li>
+                            <li><strong>Temel Video Editleme Teknikleri:</strong> Kesme, kırpma, hız ayarlama ve geçiş efektleriyle videolarını geliştireceksin.</li>
+                            <li><strong>Ses ve Renk Düzenleme:</strong> Videolara uygun renk düzenlemeleri ve ses efektleri ekleyerek profesyonel dokunuşlar yapacaksın.</li>
+                            <li><strong>Hareketli Grafikler ve Efektler:</strong> Canva ile tasarladığın görselleri animasyonlu hale getirerek videolarına entegre edeceksin.</li>
+                            <li><strong>Gerçek Projelerle Uygulama:</strong> Reklam videoları, kurumsal tanıtımlar ve sosyal medya videoları oluşturarak öğrendiklerini pratiğe dökeceksin.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <h3>1. Bu kurs kimler için uygundur?</h3>
+                        <p>
+                            Kurs, 10-16 yaş arasındaki gençler için uygundur. Canva veya CapCut deneyimi gerektirmez; başlangıç seviyesinden profesyonel düzeye ulaşmak isteyenler için idealdir.
+                        </p>
+                        <h3>2. Kurs süresi ne kadar?</h3>
+                        <p>
+                            Kurs, 10 hafta sürer ve haftada 2 saatlik canlı derslerle toplam 20 saatlik eğitim içerir.
+                        </p>
+                        <h3>3. Kurs sonunda ne öğreneceğim?</h3>
+                        <p>
+                            Kurs sonunda, Canva ile profesyonel görsel tasarımlar ve CapCut ile video düzenlemeler yapabilecek seviyeye geleceksin. Gerçek projelerle pratik yaparak becerilerini pekiştireceksin.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                        <p>
+                            Henüz yorum yapılmamış. Kurs hakkındaki düşüncelerinizi paylaşmak için lütfen bizimle iletişime geçin!
+                        </p>
+                    </div>
+                </div>
+                <!-- Sekmeli Bölüm Bitişi -->
+                <h2>Dijital dünyada fark yaratmak için hemen kaydolun!</h2>
+                <div class="text-center mt-4">
+                    <a href="{% url 'kurs-genc-yetenekler-dijital-tasarim' %}" class="btn btn-primary">Kursa Katılın</a>
+                    <a href="{% url 'iletisim' %}" class="btn btn-outline-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

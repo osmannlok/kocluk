@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ og_title }}{% endblock %}
+{% block og_description %}{{ og_description }}{% endblock %}
+{% block canonical_url %}{% url 'test-adult' %}{% endblock %}
+
+{% block content %}
+<section id="test-adult-results" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Test Sonuçlarınız, {{ name }}!</h1>
+        <div class="card mx-auto" style="max-width: 500px;">
+            <div class="card-body text-center">
+                <h3>Sonuçlar</h3>
+                <p><strong>Doğru Sayısı:</strong> {{ correct_count }}</p>
+                <p><strong>Yanlış Sayısı:</strong> {{ incorrect_count }}</p>
+                <p><strong>Toplam Puan:</strong> {{ total_points }} / 100</p>
+                {% if total_points >= 86 %}
+                    <p class="text-success">Mükemmel! B2 (Üst-Orta) Seviyesindesin! Karmaşık metinleri takip edebilir, anadili konuşanlarla akıcı bir şekilde iletişim kurabilir ve geniş bir dilbilgisi ve kelime dağarcığını makul doğrulukla kullanabilirsin.</p>
+                {% elif total_points >= 66 %}
+                    <p class="text-info">Harika İş! B1+ (Güçlü Orta) Seviyesindesin! Daha uzun metinleri anlayabilir, görüşlerini ifade edebilir ve oldukça akıcı iletişim kurabilirsin.</p>
+                {% elif total_points >= 41 %}
+                    <p class="text-info">İyi Gidiyorsun! B1 (Orta) Seviyesindesin! Günlük iletişimle başa çıkabilir, açık metinlerin ana noktalarını anlayabilir ve bazı hatalarla fikirlerini ifade edebilirsin.</p>
+                {% elif total_points >= 21 %}
+                    <p class="text-warning">Devam Et! A2 (Başlangıç) Seviyesindesin! Kısa ifadeleri ve basit cümleleri anlayabilir, günlük tanıdık bağlamlarla başa çıkabilirsin.</p>
+                {% else %}
+                    <p class="text-primary">Başlangıç Noktası! A1 (Başlangıç) Seviyesindesin! Çok sınırlı kelime bilgisi ve dilbilgisi ile sadece tanıdık bağlamlarda temel ifadeler kullanabilirsin.</p>
+                {% endif %}
+                <a href="{% url 'test-adult' %}" class="btn btn-primary mt-3">Yeni Test Yap</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

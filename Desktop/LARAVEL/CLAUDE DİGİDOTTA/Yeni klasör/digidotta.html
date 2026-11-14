@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiDotta – Futuristic Agency</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0e1a'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2300d4ff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%2300ff9d'/%3E%3Cpath d='M30 20 L30 80 Q30 80 50 80 Q75 80 75 50 Q75 20 50 20 Z' fill='none' stroke='%2300d4ff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#060b18;--deep:#0a1020;--blue:#00d4ff;--teal:#00b8a9;--green:#00ff9d;--gborder:rgba(0,212,255,0.15)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Exo 2',sans-serif;background:var(--navy);color:#c8e8ff;overflow-x:hidden;cursor:none}
+#cursor{position:fixed;width:18px;height:18px;border:2px solid var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;mix-blend-mode:screen}
+#cdot{position:fixed;width:5px;height:5px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+#lang-bar{position:fixed;top:0;right:0;z-index:200;display:flex;padding:8px 16px;gap:0}
+.lb{background:none;border:1px solid var(--gborder);color:#7ab8d4;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;padding:6px 12px;cursor:pointer;transition:all .3s}
+.lb:first-child{border-radius:4px 0 0 4px}.lb:last-child{border-radius:0 4px 4px 0}
+.lb.active{background:var(--blue);color:var(--navy);border-color:var(--blue)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4% 0 3%;height:70px;background:linear-gradient(180deg,rgba(6,11,24,.96),rgba(6,11,24,.7));backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,.1)}
+.nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nlogo-text{font-family:'Orbitron',monospace;font-size:15px;font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nlinks{display:flex;gap:24px;list-style:none}
+.nlinks a{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:#7ab8d4;text-decoration:none;transition:color .3s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--blue);transition:width .3s}
+.nlinks a:hover{color:var(--blue)}.nlinks a:hover::after{width:100%}
+.cta-nav{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;padding:9px 20px;background:transparent;border:1px solid var(--blue);color:var(--blue);cursor:pointer;transition:all .3s;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.cta-nav:hover{background:var(--blue);color:var(--navy)}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(0,180,255,.08),transparent 70%),radial-gradient(ellipse 50% 80% at 20% 80%,rgba(0,255,157,.04),transparent 60%),linear-gradient(180deg,#060b18,#091424 50%,#060f1e);z-index:-1}
+.hero-grid{position:absolute;inset:0;z-index:-1;opacity:.1;background-image:linear-gradient(rgba(0,212,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.4) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 30%,transparent 80%)}
+.logo-wrap{position:relative;margin-bottom:36px;animation:floatUp 1s ease-out both,pulse-ring 3s ease-in-out 1s infinite}
+@keyframes floatUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-ring{0%,100%{filter:drop-shadow(0 0 20px rgba(0,212,255,.4))}50%{filter:drop-shadow(0 0 40px rgba(0,212,255,.7))}}
+.logo-img{width:170px;height:170px;object-fit:contain}
+.orbit{position:absolute;top:50%;left:50%;width:210px;height:210px;margin:-105px 0 0 -105px;border:1px dashed rgba(0,212,255,.2);border-radius:50%;animation:spin 20s linear infinite}
+.orbit::before{content:'';position:absolute;width:8px;height:8px;background:var(--green);border-radius:50%;top:-4px;left:50%;margin-left:-4px;box-shadow:0 0 10px var(--green),0 0 20px var(--green)}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,157,.3);background:rgba(0,255,157,.05);padding:6px 18px;border-radius:100px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--green);margin-bottom:22px;animation:fadeIn .8s .3s both}
+.badge::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-title{font-family:'Orbitron',monospace;font-weight:900;font-size:clamp(28px,6vw,68px);letter-spacing:6px;background:linear-gradient(135deg,#fff,var(--blue) 50%,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px;animation:fadeIn .8s .5s both}
+.hero-sub{font-size:clamp(11px,1.6vw,15px);letter-spacing:4px;color:#5a9bb8;text-transform:uppercase;margin-bottom:44px;animation:fadeIn .8s .7s both}
+.hero-btns{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;animation:fadeIn .8s .9s both}
+.btn-p{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;padding:15px 36px;background:linear-gradient(135deg,var(--blue),var(--teal));color:var(--navy);border:none;cursor:pointer;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:transform .2s,box-shadow .2s;font-weight:700}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,.4)}
+.btn-s{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;padding:14px 34px;background:transparent;color:var(--blue);border:1px solid rgba(0,212,255,.4);cursor:pointer;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:all .3s}
+.btn-s:hover{background:rgba(0,212,255,.08);border-color:var(--blue)}
+.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:.45;animation:bounce 2s ease-in-out infinite}
+.scroll-ind span{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--blue)}
+.scroll-arrow{width:18px;height:18px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(45deg)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.stats-bar{position:relative;z-index:1;background:rgba(0,180,255,.04);border-top:1px solid rgba(0,212,255,.1);border-bottom:1px solid rgba(0,212,255,.1);display:flex;justify-content:center;flex-wrap:wrap}
+.stat{flex:1;min-width:140px;max-width:200px;padding:26px 12px;text-align:center;border-right:1px solid rgba(0,212,255,.07);transition:background .3s}
+.stat:last-child{border-right:none}.stat:hover{background:rgba(0,212,255,.06)}
+.stat-n{font-family:'Orbitron',monospace;font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px}
+.stat-l{font-size:9px;letter-spacing:2px;color:#4a7d9a;text-transform:uppercase}
+.gl{height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.15;position:relative;z-index:1}
+.sh{text-align:center;padding:70px 20px 44px;position:relative;z-index:1}
+.stag{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--green);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:12px}
+.stag::before,.stag::after{content:'';height:1px;width:36px;background:linear-gradient(90deg,transparent,var(--green))}
+.stag::after{background:linear-gradient(90deg,var(--green),transparent)}
+.stitle{font-family:'Orbitron',monospace;font-size:clamp(20px,3.5vw,36px);font-weight:700;letter-spacing:4px;color:#e8f4ff;margin-bottom:14px}
+.sdesc{max-width:520px;margin:0 auto;font-size:13px;line-height:1.85;color:#4a7d9a}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.07);position:relative;z-index:1;margin:0 4%}
+.srv-card{background:var(--navy);padding:38px 26px;position:relative;overflow:hidden;transition:background .4s;cursor:default}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);transform:scaleX(0);transition:transform .4s}
+.srv-card:hover{background:rgba(0,20,40,.9)}.srv-card:hover::before{transform:scaleX(1)}
+.srv-icon{width:48px;height:48px;margin-bottom:18px;filter:drop-shadow(0 0 10px rgba(0,212,255,.5));transition:all .3s}
+.srv-card:hover .srv-icon{filter:drop-shadow(0 0 20px rgba(0,212,255,.9));transform:scale(1.1) rotate(5deg)}
+.srv-num{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--green);margin-bottom:8px}
+.srv-name{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:2px;color:#d0eeff;margin-bottom:10px}
+.srv-desc{font-size:12px;line-height:1.8;color:#3d6a84}
+.srv-link{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--blue);cursor:pointer;transition:gap .3s}
+.srv-link:hover{gap:14px}.srv-link::after{content:'→'}
+.academy{padding:0 4% 70px;position:relative;z-index:1}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+.course-card{background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.08);padding:26px 20px;position:relative;overflow:hidden;transition:all .35s;cursor:pointer}
+.course-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);transform:scaleX(0);transition:transform .4s}
+.course-card:hover{background:rgba(0,212,255,.07);border-color:rgba(0,212,255,.25);transform:translateY(-4px)}.course-card:hover::after{transform:scaleX(1)}
+.c-icon{font-size:26px;margin-bottom:12px;display:block}
+.c-level{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--green);margin-bottom:7px}
+.c-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#c8e8ff;margin-bottom:9px}
+.c-desc{font-size:12px;line-height:1.7;color:#3d6a84;margin-bottom:12px}
+.c-tags{display:flex;flex-wrap:wrap;gap:5px}
+.ctag{font-size:8px;letter-spacing:1px;padding:3px 9px;border:1px solid rgba(0,212,255,.2);color:#5a9bb8}
+.acta{text-align:center;margin-top:42px}
+.acta p{font-size:13px;color:#4a7d9a;margin-bottom:18px;letter-spacing:.5px}
+.process{padding:60px 4% 70px;position:relative;z-index:1}
+.proc-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;max-width:1100px;margin:0 auto}
+.proc-visual{position:relative;display:flex;justify-content:center}
+.big-logo{width:270px;height:270px;object-fit:contain;filter:drop-shadow(0 0 40px rgba(0,212,255,.3));animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hex-ring{position:absolute;inset:-20px;border:1px solid rgba(0,212,255,.1);border-radius:50%;animation:spin 15s linear infinite reverse}
+.steps{display:flex;flex-direction:column;gap:24px}
+.step{display:flex;gap:16px;padding:18px;border:1px solid rgba(0,212,255,.06);transition:all .3s}
+.step:hover{border-color:rgba(0,212,255,.22);background:rgba(0,212,255,.03)}
+.step-n{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;color:rgba(0,212,255,.15);min-width:36px}
+.step-t{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:2px;color:#a8d8f0;margin-bottom:6px}
+.step-d{font-size:12px;line-height:1.75;color:#3d6a84}
+.portfolio{padding:60px 4% 70px;background:rgba(0,10,25,.5);position:relative;z-index:1}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:0 auto}
+.pc{background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.06);padding:34px 24px;min-height:180px;position:relative;overflow:hidden;transition:all .4s;cursor:pointer}
+.pc:first-child{grid-column:span 2}.pc:hover{background:rgba(0,212,255,.07);border-color:rgba(0,212,255,.22)}
+.pc-num{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--green);margin-bottom:9px}
+.pc-t{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;letter-spacing:2px;color:#cde8ff;margin-bottom:8px}
+.pc-tag{display:inline-block;padding:3px 10px;border:1px solid rgba(0,212,255,.25);font-size:8px;letter-spacing:2px;color:var(--blue);margin-right:5px;margin-top:5px}
+.pc-arrow{position:absolute;bottom:16px;right:16px;font-size:20px;color:rgba(0,212,255,.2);transition:all .3s}
+.pc:hover .pc-arrow{color:var(--blue);transform:translate(4px,-4px)}
+.contact{padding:70px 4%;position:relative;z-index:1}
+.contact-inner{max-width:720px;margin:0 auto;text-align:center}
+.cinfo-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:32px 0 40px}
+.cinfo{display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid rgba(0,212,255,.12);background:rgba(0,212,255,.03);font-size:13px;color:#7ab8d4;text-decoration:none;transition:all .3s}
+.cinfo:hover{border-color:var(--blue);color:var(--blue);background:rgba(0,212,255,.07)}
+.cinfo-icon{color:var(--green)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
+.ff{background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.14);color:#c8e8ff;padding:14px 17px;font-family:'Exo 2',sans-serif;font-size:13px;outline:none;width:100%;transition:all .3s}
+.ff:focus{border-color:var(--blue);background:rgba(0,212,255,.06);box-shadow:0 0 18px rgba(0,212,255,.08)}
+.ff::placeholder{color:#2a5068}
+textarea.ff{resize:vertical;min-height:110px}
+select.ff option{background:#060b18;color:#c8e8ff}
+.fsub{width:100%;margin-top:13px;font-family:'Orbitron',monospace;font-size:11px;letter-spacing:4px;padding:16px;background:rgba(0,212,255,.06);border:1px solid var(--blue);color:var(--blue);cursor:pointer;transition:all .3s}
+.fsub:hover{background:linear-gradient(135deg,var(--blue),var(--teal));color:var(--navy);box-shadow:0 0 28px rgba(0,212,255,.3)}
+footer{position:relative;z-index:1;background:rgba(0,5,15,.8);border-top:1px solid rgba(0,212,255,.1);padding:60px 5% 30px}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:46px}
+.fbrand p{font-size:12px;line-height:1.85;color:#2d5870;margin-top:14px;max-width:280px}
+.fcol h4{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--blue);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(0,212,255,.1)}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fcol ul li a{font-size:12px;color:#2d5870;text-decoration:none;transition:color .3s}
+.fcol ul li a:hover{color:var(--blue)}
+.fsoc{display:flex;gap:10px;margin-top:18px}
+.soc{width:36px;height:36px;border:1px solid rgba(0,212,255,.18);display:flex;align-items:center;justify-content:center;color:#2d5870;font-size:13px;text-decoration:none;transition:all .3s;font-family:'Orbitron',monospace;font-weight:700}
+.soc:hover{border-color:var(--blue);color:var(--blue);box-shadow:0 0 12px rgba(0,212,255,.2)}
+.fbot{border-top:1px solid rgba(0,212,255,.07);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:13px}
+.copy{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:#1a3a50}
+.flinks{display:flex;gap:18px}
+.flinks a{font-size:10px;letter-spacing:.5px;color:#1a3a50;text-decoration:none;transition:color .3s}
+.flinks a:hover{color:var(--blue)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.nlinks{display:none}.proc-inner{grid-template-columns:1fr}.port-grid{grid-template-columns:1fr}.pc:first-child{grid-column:span 1}.footer-main{grid-template-columns:1fr 1fr}.big-logo{width:210px;height:210px}}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.footer-main{grid-template-columns:1fr}.cinfo-row{flex-direction:column;align-items:stretch}}
+body::after{content:'';position:fixed;inset:0;z-index:50;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.012) 2px,rgba(0,0,0,.012) 4px)}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cdot"></div>
+<canvas id="particles"></canvas>
+
+<!-- LANG -->
+<div id="lang-bar">
+  <button class="lb" onclick="setLang('en')">EN</button>
+  <button class="lb active" onclick="setLang('tr')">TR</button>
+  <button class="lb" onclick="setLang('de')">DE</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nlogo" href="#">
+    <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+	<rect width="100" height="100" rx="14" fill="#060b18"/>
+	<path d="M22 18L22 82Q22 82 50 82Q80 82 80 50Q80 18 50 18Z" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/>
+	<circle cx="50" cy="50" r="24" fill="none" stroke="#00b8a9" stroke-width="2.5"/><rect x="43" y="43" width="14" height="14" rx="3" fill="#00ff9d"/></svg>
+    <span class="nlogo-text">DIGIDOTTA</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#services" data-en="SERVICES" data-tr="HİZMETLER" data-de="LEISTUNGEN">HİZMETLER</a></li>
+    <li><a href="#academy" data-en="ACADEMY" data-tr="AKADEMİ" data-de="AKADEMIE">AKADEMİ</a></li>
+    <li><a href="#process" data-en="PROCESS" data-tr="SÜREÇ" data-de="PROZESS">SÜREÇ</a></li>
+    <li><a href="#portfolio" data-en="PORTFOLIO" data-tr="PORTFÖY" data-de="PORTFOLIO">PORTFÖY</a></li>
+    <li><a href="#contact" data-en="CONTACT" data-tr="İLETİŞİM" data-de="KONTAKT">İLETİŞİM</a></li>
+  </ul>
+  <button class="cta-nav" data-en="" data-tr="" data-de=""></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="badge" data-en="FUTURISTIC DIGITAL AGENCY" data-tr="FÜTÜRİSTİK DİJİTAL AJANS" data-de="FUTURISTISCHE DIGITALAGENTUR">FÜTÜRİSTİK DİJİTAL AJANS</div>
+  <div class="logo-wrap">
+    <div class="orbit"></div>
+    <img class="logo-img" src="/mnt/user-data/uploads/1000052564.png" alt="DigiDotta" onerror="this.style.display='none'">
+  </div>
+  <h1 class="hero-title" data-en="DIGITAL APERTURE" data-tr="DİJİTAL AÇIKLIK" data-de="DIGITALE BLENDE">DİJİTAL AÇIKLIK</h1>
+  <p class="hero-sub" data-en="ILLUMINATING YOUR DIGITAL VISION" data-tr="DİJİTAL VİZYONUNUZU AYDINLATIYORUZ" data-de="IHR DIGITALES VISION BELEUCHTEN">DİJİTAL VİZYONUNUZU AYDINLATIYORUZ</p>
+  <div class="hero-btns">
+    <button class="btn-p" data-en="LAUNCH PROJECT" data-tr="PROJE BAŞLAT" data-de="PROJEKT STARTEN">PROJE BAŞLAT</button>
+    <button class="btn-s" data-en="EXPLORE WORK" data-tr="ÇALIŞMALARI İNCELE" data-de="ARBEITEN ANSEHEN">ÇALIŞMALARI İNCELE</button>
+  </div>
+  <div class="scroll-ind">
+    <span data-en="SCROLL" data-tr="KAYDIRIN" data-de="SCROLLEN">KAYDIRIN</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat reveal"><div class="stat-n">240+</div><div class="stat-l" data-en="PROJECTS LAUNCHED" data-tr="TAMAMLANAN PROJE" data-de="ABGESCHL. PROJEKTE">TAMAMLANAN PROJE</div></div>
+  <div class="stat reveal"><div class="stat-n">98%</div><div class="stat-l" data-en="CLIENT SATISFACTION" data-tr="MÜŞTERİ MEMNUNİYETİ" data-de="KUNDENZUFRIEDENHEIT">MÜŞTERİ MEMNUNİYETİ</div></div>
+  <div class="stat reveal"><div class="stat-n">12+</div><div class="stat-l" data-en="YEARS INNOVATION" data-tr="YIL İNOVASYON" data-de="JAHRE INNOVATION">YIL İNOVASYON</div></div>
+  <div class="stat reveal"><div class="stat-n">1200+</div><div class="stat-l" data-en="ACADEMY STUDENTS" data-tr="AKADEMİ ÖĞRENCİSİ" data-de="AKADEMIE-STUDENTEN">AKADEMİ ÖĞRENCİSİ</div></div>
+  <div class="stat reveal"><div class="stat-n">45+</div><div class="stat-l" data-en="GLOBAL PARTNERS" data-tr="KÜRESEL ORTAK" data-de="GLOBALE PARTNER">KÜRESEL ORTAK</div></div>
+</div>
+<div class="gl"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sh">
+    <div class="stag" data-en="WHAT WE DO" data-tr="NE YAPIYORUZ" data-de="WAS WIR TUN">NE YAPIYORUZ</div>
+    <h2 class="stitle" data-en="CORE SERVICES" data-tr="TEMEL HİZMETLER" data-de="KERNLEISTUNGEN">TEMEL HİZMETLER</h2>
+    <p class="sdesc" data-en="Precision-engineered digital solutions that elevate brands into the future." data-tr="Markaları geleceğe taşıyan hassas dijital çözümler." data-de="Präzisions-digitale Lösungen, die Marken in die Zukunft befördern.">Markaları geleceğe taşıyan hassas dijital çözümler.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card reveal">
+      <svg class="srv-icon" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" stroke="#00d4ff" stroke-width="2" opacity=".4"/><rect x="10" y="16" width="36" height="24" rx="3" fill="none" stroke="#00d4ff" stroke-width="2"/><line x1="10" y1="22" x2="46" y2="22" stroke="#00b8a9" stroke-width="1.5"/><circle cx="14" cy="19" r="1.5" fill="#00ff9d"/><circle cx="19" cy="19" r="1.5" fill="#00b8a9"/><circle cx="24" cy="19" r="1.5" fill="#00d4ff"/><rect x="15" y="27" width="10" height="7" rx="1" fill="none" stroke="#00d4ff" stroke-width="1.5"/><line x1="29" y1="28" x2="42" y2="28" stroke="#00b8a9" stroke-width="1.5"/><line x1="29" y1="32" x2="38" y2="32" stroke="#00b8a9" stroke-width="1" opacity=".5"/></svg>
+      <div class="srv-num">01</div>
+      <div class="srv-name" data-en="WEB DESIGN & DEVELOPMENT" data-tr="WEB TASARIM & GELİŞTİRME" data-de="WEB DESIGN & ENTWICKLUNG">WEB TASARIM & GELİŞTİRME</div>
+      <p class="srv-desc" data-en="Pixel-perfect, high-performance websites — landing pages to full-stack web apps built for conversion and impact." data-tr="Piksel kusursuz, yüksek performanslı web siteleri — açılış sayfalarından full-stack uygulamalarına." data-de="Pixel-perfekte Hochleistungswebsites – von Landingpages bis hin zu Full-Stack-Webanwendungen.">Pixel-perfect, high-performance websites — landing pages to full-stack web apps built for conversion and impact.</p>
+      <a href="web-design.html"><span class="srv-link" data-en="EXPLORE" data-tr="KEŞFEDİN" data-de="ENTDECKEN">KEŞFEDİN</span></a>
+    </div>
+    <div class="srv-card reveal">
+      <svg class="srv-icon" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" stroke="#00d4ff" stroke-width="2" opacity=".4"/><rect x="13" y="13" width="30" height="30" rx="8" fill="none" stroke="#00d4ff" stroke-width="2"/><circle cx="28" cy="28" r="8" fill="none" stroke="#00b8a9" stroke-width="1.5"/><circle cx="28" cy="28" r="3" fill="#00ff9d"/><circle cx="37.5" cy="18.5" r="2" fill="#00d4ff"/></svg>
+      <div class="srv-num">02</div>
+      <div class="srv-name" data-en="SOCIAL MEDIA CONTENT" data-tr="SOSYAL MEDYA İÇERİK ÜRETİMİ" data-de="SOCIAL-MEDIA-INHALTE">SOCIAL MEDIA CONTENT</div>
+      <p class="srv-desc" data-en="Scroll-stopping visuals, reels, stories and copy engineered for maximum engagement across every platform." data-tr="Her platformda maksimum etkileşim için görsel, reels, hikaye ve metin içerikleri." data-de="Bildstoppendes Material, Reels, Stories und Texte für maximale Interaktion auf jeder Plattform.">Scroll-stopping visuals, reels, stories and copy engineered for maximum engagement across every platform.</p>
+      <span class="srv-link" data-en="EXPLORE" data-tr="KEŞFEDİN" data-de="ENTDECKEN">EXPLORE</span>
+    </div>
+    <div class="srv-card reveal">
+      <svg class="srv-icon" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" stroke="#00d4ff" stroke-width="2" opacity=".4"/><circle cx="28" cy="20" r="6" fill="none" stroke="#00d4ff" stroke-width="2"/><circle cx="16" cy="37" r="5" fill="none" stroke="#00b8a9" stroke-width="1.5"/><circle cx="40" cy="37" r="5" fill="none" stroke="#00b8a9" stroke-width="1.5"/><line x1="22" y1="24" x2="17" y2="32" stroke="#00d4ff" stroke-width="1.5"/><line x1="34" y1="24" x2="39" y2="32" stroke="#00d4ff" stroke-width="1.5"/><circle cx="28" cy="20" r="2.5" fill="#00ff9d"/></svg>
+      <div class="srv-num">03</div>
+      <div class="srv-name" data-en="SOCIAL MEDIA MANAGEMENT" data-tr="SOSYAL MEDYA YÖNETİMİ" data-de="SOCIAL-MEDIA-MANAGEMENT">SOCIAL MEDIA MANAGEMENT</div>
+      <p class="srv-desc" data-en="End-to-end community management, scheduling, analytics reporting and growth strategy for your brand channels." data-tr="Marka kanallarınız için topluluk yönetimi, planlama, analitik raporlama ve büyüme stratejisi." data-de="Umfassendes Community-Management, Planung, Analyse und Wachstumsstrategie für Ihre Markenkanäle.">End-to-end community management, scheduling, analytics reporting and growth strategy for your brand channels.</p>
+      <span class="srv-link" data-en="EXPLORE" data-tr="KEŞFEDİN" data-de="ENTDECKEN">EXPLORE</span>
+    </div>
+    <div class="srv-card reveal">
+      <svg class="srv-icon" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" stroke="#00d4ff" stroke-width="2" opacity=".4"/><polyline points="12,38 20,26 28,32 36,18 44,22" fill="none" stroke="#00d4ff" stroke-width="2"/><circle cx="20" cy="26" r="3" fill="#00ff9d"/><circle cx="36" cy="18" r="3" fill="#00ff9d"/></svg>
+      <div class="srv-num">04</div>
+      <div class="srv-name" data-en="DIGITAL STRATEGY" data-tr="DİJİTAL STRATEJİ" data-de="DIGITALSTRATEGIE">DIGITAL STRATEGY</div>
+      <p class="srv-desc" data-en="Data-driven roadmaps engineered for market dominance and exponential growth trajectories." data-tr="Pazar hakimiyeti ve üstel büyüme için veri odaklı yol haritaları." data-de="Datengesteuerte Roadmaps für Marktdominanz und exponentielles Wachstum.">Data-driven roadmaps engineered for market dominance and exponential growth trajectories.</p>
+      <span class="srv-link" data-en="EXPLORE" data-tr="KEŞFEDİN" data-de="ENTDECKEN">EXPLORE</span>
+    </div>
+    <div class="srv-card reveal">
+      <svg class="srv-icon" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" stroke="#00d4ff" stroke-width="2" opacity=".4"/><rect x="11" y="34" width="6" height="10" rx="1" fill="none" stroke="#00b8a9" stroke-width="1.5"/><rect x="21" y="26" width="6" height="18" rx="1" fill="none" stroke="#00b8a9" stroke-width="1.5"/><rect x="31" y="18" width="6" height="26" rx="1" fill="none" stroke="#00d4ff" stroke-width="2"/><rect x="41" y="22" width="6" height="22" rx="1" fill="none" stroke="#00b8a9" stroke-width="1.5"/><circle cx="34" cy="15" r="3" fill="#00ff9d"/></svg>
+      <div class="srv-num">05</div>
+      <div class="srv-name" data-en="DATA ANALYTICS" data-tr="VERİ ANALİTİĞİ" data-de="DATENANALYSE">DATA ANALYTICS</div>
+      <p class="srv-desc" data-en="Transforming raw signal into intelligence — real-time insights that accelerate decision velocity." data-tr="Ham veriyi zekaya dönüştürme — karar hızını artıran gerçek zamanlı içgörüler." data-de="Rohdaten in Intelligenz verwandeln – Echtzeit-Einblicke für schnellere Entscheidungen.">Transforming raw signal into intelligence — real-time insights that accelerate decision velocity.</p>
+      <span class="srv-link" data-en="EXPLORE" data-tr="KEŞFEDİN" data-de="ENTDECKEN">EXPLORE</span>
+    </div>
+    <div class="srv-card reveal">
+      <svg class="srv-icon" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" stroke="#00d4ff" stroke-width="2" opacity=".4"/><path d="M18 24Q18 16 28 16Q38 16 38 22L40 30Q42 38 28 38Q14 38 16 30Z" fill="none" stroke="#00d4ff" stroke-width="2"/><line x1="22" y1="46" x2="22" y2="38" stroke="#00b8a9" stroke-width="1.5"/><line x1="28" y1="46" x2="28" y2="38" stroke="#00b8a9" stroke-width="1.5"/><line x1="34" y1="46" x2="34" y2="38" stroke="#00b8a9" stroke-width="1.5"/></svg>
+      <div class="srv-num">06</div>
+      <div class="srv-name" data-en="CLOUD SOLUTIONS" data-tr="BULUT ÇÖZÜMLER" data-de="CLOUD-LÖSUNGEN">CLOUD SOLUTIONS</div>
+      <p class="srv-desc" data-en="Scalable infrastructure architectured for infinite growth, zero downtime and maximum resilience." data-tr="Sonsuz büyüme ve maksimum dayanıklılık için ölçeklenebilir altyapı." data-de="Skalierbare Infrastruktur für unbegrenztes Wachstum, null Ausfallzeiten und maximale Belastbarkeit.">Scalable infrastructure architectured for infinite growth, zero downtime and maximum resilience.</p>
+      <span class="srv-link" data-en="EXPLORE" data-tr="KEŞFEDİN" data-de="ENTDECKEN">EXPLORE</span>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- ACADEMY -->
+<section id="academy">
+  <div class="sh">
+    <div class="stag" data-en="DIGIDOTTA ACADEMY" data-tr="DİGİDOTTA AKADEMİ" data-de="DIGIDOTTA AKADEMIE">DIGIDOTTA ACADEMY</div>
+    <h2 class="stitle" data-en="LEARN. BUILD. LAUNCH." data-tr="ÖĞREN. İNŞA ET. BAŞLAT." data-de="LERNEN. AUFBAUEN. STARTEN.">LEARN. BUILD. LAUNCH.</h2>
+    <p class="sdesc" style="margin-bottom:0" data-en="DigiDotta Academy offers industry-grade training in web technologies, programming languages and digital marketing — taught by practitioners, not just instructors." data-tr="DigiDotta Akademisi; web teknolojileri, programlama dilleri ve dijital pazarlama alanlarında endüstri standartlarında eğitimler sunar. Sadece eğitmenler değil, uygulayıcılar tarafından öğretilir." data-de="Die DigiDotta Akademie bietet praxisnahe Ausbildungsprogramme in Webtechnologien, Programmiersprachen und Digital Marketing.">DigiDotta Academy offers industry-grade training in web technologies, programming languages and digital marketing — taught by practitioners, not just instructors.</p>
+  </div>
+  <div class="academy">
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <span class="c-icon">🌐</span>
+        <div class="c-level" data-en="BEGINNER → ADVANCED" data-tr="BAŞLANGIÇ → İLERİ" data-de="ANFÄNGER → FORTG.">BEGINNER → ADVANCED</div>
+        <div class="c-title">HTML &amp; CSS</div>
+        <p class="c-desc" data-en="Semantic markup, responsive layouts, Flexbox, CSS Grid and modern animations." data-tr="Semantik yapı, duyarlı tasarım, Flexbox, Grid ve modern animasyonlar." data-de="Semantisches HTML, responsive Layouts, Flexbox, CSS Grid und Animationen.">Semantic markup, responsive layouts, Flexbox, CSS Grid and modern animations.</p>
+        <div class="c-tags"><span class="ctag">HTML5</span><span class="ctag">CSS3</span><span class="ctag">RESPONSIVE</span></div>
+      </div>
+      <div class="course-card reveal">
+        <span class="c-icon">⚡</span>
+        <div class="c-level" data-en="INTERMEDIATE" data-tr="ORTA SEVİYE" data-de="MITTELSTUFE">INTERMEDIATE</div>
+        <div class="c-title">JAVASCRIPT</div>
+        <p class="c-desc" data-en="DOM manipulation, async APIs and ES6+ — build interactive web experiences." data-tr="DOM, async API ve ES6+ ile etkileşimli web deneyimleri oluşturun." data-de="DOM-Manipulation, Async-APIs und ES6+ – interaktive Web-Erlebnisse erstellen.">DOM manipulation, async APIs and ES6+ — build interactive web experiences.</p>
+        <div class="c-tags"><span class="ctag">ES6+</span><span class="ctag">DOM</span><span class="ctag">ASYNC</span></div>
+      </div>
+      <div class="course-card reveal">
+        <span class="c-icon">🐍</span>
+        <div class="c-level" data-en="BEGINNER → ADVANCED" data-tr="BAŞLANGIÇ → İLERİ" data-de="ANFÄNGER → FORTG.">BEGINNER → ADVANCED</div>
+        <div class="c-title">PYTHON</div>
+        <p class="c-desc" data-en="Data science, automation, web scraping and backend development from zero." data-tr="Veri bilimi, otomasyon, web kazıma ve backend geliştirme." data-de="Data Science, Automatisierung, Web Scraping und Backend-Entwicklung.">Data science, automation, web scraping and backend development from zero.</p>
+        <div class="c-tags"><span class="ctag">DJANGO</span><span class="ctag">DATA</span><span class="ctag">AUTOMATION</span></div>
+      </div>
+      <div class="course-card reveal">
+        <span class="c-icon">🐘</span>
+        <div class="c-level" data-en="INTERMEDIATE" data-tr="ORTA SEVİYE" data-de="MITTELSTUFE">INTERMEDIATE</div>
+        <div class="c-title">PHP &amp; MYSQL</div>
+        <p class="c-desc" data-en="Server-side programming, database design and REST APIs with PHP." data-tr="Sunucu taraflı programlama, veritabanı tasarımı ve PHP ile REST API." data-de="Server-seitige Programmierung, Datenbankdesign und REST APIs mit PHP.">Server-side programming, database design and REST APIs with PHP.</p>
+        <div class="c-tags"><span class="ctag">PHP8</span><span class="ctag">MYSQL</span><span class="ctag">REST API</span></div>
+      </div>
+      <div class="course-card reveal">
+        <span class="c-icon">⚛️</span>
+        <div class="c-level" data-en="ADVANCED" data-tr="İLERİ SEVİYE" data-de="FORTGESCHRITTEN">ADVANCED</div>
+        <div class="c-title">REACT &amp; NODE.JS</div>
+        <p class="c-desc" data-en="Full-stack JavaScript — build SPAs with React and scalable backends with Node.js." data-tr="Full-stack JavaScript — React ile SPA, Node.js ile backend." data-de="Full-Stack JavaScript – SPAs mit React und skalierbare Backends mit Node.js.">Full-stack JavaScript — build SPAs with React and scalable backends with Node.js.</p>
+        <div class="c-tags"><span class="ctag">REACT</span><span class="ctag">NODE.JS</span><span class="ctag">FULL-STACK</span></div>
+      </div>
+      <div class="course-card reveal">
+        <span class="c-icon">📱</span>
+        <div class="c-level" data-en="INTERMEDIATE" data-tr="ORTA SEVİYE" data-de="MITTELSTUFE">INTERMEDIATE</div>
+        <div class="c-title" data-en="DIGITAL MARKETING" data-tr="DİJİTAL PAZARLAMA" data-de="DIGITAL MARKETING">DIGITAL MARKETING</div>
+        <p class="c-desc" data-en="SEO, paid ads, email funnels, social strategy and full analytics toolkit." data-tr="SEO, ücretli reklamlar, e-posta hunileri ve tam analitik araç seti." data-de="SEO, bezahlte Anzeigen, E-Mail-Trichter, Social-Strategie und Analyse.">SEO, paid ads, email funnels, social strategy and full analytics toolkit.</p>
+        <div class="c-tags"><span class="ctag">SEO</span><span class="ctag">ADS</span><span class="ctag">ANALYTICS</span></div>
+      </div>
+    </div>
+    <div class="acta">
+      <p data-en="All courses include live sessions, project-based work and a DigiDotta certificate of completion." data-tr="Tüm kurslar canlı oturumlar, proje tabanlı çalışmalar ve DigiDotta tamamlama sertifikası içerir." data-de="Alle Kurse beinhalten Live-Sitzungen, projektbasierte Aufgaben und ein DigiDotta-Zertifikat.">All courses include live sessions, project-based work and a DigiDotta certificate of completion.</p>
+      <button class="btn-p" data-en="VIEW ALL COURSES" data-tr="TÜM KURSLARI GÖR" data-de="ALLE KURSE ANSEHEN">VIEW ALL COURSES</button>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- PROCESS -->
+<section id="process" class="process">
+  <div class="sh" style="padding-top:0">
+    <div class="stag" data-en="HOW WE WORK" data-tr="NASIL ÇALIŞIYORUZ" data-de="WIE WIR ARBEITEN">HOW WE WORK</div>
+    <h2 class="stitle" data-en="OUR PROCESS" data-tr="SÜRECİMİZ" data-de="UNSER PROZESS">OUR PROCESS</h2>
+  </div>
+  <div class="proc-inner">
+    <div class="proc-visual">
+      <div class="hex-ring"></div>
+      <img class="big-logo" src="/mnt/user-data/uploads/1000052563.png" alt="DigiDotta" onerror="this.style.opacity='.15'">
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-n">01</div><div><div class="step-t" data-en="DISCOVERY & ANALYSIS" data-tr="KEŞİF VE ANALİZ" data-de="ENTDECKUNG & ANALYSE">DISCOVERY & ANALYSIS</div><p class="step-d" data-en="Deep-dive into your ecosystem, mapping opportunities and competitive blind spots." data-tr="Ekosisteminize derin bir dalış — fırsatları ve kör noktaları haritalama." data-de="Tiefer Einblick in Ihr Ökosystem, Kartierung von Chancen und Wettbewerbslücken.">Deep-dive into your ecosystem, mapping opportunities and competitive blind spots.</p></div></div>
+      <div class="step reveal"><div class="step-n">02</div><div><div class="step-t" data-en="STRATEGY DESIGN" data-tr="STRATEJİ TASARIMI" data-de="STRATEGIEENTWICKLUNG">STRATEGY DESIGN</div><p class="step-d" data-en="Engineering a precision blueprint tailored to your goals and market position." data-tr="Hedeflerinize ve pazar konumunuza göre hassas bir plan." data-de="Entwicklung eines präzisen Blueprints für Ihre Ziele und Marktposition.">Engineering a precision blueprint tailored to your goals and market position.</p></div></div>
+      <div class="step reveal"><div class="step-n">03</div><div><div class="step-t" data-en="EXECUTION & LAUNCH" data-tr="UYGULAMA VE LANSMAN" data-de="AUSFÜHRUNG & LAUNCH">EXECUTION & LAUNCH</div><p class="step-d" data-en="Rapid deployment with obsessive attention to craft and measurable performance." data-tr="Hız ve ölçülebilir performans ile tutarlı uygulama." data-de="Schnelle Bereitstellung mit akribischer Sorgfalt und messbaren Benchmarks.">Rapid deployment with obsessive attention to craft and measurable performance.</p></div></div>
+      <div class="step reveal"><div class="step-n">04</div><div><div class="step-t" data-en="OPTIMIZE & SCALE" data-tr="OPTİMİZE VE ÖLÇEKLE" data-de="OPTIMIEREN & SKALIEREN">OPTIMIZE & SCALE</div><p class="step-d" data-en="Continuous iteration fueled by real data — growing your presence compoundingly." data-tr="Gerçek verilerle sürekli yineleme — varlığınızı büyütme." data-de="Kontinuierliche Iteration durch Echtzeitdaten – Ihr digitales Wachstum potenzieren.">Continuous iteration fueled by real data — growing your presence compoundingly.</p></div></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="portfolio">
+  <div class="sh">
+    <div class="stag" data-en="OUR WORK" data-tr="ÇALIŞMALARIMIZ" data-de="UNSERE ARBEITEN">OUR WORK</div>
+    <h2 class="stitle" data-en="SELECTED PROJECTS" data-tr="SEÇİLMİŞ PROJELER" data-de="AUSGEWÄHLTE PROJEKTE">SELECTED PROJECTS</h2>
+    <p class="sdesc" data-en="A curated selection of transformations we've engineered for forward-thinking organizations." data-tr="İleri görüşlü organizasyonlar için mühendislik ettiğimiz dönüşümlerin seçkisi." data-de="Eine Auswahl an Transformationen für zukunftsorientierte Unternehmen.">A curated selection of transformations we've engineered for forward-thinking organizations.</p>
+  </div>
+  <div class="port-grid">
+    <div class="pc reveal"><div class="pc-num">01 — 2024</div><div class="pc-t" data-en="NEXUS PLATFORM REBRAND" data-tr="NEXUS PLATFORM YENİDEN MARKALAŞMA" data-de="NEXUS PLATFORM REBRANDING">NEXUS PLATFORM REBRAND</div><p style="font-size:12px;color:#3d6a84;margin-bottom:9px" data-en="Full identity overhaul and web redesign for a SaaS leader." data-tr="SaaS lideri için tam kimlik revizyonu ve web tasarımı." data-de="Vollständige Identitätsüberarbeitung und Web-Neugestaltung.">Full identity overhaul and web redesign for a SaaS leader.</p><span class="pc-tag">BRANDING</span><span class="pc-tag">UI/UX</span><span class="pc-tag">WEB</span><div class="pc-arrow">↗</div></div>
+    <div class="pc reveal"><div class="pc-num">02 — 2024</div><div class="pc-t" data-en="AURORA DATA VIZ" data-tr="AURORA VERİ GÖRSELLEŞTİRME" data-de="AURORA DATENVISUALISIERUNG">AURORA DATA VIZ</div><p style="font-size:12px;color:#3d6a84;margin-bottom:9px" data-en="Real-time analytics dashboard for enterprise monitoring." data-tr="Kurumsal izleme için gerçek zamanlı analitik panel." data-de="Echtzeit-Analyse-Dashboard für unternehmensweites Monitoring.">Real-time analytics dashboard for enterprise monitoring.</p><span class="pc-tag">ANALYTICS</span><span class="pc-tag">CLOUD</span><div class="pc-arrow">↗</div></div>
+    <div class="pc reveal"><div class="pc-num">03 — 2023</div><div class="pc-t" data-en="PHANTOM SOCIAL LAUNCH" data-tr="PHANTOM SOSYAL MEDYA LANSMANI" data-de="PHANTOM SOCIAL LAUNCH">PHANTOM SOCIAL LAUNCH</div><p style="font-size:12px;color:#3d6a84;margin-bottom:9px" data-en="Social strategy and content production for a deep-tech startup on 3 continents." data-tr="3 kıtada derin teknoloji girişimi için sosyal strateji ve içerik." data-de="Social-Strategie und Content-Produktion für ein Deep-Tech-Startup.">Social strategy and content production for a deep-tech startup on 3 continents.</p><span class="pc-tag">SOCIAL</span><span class="pc-tag">CONTENT</span><div class="pc-arrow">↗</div></div>
+    <div class="pc reveal" style="grid-column:span 2"><div class="pc-num">04 — 2023</div><div class="pc-t" data-en="SOLARIS CONTENT ENGINE" data-tr="SOLARIS İÇERİK MÜHENDİSLİĞİ" data-de="SOLARIS CONTENT ENGINE">SOLARIS CONTENT ENGINE</div><p style="font-size:12px;color:#3d6a84;margin-bottom:9px" data-en="Hyper-scalable content production and social distribution strategy for a global media brand." data-tr="Küresel medya markası için ölçeklenebilir içerik üretim hattı ve sosyal dağıtım stratejisi." data-de="Hochskalierbare Content-Pipeline und Social-Distributionsstrategie für eine globale Medienmarke.">Hyper-scalable content production and social distribution strategy for a global media brand.</p><span class="pc-tag">CONTENT</span><span class="pc-tag">SOCIAL MGMT</span><span class="pc-tag">STRATEGY</span><div class="pc-arrow">↗</div></div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="sh" style="padding:0">
+      <div class="stag" data-en="GET IN TOUCH" data-tr="BİZE ULAŞIN" data-de="KONTAKT AUFNEHMEN">GET IN TOUCH</div>
+      <h2 class="stitle" data-en="START A PROJECT" data-tr="BİR PROJE BAŞLATIN" data-de="EIN PROJEKT STARTEN">START A PROJECT</h2>
+      <p class="sdesc" data-en="Ready to transform your digital future? Reach out — we respond within 24 hours." data-tr="Dijital geleceğinizi dönüştürmeye hazır mısınız? Bize ulaşın — 24 saat içinde yanıt veririz." data-de="Bereit Ihre digitale Zukunft zu transformieren? Schreiben Sie uns — Antwort in 24 Stunden.">Ready to transform your digital future? Reach out — we respond within 24 hours.</p>
+    </div>
+    <div class="cinfo-row">
+      <a class="cinfo" href="mailto:digidotta@gmail.com"><span class="cinfo-icon">✉</span><span>digidotta@gmail.com</span></a>
+      <a class="cinfo" href="tel:+905467446722"><span class="cinfo-icon">📞</span><span>0546 744 67 22</span></a>
+      <a class="cinfo" href="tel:+905468999511"><span class="cinfo-icon">📞</span><span>0546 899 95 11</span></a>
+    </div>
+    <div>
+      <div class="form-row">
+        <input class="ff" type="text" data-placeholder-en="YOUR NAME" data-placeholder-tr="AD SOYAD" data-placeholder-de="IHR NAME" placeholder="YOUR NAME">
+        <input class="ff" type="email" data-placeholder-en="EMAIL ADDRESS" data-placeholder-tr="E-POSTA ADRESİ" data-placeholder-de="E-MAIL-ADRESSE" placeholder="EMAIL ADDRESS">
+      </div>
+      <input class="ff" type="text" style="width:100%;margin-bottom:13px" data-placeholder-en="COMPANY / ORGANIZATION" data-placeholder-tr="ŞİRKET / KURUM" data-placeholder-de="UNTERNEHMEN / ORGANISATION" placeholder="COMPANY / ORGANIZATION">
+      <select class="ff" id="sel-service" style="margin-bottom:13px">
+        <option value="" disabled selected data-en="— SERVICE INTERESTED IN —" data-tr="— HİZMET SEÇİNİZ —" data-de="— GEWÜNSCHTE LEISTUNG —">— SERVICE INTERESTED IN —</option>
+        <option data-en="Web Design & Development" data-tr="Web Tasarım & Geliştirme" data-de="Web Design & Entwicklung">Web Design & Development</option>
+        <option data-en="Social Media Content" data-tr="Sosyal Medya İçerik Üretimi" data-de="Social-Media-Inhalte">Social Media Content</option>
+        <option data-en="Social Media Management" data-tr="Sosyal Medya Yönetimi" data-de="Social-Media-Management">Social Media Management</option>
+        <option data-en="Academy / Training" data-tr="Akademi / Eğitim" data-de="Akademie / Schulung">Academy / Training</option>
+        <option data-en="Digital Strategy" data-tr="Dijital Strateji" data-de="Digitalstrategie">Digital Strategy</option>
+        <option data-en="Data Analytics" data-tr="Veri Analitiği" data-de="Datenanalyse">Data Analytics</option>
+      </select>
+      <textarea class="ff" data-placeholder-en="TELL US ABOUT YOUR PROJECT" data-placeholder-tr="PROJENİZİ ANLATINN" data-placeholder-de="ERZÄHLEN SIE UNS VON IHREM PROJEKT" placeholder="TELL US ABOUT YOUR PROJECT"></textarea>
+      <button class="fsub" data-en="TRANSMIT MESSAGE" data-tr="MESAJ GÖNDER" data-de="NACHRICHT SENDEN">TRANSMIT MESSAGE</button>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="fbrand">
+      <div class="nlogo" style="margin-bottom:4px">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="14" fill="#060b18"/><path d="M22 18L22 82Q22 82 50 82Q80 82 80 50Q80 18 50 18Z" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="none" stroke="#00b8a9" stroke-width="2.5"/><rect x="43" y="43" width="14" height="14" rx="3" fill="#00ff9d"/></svg>
+        <span class="nlogo-text" style="font-size:17px">DIGIDOTTA</span>
+      </div>
+      <p data-en="A futuristic digital agency crafting web experiences, social media strategies and tech education for brands that dare to lead." data-tr="Web deneyimleri, sosyal medya stratejileri ve teknoloji eğitimiyle liderlik etmeye cesaret eden markalar için fütüristik dijital ajans." data-de="Eine futuristische Digitalagentur für Web-Erlebnisse, Social-Media-Strategien und Tech-Bildung.">A futuristic digital agency crafting web experiences, social media strategies and tech education for brands that dare to lead.</p>
+      <div class="fsoc">
+        <a class="soc" href="https://instagram.com/digidotta" target="_blank" title="Instagram">◎</a>
+        <a class="soc" href="https://x.com/digidotta" target="_blank" title="X / Twitter">𝕏</a>
+        <a class="soc" href="https://linkedin.com/company/digidotta" target="_blank" title="LinkedIn">in</a>
+        <a class="soc" href="https://youtube.com/@digidotta" target="_blank" title="YouTube">▶</a>
+        <a class="soc" href="https://tiktok.com/@digidotta" target="_blank" title="TikTok">♪</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-en="SERVICES" data-tr="HİZMETLER" data-de="LEISTUNGEN">SERVICES</h4>
+      <ul>
+        <li><a href="#services" data-en="Web Design & Dev" data-tr="Web Tasarım & Geliştirme" data-de="Web Design & Entw.">Web Design & Dev</a></li>
+        <li><a href="#services" data-en="Social Media Content" data-tr="SM İçerik Üretimi" data-de="SM-Inhalte">Social Media Content</a></li>
+        <li><a href="#services" data-en="Social Media Mgmt" data-tr="SM Yönetimi" data-de="SM-Management">Social Media Mgmt</a></li>
+        <li><a href="#services" data-en="Digital Strategy" data-tr="Dijital Strateji" data-de="Digitalstrategie">Digital Strategy</a></li>
+        <li><a href="#services" data-en="Data Analytics" data-tr="Veri Analitiği" data-de="Datenanalyse">Data Analytics</a></li>
+        <li><a href="#services" data-en="Cloud Solutions" data-tr="Bulut Çözümler" data-de="Cloud-Lösungen">Cloud Solutions</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4 data-en="ACADEMY" data-tr="AKADEMİ" data-de="AKADEMIE">ACADEMY</h4>
+      <ul>
+        <li><a href="#academy">HTML &amp; CSS</a></li>
+        <li><a href="#academy">JavaScript</a></li>
+        <li><a href="#academy">Python</a></li>
+        <li><a href="#academy">PHP &amp; MySQL</a></li>
+        <li><a href="#academy">React &amp; Node.js</a></li>
+        <li><a href="#academy" data-en="Digital Marketing" data-tr="Dijital Pazarlama" data-de="Digital Marketing">Digital Marketing</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4 data-en="CONTACT" data-tr="İLETİŞİM" data-de="KONTAKT">CONTACT</h4>
+      <ul>
+        <li><a href="mailto:digidotta@gmail.com">digidotta@gmail.com</a></li>
+        <li><a href="tel:+905467446722">0546 744 67 22</a></li>
+        <li><a href="tel:+905468999511">0546 899 95 11</a></li>
+        <li style="margin-top:6px"><a href="#portfolio" data-en="Portfolio" data-tr="Portföy" data-de="Portfolio">Portfolio</a></li>
+        <li><a href="#process" data-en="Our Process" data-tr="Sürecimiz" data-de="Unser Prozess">Our Process</a></li>
+        <li><a href="#contact" data-en="Start a Project" data-tr="Proje Başlat" data-de="Projekt Starten">Start a Project</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="copy" data-en="COPYRIGHT © 2024 DIGIDOTTA. ALL SYSTEMS OPERATIONAL." data-tr="TELİF HAKKI © 2024 DIGIDOTTA. TÜM SİSTEMLER AKTİF." data-de="COPYRIGHT © 2024 DIGIDOTTA. ALLE SYSTEME BETRIEBSBEREIT.">COPYRIGHT © 2024 DIGIDOTTA. ALL SYSTEMS OPERATIONAL.</div>
+    <div class="flinks">
+      <a href="#" data-en="Privacy Policy" data-tr="Gizlilik Politikası" data-de="Datenschutz">Privacy Policy</a>
+      <a href="#" data-en="Terms of Service" data-tr="Kullanım Koşulları" data-de="Nutzungsbedingungen">Terms of Service</a>
+      <a href="#" data-en="Cookie Policy" data-tr="Çerez Politikası" data-de="Cookie-Richtlinie">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cursor'),dot=document.getElementById('cdot');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'});
+document.querySelectorAll('button,a,.srv-card,.pc,.course-card,.step,.cinfo').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='30px';cur.style.height='30px';cur.style.borderColor='#00ff9d'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.borderColor='#00d4ff'});
+});
+const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}rsz();window.addEventListener('resize',rsz);
+const pts=Array.from({length:160},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,sz:Math.random()*1.5+.3,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,op:Math.random()*.4+.1,c:Math.random()>.7?'#00ff9d':'#00d4ff'}));
+function drawPts(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=p.op;ctx.fill()});
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<80){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='#00d4ff';ctx.globalAlpha=(1-d/80)*.055;ctx.lineWidth=.5;ctx.stroke()}}
+  requestAnimationFrame(drawPts);
+}drawPts();
+let lang='en';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lb[onclick="setLang('${l}')"]`).classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;
+    if(el.tagName==='OPTION'){el.textContent=el.dataset[l]||el.dataset.en;return}
+    el.textContent=el.dataset[l]||el.dataset.en;
+  });
+  document.querySelectorAll('[data-placeholder-en]').forEach(el=>{
+    const k='placeholder'+l.charAt(0).toUpperCase()+l.slice(1);
+    el.placeholder=el.dataset[k]||el.dataset.placeholderEn;
+  });
+  document.documentElement.lang=l;
+}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})}));
+</script>
+</body>
+</html>

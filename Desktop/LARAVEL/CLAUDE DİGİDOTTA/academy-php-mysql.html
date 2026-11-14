@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP & MySQL — DigiDotta Akademi</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a0e1a'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%2300d4ff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%2300ff9d'/%3E%3Cpath d='M30 20 L30 80 Q30 80 50 80 Q75 80 75 50 Q75 20 50 20 Z' fill='none' stroke='%2300d4ff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.srv-hero-bg{background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(100,100,255,.07),transparent 70%),linear-gradient(180deg,#060b18,#090818 60%,#060b18)}
+
+.module-card{background:var(--bg);border:1px solid var(--border2);padding:28px 24px;position:relative;overflow:hidden;transition:all .35s;cursor:default}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);transform:scaleX(0);transition:transform .4s}
+.module-card:hover{background:var(--bg2);border-color:var(--blue)}.module-card:hover::before{transform:scaleX(1)}
+.mod-num{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--green);margin-bottom:8px}
+.mod-title{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--text);margin-bottom:8px}
+.mod-desc{font-size:12px;line-height:1.8;color:var(--text4)}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--surface);border:1px solid var(--border2);max-width:1100px;margin:0 auto}
+.week-card{background:var(--surface);border:1px solid var(--border2);padding:22px 20px;transition:all .3s}
+.week-card:hover{border-color:var(--blue);background:var(--surface2)}
+.week-num{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--blue);margin-bottom:6px}
+.week-title{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--text2);margin-bottom:6px}
+.week-desc{font-size:12px;line-height:1.7;color:var(--text4)}
+.weeks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;max-width:1100px;margin:0 auto}
+.info-bar{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:28px 0 0}
+.info-chip{display:flex;align-items:center;gap:9px;padding:10px 18px;border:1px solid var(--border);background:var(--surface);font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--text2)}
+.info-chip span{color:var(--green);font-size:14px}
+.prereq-list{list-style:none;display:flex;flex-direction:column;gap:10px;max-width:600px;margin:0 auto}
+.prereq-list li{font-size:13px;color:var(--text3);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.prereq-list li::before{content:'→';color:var(--blue);font-weight:700;flex-shrink:0}
+.tools-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:800px;margin:0 auto}
+.tool-tag{padding:8px 16px;border:1px solid var(--border);background:var(--surface);font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--text2);transition:all .3s}
+.tool-tag:hover{border-color:var(--blue);color:var(--blue)}
+.enroll-box{text-align:center;max-width:640px;margin:0 auto;padding:52px 36px;border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden}
+.enroll-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--green),var(--blue))}
+.enroll-box h3{font-family:'Orbitron',monospace;font-size:clamp(16px,2.5vw,24px);font-weight:700;letter-spacing:3px;color:var(--text);margin-bottom:12px}
+.enroll-box p{font-size:13px;line-height:1.85;color:var(--text3);margin-bottom:28px}
+.price-tag{font-family:'Orbitron',monospace;font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--text),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.price-note{font-size:11px;color:var(--text4);margin-bottom:28px;letter-spacing:1px}
+.enroll-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+</style>
+</head>
+<body>
+<div id="cursor"></div><div id="cdot"></div><canvas id="particles"></canvas>
+
+<div id="lang-bar">
+  <button id="theme-btn" class="lb theme-lb" onclick="toggleTheme()" title="Tema"><span id="theme-icon">☀</span></button>
+  <div style="width:1px;background:var(--gborder);margin:4px 2px"></div>
+  <button class="lb" onclick="setLang('en')">EN</button>
+  <button class="lb active" onclick="setLang('tr')">TR</button>
+  <button class="lb" onclick="setLang('de')">DE</button>
+</div>
+
+<nav>
+  <a class="nlogo" href="digidotta.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="14" fill="#060b18"/><path d="M22 18L22 82Q22 82 50 82Q80 82 80 50Q80 18 50 18Z" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="none" stroke="#00b8a9" stroke-width="2.5"/><rect x="43" y="43" width="14" height="14" rx="3" fill="#00ff9d"/></svg>
+    <span class="nlogo-text">DIGIDOTTA</span>
+  </a>
+  <div class="nlinks-wrap">
+    <ul class="nlinks">
+      <li><a href="digidotta.html#services" data-en="SERVICES" data-tr="HİZMETLER" data-de="LEISTUNGEN">HİZMETLER</a></li>
+      <li><a href="digidotta.html#academy" data-en="ACADEMY" data-tr="AKADEMİ" data-de="AKADEMIE">AKADEMİ</a></li>
+      <li><a href="digidotta.html#portfolio" data-en="PORTFOLIO" data-tr="PORTFÖY" data-de="PORTFOLIO">PORTFÖY</a></li>
+      <li><a href="digidotta.html#contact" data-en="CONTACT" data-tr="İLETİŞİM" data-de="KONTAKT">İLETİŞİM</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="srv-hero">
+  <div class="srv-hero-bg"></div>
+  <div class="srv-hero-grid"></div>
+  <div class="srv-hero-inner">
+    <div class="srv-hero-content" style="animation:floatUp .9s ease-out both">
+      <div class="breadcrumb">
+        <a href="digidotta.html" data-en="Home" data-tr="Ana Sayfa" data-de="Startseite">Ana Sayfa</a>
+        <span>›</span>
+        <a href="digidotta.html#academy" data-en="Academy" data-tr="Akademi" data-de="Akademie">Akademi</a>
+        <span>›</span>
+        <span data-en="PHP & MySQL" data-tr="PHP & MySQL" data-de="PHP & MySQL">PHP & MySQL</span>
+      </div>
+      <div class="htag" data-en="DIGIDOTTA ACADEMY" data-tr="DİGİDOTTA AKADEMİ" data-de="DIGIDOTTA AKADEMIE">DİGİDOTTA AKADEMİ</div>
+      <h1 class="srv-hero-title" data-en="PHP & MySQL" data-tr="PHP & MySQL" data-de="PHP & MySQL">PHP & MySQL</h1>
+      <p class="srv-hero-desc" data-en="Learn server-side programming with PHP 8, database design with MySQL and modern REST API development with the Laravel framework." data-tr="PHP 8 ile sunucu taraflı programlama, MySQL ile veritabanı tasarımı ve Laravel frameworkü ile modern REST API geliştirmeyi öğrenin." data-de="Lernen Sie serverseitige Programmierung mit PHP 8, Datenbankdesign mit MySQL und moderne REST-API-Entwicklung mit Laravel.">PHP 8 ile sunucu taraflı programlama, MySQL ile veritabanı tasarımı ve Laravel frameworkü ile modern REST API geliştirmeyi öğrenin.</p>
+      <div class="info-bar">
+        <div class="info-chip"><span>📊</span><span data-en="INTERMEDIATE" data-tr="ORTA SEVİYE">ORTA SEVİYE</span></div>
+        <div class="info-chip"><span>⏱</span><span data-en="10 WEEKS" data-tr="10 HAFTA">10 HAFTA</span></div>
+        <div class="info-chip"><span>📚</span><span data-en="48 LESSONS" data-tr="48 DERS">48 DERS</span></div>
+        <div class="info-chip"><span>🏆</span><span data-en="Certificate" data-tr="Sertifika" data-de="Zertifikat">Sertifika</span></div>
+      </div>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap">
+        <a class="btn-p" href="#enroll" data-en="ENROLL NOW" data-tr="KAYIT OL" data-de="JETZT ANMELDEN">KAYIT OL</a>
+        <a class="btn-s" href="#curriculum" data-en="VIEW CURRICULUM" data-tr="MÜFREDATI GÖR" data-de="LEHRPLAN ANSEHEN">MÜFREDATI GÖR</a>
+      </div>
+    </div>
+    <div class="srv-hero-visual">
+      <div class="srv-hero-icon-wrap">
+        <div class="ring1"></div><div class="ring2"></div>
+        <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="44" rx="36" ry="18" fill="none" stroke="#00d4ff" stroke-width="2.5"/><line x1="24" y1="44" x2="24" y2="76" stroke="#00d4ff" stroke-width="2.5"/><line x1="96" y1="44" x2="96" y2="76" stroke="#00d4ff" stroke-width="2.5"/><ellipse cx="60" cy="76" rx="36" ry="18" fill="none" stroke="#00b8a9" stroke-width="2.5"/><ellipse cx="60" cy="60" rx="36" ry="18" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="60" cy="44" r="5" fill="#00ff9d"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- MODULES -->
+<section id="curriculum" class="features">
+  <div class="sh">
+    <div class="stag" data-en="WHAT YOU WILL LEARN" data-tr="NE ÖĞRENECEKSİNİZ" data-de="WAS SIE LERNEN WERDEN">NE ÖĞRENECEKSİNİZ</div>
+    <h2 class="stitle" data-en="COURSE MODULES" data-tr="KURS MODÜLLERİ" data-de="KURSMODULE">KURS MODÜLLERİ</h2>
+    <p class="sdesc" data-en="Each module is project-based and taught by practitioners with real-world experience." data-tr="Her modül proje tabanlıdır ve gerçek dünya deneyimine sahip uygulayıcılar tarafından öğretilir." data-de="Jedes Modul ist projektbasiert und wird von Praktikern mit realer Berufserfahrung unterrichtet.">Her modül proje tabanlıdır ve gerçek dünya deneyimine sahip uygulayıcılar tarafından öğretilir.</p>
+  </div>
+  <div class="modules-grid">
+
+      <div class="module-card reveal">
+        <div class="mod-num">01</div>
+        <div class="mod-title" data-en="PHP 8 Fundamentals" data-tr="PHP 8 Temelleri" data-de="PHP 8-Grundlagen">PHP 8 Temelleri</div>
+        <p class="mod-desc" data-en="Syntax, variables, types, superglobals and form processing." data-tr="Sözdizimi, değişkenler, tipler, superglobals ve form işleme." data-de="Syntax, Variablen, Typen, Superglobals und Formularverarbeitung.">Sözdizimi, değişkenler, tipler, superglobals ve form işleme.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">02</div>
+        <div class="mod-title" data-en="Functions & Arrays" data-tr="Fonksiyonlar & Diziler" data-de="Funktionen & Arrays">Fonksiyonlar & Diziler</div>
+        <p class="mod-desc" data-en="Built-in functions, recursion, array functions and string processing." data-tr="Yerleşik fonksiyonlar, özyineleme, dizi fonksiyonları ve string işleme." data-de="Eingebaute Funktionen, Rekursion, Array-Funktionen und String-Verarbeitung.">Yerleşik fonksiyonlar, özyineleme, dizi fonksiyonları ve string işleme.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">03</div>
+        <div class="mod-title" data-en="OOP PHP" data-tr="OOP PHP" data-de="OOP PHP">OOP PHP</div>
+        <p class="mod-desc" data-en="Classes, inheritance, interfaces, traits, namespaces and autoloading." data-tr="Sınıflar, miras, interface, trait, namespace ve autoloading." data-de="Klassen, Vererbung, Interfaces, Traits, Namespaces und Autoloading.">Sınıflar, miras, interface, trait, namespace ve autoloading.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">04</div>
+        <div class="mod-title" data-en="MySQL & Database Design" data-tr="MySQL & Veritabanı Tasarımı" data-de="MySQL & Datenbankdesign">MySQL & Veritabanı Tasarımı</div>
+        <p class="mod-desc" data-en="Relational model, normalization, DDL/DML queries and JOINs." data-tr="İlişkisel model, normalizasyon, DDL/DML sorguları ve JOIN'ler." data-de="Relationales Modell, Normalisierung, DDL/DML-Abfragen und JOINs.">İlişkisel model, normalizasyon, DDL/DML sorguları ve JOIN'ler.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">05</div>
+        <div class="mod-title" data-en="PHP & MySQL Integration" data-tr="PHP & MySQL Entegrasyonu" data-de="PHP & MySQL Integration">PHP & MySQL Entegrasyonu</div>
+        <p class="mod-desc" data-en="PDO, prepared statements, CRUD operations and secure queries." data-tr="PDO, prepared statements, CRUD operasyonları ve güvenli sorgular." data-de="PDO, Prepared Statements, CRUD-Operationen und sichere Abfragen.">PDO, prepared statements, CRUD operasyonları ve güvenli sorgular.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">06</div>
+        <div class="mod-title" data-en="Sessions & Security" data-tr="Oturum & Güvenlik" data-de="Sessions & Sicherheit">Oturum & Güvenlik</div>
+        <p class="mod-desc" data-en="Session, cookie, encryption, XSS/SQL injection protection and CSRF." data-tr="Session, cookie, şifreleme, XSS/SQL injection koruması ve CSRF." data-de="Sessions, Cookies, Verschlüsselung, XSS/SQL-Injection-Schutz und CSRF.">Session, cookie, şifreleme, XSS/SQL injection koruması ve CSRF.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">07</div>
+        <div class="mod-title" data-en="Laravel Introduction" data-tr="Laravel Giriş" data-de="Laravel-Einführung">Laravel Giriş</div>
+        <p class="mod-desc" data-en="MVC architecture, routing, Blade template and Artisan CLI." data-tr="MVC mimarisi, routing, Blade template ve Artisan CLI." data-de="MVC-Architektur, Routing, Blade-Template und Artisan-CLI.">MVC mimarisi, routing, Blade template ve Artisan CLI.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">08</div>
+        <div class="mod-title" data-en="Eloquent ORM" data-tr="Eloquent ORM" data-de="Eloquent ORM">Eloquent ORM</div>
+        <p class="mod-desc" data-en="Model definition, relationships (hasMany, belongsTo) and migrations." data-tr="Model tanımlama, ilişkiler (hasMany, belongsTo) ve migration." data-de="Modelldefinition, Beziehungen (hasMany, belongsTo) und Migrationen.">Model tanımlama, ilişkiler (hasMany, belongsTo) ve migration.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">09</div>
+        <div class="mod-title" data-en="Laravel API & Auth" data-tr="Laravel API & Auth" data-de="Laravel API & Auth">Laravel API & Auth</div>
+        <p class="mod-desc" data-en="RESTful API, token authentication with Sanctum and API resources." data-tr="RESTful API, Sanctum ile token authentication ve API resource." data-de="RESTful API, Token-Authentifizierung mit Sanctum und API-Resources.">RESTful API, Sanctum ile token authentication ve API resource.</p>
+      </div>
+      <div class="module-card reveal">
+        <div class="mod-num">10</div>
+        <div class="mod-title" data-en="Final Project" data-tr="Final Projesi" data-de="Abschlussprojekt">Final Projesi</div>
+        <p class="mod-desc" data-en="Develop a full-featured blog/e-commerce API with Laravel and deploy." data-tr="Laravel ile tam özellikli blog/e-ticaret API'si geliştirme ve deployment." data-de="Vollständige Blog/E-Commerce-API mit Laravel entwickeln und deployen.">Laravel ile tam özellikli blog/e-ticaret API'si geliştirme ve deployment.</p>
+      </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- WEEKLY SCHEDULE -->
+<section class="proc-strip">
+  <div class="sh">
+    <div class="stag" data-en="WEEKLY BREAKDOWN" data-tr="HAFTALIK PROGRAM" data-de="WOCHENPLAN">HAFTALIK PROGRAM</div>
+    <h2 class="stitle" data-en="CURRICULUM ROADMAP" data-tr="EĞİTİM YOL HARİTASI" data-de="LEHRPLAN-ROADMAP">EĞİTİM YOL HARİTASI</h2>
+  </div>
+  <div class="proc-strip-inner">
+    <div class="weeks-grid">
+
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 01</div>
+        <div class="week-title" data-en="PHP Syntax & Forms" data-tr="PHP Sözdizimi & Formlar">PHP Sözdizimi & Formlar</div>
+        <p class="week-desc" data-en="PHP setup, variables, form POST/GET handling." data-tr="PHP kurulumu, değişkenler, form POST/GET işleme.">PHP kurulumu, değişkenler, form POST/GET işleme.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 02</div>
+        <div class="week-title" data-en="Functions & Arrays" data-tr="Fonksiyonlar & Diziler">Fonksiyonlar & Diziler</div>
+        <p class="week-desc" data-en="Built-in functions, string/array processing." data-tr="Yerleşik fonksiyonlar, string/dizi işleme.">Yerleşik fonksiyonlar, string/dizi işleme.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 03</div>
+        <div class="week-title" data-en="OOP Basics" data-tr="OOP Temelleri">OOP Temelleri</div>
+        <p class="week-desc" data-en="Class, constructor, inheritance, interfaces." data-tr="Class, constructor, miras, interface.">Class, constructor, miras, interface.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 04</div>
+        <div class="week-title" data-en="MySQL Basics" data-tr="MySQL Temelleri">MySQL Temelleri</div>
+        <p class="week-desc" data-en="Table design, DDL, DML, JOINs." data-tr="Tablo tasarımı, DDL, DML, JOIN.">Tablo tasarımı, DDL, DML, JOIN.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 05</div>
+        <div class="week-title" data-en="PHP + MySQL" data-tr="PHP + MySQL">PHP + MySQL</div>
+        <p class="week-desc" data-en="PDO, CRUD, secure queries." data-tr="PDO, CRUD, güvenli sorgular.">PDO, CRUD, güvenli sorgular.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 06</div>
+        <div class="week-title" data-en="Security & Sessions" data-tr="Güvenlik & Oturum">Güvenlik & Oturum</div>
+        <p class="week-desc" data-en="User authentication, XSS, CSRF." data-tr="Kullanıcı kimlik doğrulama, XSS, CSRF.">Kullanıcı kimlik doğrulama, XSS, CSRF.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 07</div>
+        <div class="week-title" data-en="Laravel Setup" data-tr="Laravel Kurulumu">Laravel Kurulumu</div>
+        <p class="week-desc" data-en="Composer, routing, Blade, controllers." data-tr="Composer, routing, Blade, controller.">Composer, routing, Blade, controller.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 08</div>
+        <div class="week-title" data-en="Eloquent & Migrations" data-tr="Eloquent & Migration">Eloquent & Migration</div>
+        <p class="week-desc" data-en="Models, relationships, migrations, seeders." data-tr="Model, ilişkiler, migration, seeder.">Model, ilişkiler, migration, seeder.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 09</div>
+        <div class="week-title" data-en="API Development" data-tr="API Geliştirme">API Geliştirme</div>
+        <p class="week-desc" data-en="REST endpoints, Sanctum, API resources." data-tr="REST endpoints, Sanctum, API resource.">REST endpoints, Sanctum, API resource.</p>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">HAFTA 10</div>
+        <div class="week-title" data-en="Final Project & Deploy" data-tr="Final Projesi & Deploy">Final Projesi & Deploy</div>
+        <p class="week-desc" data-en="Project completion, Forge/Railway deployment." data-tr="Proje tamamlama, Forge/Railway deploy.">Proje tamamlama, Forge/Railway deploy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- TOOLS -->
+<section style="padding:0 4% 70px;position:relative;z-index:1">
+  <div class="sh">
+    <div class="stag" data-en="TECHNOLOGIES" data-tr="TEKNOLOJİLER" data-de="TECHNOLOGIEN">TEKNOLOJİLER</div>
+    <h2 class="stitle" data-en="TOOLS &amp; STACK" data-tr="ARAÇLAR VE STACK" data-de="WERKZEUGE &amp; STACK">ARAÇLAR VE STACK</h2>
+    <p class="sdesc" data-en="You will work with industry-standard tools used by professional teams worldwide." data-tr="Dünya genelinde profesyonel ekipler tarafından kullanılan endüstri standardı araçlarla çalışacaksınız." data-de="Sie arbeiten mit branchenüblichen Tools, die von Profi-Teams weltweit eingesetzt werden.">Dünya genelinde profesyonel ekipler tarafından kullanılan endüstri standardı araçlarla çalışacaksınız.</p>
+  </div>
+  <div class="tools-grid">
+    <span class="tool-tag">PHP 8.2</span><span class="tool-tag">MySQL 8</span><span class="tool-tag">Composer</span><span class="tool-tag">Laravel 11</span><span class="tool-tag">PHPStorm / VS Code</span><span class="tool-tag">Postman</span><span class="tool-tag">XAMPP / Laravel Herd</span><span class="tool-tag">Git</span><span class="tool-tag">Railway / Forge</span>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- PREREQUISITES -->
+<section style="padding:0 4% 70px;position:relative;z-index:1">
+  <div class="sh">
+    <div class="stag" data-en="BEFORE YOU START" data-tr="BAŞLAMADAN ÖNCE" data-de="VOR DEM START">BAŞLAMADAN ÖNCE</div>
+    <h2 class="stitle" data-en="PREREQUISITES" data-tr="ÖN KOŞULLAR" data-de="VORAUSSETZUNGEN">ÖN KOŞULLAR</h2>
+  </div>
+  <ul class="prereq-list reveal">
+<li data-en="Basic HTML & CSS knowledge." data-tr="Temel HTML & CSS bilgisi.">Temel HTML & CSS bilgisi.</li>
+<li data-en="Programming logic (in any language)." data-tr="Programlama mantığı (herhangi bir dil ile).">Programlama mantığı (herhangi bir dil ile).</li>
+<li data-en="General idea of database concepts is preferred." data-tr="Veritabanı kavramı hakkında genel fikir sahibi olmak tercih edilir.">Veritabanı kavramı hakkında genel fikir sahibi olmak tercih edilir.</li>
+
+  </ul>
+</section>
+<div class="gl"></div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="sh">
+    <div class="stag" data-en="HAVE QUESTIONS?" data-tr="SORULARINIZ MI VAR?" data-de="HABEN SIE FRAGEN?">SORULARINIZ MI VAR?</div>
+    <h2 class="stitle" data-en="FAQ" data-tr="SIKÇA SORULAN SORULAR" data-de="HÄUFIGE FRAGEN">SIKÇA SORULAN SORULAR</h2>
+  </div>
+  <div class="faq-inner">
+
+    <div class="faq-item">
+      <div class="faq-q" data-en="Is this relevant for WordPress development?" data-tr="WordPress geliştirme için geçerli mi?">WordPress geliştirme için geçerli mi? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p data-en="Yes. PHP fundamentals and MySQL knowledge directly apply to WordPress customization." data-tr="Evet. PHP temelleri ve MySQL bilgisi WordPress özelleştirmesi için doğrudan geçerlidir.">Evet. PHP temelleri ve MySQL bilgisi WordPress özelleştirmesi için doğrudan geçerlidir.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" data-en="Laravel or Symfony?" data-tr="Laravel mi yoksa Symfony mi?">Laravel mi yoksa Symfony mi? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p data-en="After learning Laravel, transitioning to Symfony is quite easy. Laravel is the most preferred PHP framework in the Turkish job market." data-tr="Laravel öğrendikten sonra Symfony'ye geçiş oldukça kolaydır. Laravel, Türkiye iş piyasasında en çok tercih edilen PHP frameworküdür.">Laravel öğrendikten sonra Symfony'ye geçiş oldukça kolaydır. Laravel, Türkiye iş piyasasında en çok tercih edilen PHP frameworküdür.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" data-en="Can I take this course just to learn SQL?" data-tr="Sadece SQL öğrenmek için bu kursu alabilir miyim?">Sadece SQL öğrenmek için bu kursu alabilir miyim? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p data-en="The course progresses integrated with PHP, so SQL is taught in the PHP context, not standalone. We recommend a dedicated SQL course for pure SQL." data-tr="Kurs PHP ile entegre ilerlediği için SQL tek başına değil PHP bağlamında öğretilir. Salt SQL için ayrı bir kurs öneriyoruz.">Kurs PHP ile entegre ilerlediği için SQL tek başına değil PHP bağlamında öğretilir. Salt SQL için ayrı bir kurs öneriyoruz.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" data-en="Is deployment taught?" data-tr="Canlıya alma (deployment) öğretiliyor mu?">Canlıya alma (deployment) öğretiliyor mu? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p data-en="Yes. In the final week, all steps for deploying your app to a live server using Laravel Forge or Railway are demonstrated." data-tr="Evet. Son haftada Laravel Forge veya Railway kullanarak uygulamanızı canlı sunucuya almanın tüm adımları gösterilir.">Evet. Son haftada Laravel Forge veya Railway kullanarak uygulamanızı canlı sunucuya almanın tüm adımları gösterilir.</p></div>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- ENROLL -->
+<section id="enroll" style="padding:70px 4%;position:relative;z-index:1">
+  <div class="enroll-box reveal">
+    <div class="stag" style="justify-content:center;margin-bottom:20px" data-en="JOIN THE COURSE" data-tr="KURSA KATIL" data-de="KURS BEITRETEN">KURSA KATIL</div>
+    <h3 data-en="PHP & MySQL" data-tr="PHP & MySQL">PHP & MySQL</h3>
+    <p data-en="Live sessions, real projects, lifetime access and a DigiDotta certificate upon completion." data-tr="Canlı oturumlar, gerçek projeler, ömür boyu erişim ve tamamlama sertifikası." data-de="Live-Sessions, echte Projekte, lebenslanger Zugang und Abschlusszertifikat.">Canlı oturumlar, gerçek projeler, ömür boyu erişim ve tamamlama sertifikası.</p>
+    <div class="price-tag">₺5.900</div>
+    <p class="price-note" data-en="One-time payment · Lifetime access · Certificate included" data-tr="Tek seferlik ödeme · Ömür boyu erişim · Sertifika dahil" data-de="Einmalzahlung · Lebenslanger Zugang · Zertifikat inklusive">Tek seferlik ödeme · Ömür boyu erişim · Sertifika dahil</p>
+    <div class="enroll-btns">
+      <a class="btn-p" href="digidotta.html#contact" data-en="ENROLL NOW" data-tr="KAYIT OL" data-de="JETZT ANMELDEN">KAYIT OL</a>
+      <a class="btn-s" href="digidotta.html#contact" data-en="ASK A QUESTION" data-tr="SORU SOR" data-de="FRAGE STELLEN">SORU SOR</a>
+    </div>
+  </div>
+</section>
+<div class="gl"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="fbrand">
+      <div class="nlogo" style="margin-bottom:4px">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="14" fill="#060b18"/><path d="M22 18L22 82Q22 82 50 82Q80 82 80 50Q80 18 50 18Z" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="50" r="24" fill="none" stroke="#00b8a9" stroke-width="2.5"/><rect x="43" y="43" width="14" height="14" rx="3" fill="#00ff9d"/></svg>
+        <span class="nlogo-text" style="font-size:17px">DIGIDOTTA</span>
+      </div>
+      <p data-en="A futuristic digital agency crafting web experiences, social media strategies and tech education for brands that dare to lead." data-tr="Web deneyimleri, sosyal medya stratejileri ve teknoloji eğitimiyle liderlik etmeye cesaret eden markalar için fütüristik dijital ajans." data-de="Eine futuristische Digitalagentur für Web-Erlebnisse, Social-Media-Strategien und Tech-Bildung.">Web deneyimleri, sosyal medya stratejileri ve teknoloji eğitimiyle liderlik etmeye cesaret eden markalar için fütüristik dijital ajans.</p>
+      <div class="fsoc">
+        <a class="soc" href="https://instagram.com/digidotta" target="_blank">◎</a>
+        <a class="soc" href="https://x.com/digidotta" target="_blank">𝕏</a>
+        <a class="soc" href="https://linkedin.com/company/digidotta" target="_blank">in</a>
+        <a class="soc" href="https://youtube.com/@digidotta" target="_blank">▶</a>
+        <a class="soc" href="https://tiktok.com/@digidotta" target="_blank">♪</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-en="ACADEMY" data-tr="AKADEMİ" data-de="AKADEMIE">AKADEMİ</h4>
+      <ul>
+        <li><a href="academy-html-css.html">HTML &amp; CSS</a></li>
+        <li><a href="academy-javascript.html">JavaScript</a></li>
+        <li><a href="academy-python.html">Python</a></li>
+        <li><a href="academy-php-mysql.html">PHP &amp; MySQL</a></li>
+        <li><a href="academy-react-nodejs.html">React &amp; Node.js</a></li>
+        <li><a href="academy-digital-marketing.html" data-en="Digital Marketing" data-tr="Dijital Pazarlama" data-de="Digital Marketing">Dijital Pazarlama</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4 data-en="SERVICES" data-tr="HİZMETLER" data-de="LEISTUNGEN">HİZMETLER</h4>
+      <ul>
+        <li><a href="web-design.html" data-en="Web Design" data-tr="Web Tasarım" data-de="Web Design">Web Tasarım</a></li>
+        <li><a href="social-content.html" data-en="SM Content" data-tr="SM İçerik" data-de="SM-Inhalte">SM İçerik</a></li>
+        <li><a href="social-management.html" data-en="SM Management" data-tr="SM Yönetimi" data-de="SM-Management">SM Yönetimi</a></li>
+        <li><a href="digital-strategy.html" data-en="Digital Strategy" data-tr="Dijital Strateji" data-de="Digitalstrategie">Dijital Strateji</a></li>
+        <li><a href="data-analytics.html" data-en="Data Analytics" data-tr="Veri Analitiği" data-de="Datenanalyse">Veri Analitiği</a></li>
+        <li><a href="cloud-solutions.html" data-en="Cloud Solutions" data-tr="Bulut Çözümler" data-de="Cloud-Lösungen">Bulut Çözümler</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4 data-en="CONTACT" data-tr="İLETİŞİM" data-de="KONTAKT">İLETİŞİM</h4>
+      <ul>
+        <li><a href="mailto:digidotta@gmail.com">digidotta@gmail.com</a></li>
+        <li><a href="tel:+905467446722">0546 744 67 22</a></li>
+        <li><a href="tel:+905468999511">0546 899 95 11</a></li>
+        <li style="margin-top:6px"><a href="digidotta.html#contact" data-en="Start a Project" data-tr="Proje Başlat" data-de="Projekt Starten">Proje Başlat</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="copy" data-en="COPYRIGHT © 2024 DIGIDOTTA" data-tr="TELİF HAKKI © 2024 DIGIDOTTA" data-de="COPYRIGHT © 2024 DIGIDOTTA">TELİF HAKKI © 2024 DIGIDOTTA</div>
+    <div class="flinks">
+      <a href="#" data-en="Privacy" data-tr="Gizlilik" data-de="Datenschutz">Gizlilik</a>
+      <a href="#" data-en="Terms" data-tr="Koşullar" data-de="Nutzungsbedingungen">Koşullar</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cursor'),dot=document.getElementById('cdot');
+cur.style.left='50%';cur.style.top='50%';dot.style.left='50%';dot.style.top='50%';
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'});
+document.querySelectorAll('button,a,.module-card,.week-card,.testi,.faq-q').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='30px';cur.style.height='30px';cur.style.borderColor='#00ff9d'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.borderColor='#00d4ff'});
+});
+const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}rsz();window.addEventListener('resize',rsz);
+const pts=Array.from({length:100},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,sz:Math.random()*1.3+.3,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,op:Math.random()*.35+.08,c:Math.random()>.7?'#00ff9d':'#00d4ff'}));
+function dp(){ctx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=p.op;ctx.fill()});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<70){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='#00d4ff';ctx.globalAlpha=(1-d/70)*.045;ctx.lineWidth=.5;ctx.stroke()}}requestAnimationFrame(dp)}dp();
+let theme=localStorage.getItem('dg-theme')||'dark';
+function applyTheme(t){theme=t;document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');const ic=document.getElementById('theme-icon');if(ic)ic.textContent=t==='light'?'🌙':'☀';localStorage.setItem('dg-theme',t);}
+function toggleTheme(){applyTheme(theme==='dark'?'light':'dark');}
+applyTheme(theme);
+let lang='tr';
+function setLang(l){lang=l;document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));document.querySelector(`.lb[onclick="setLang('${l}')"]`).classList.add('active');document.querySelectorAll('[data-en]').forEach(el=>{if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;el.textContent=el.dataset[l]||el.dataset.en});document.querySelectorAll('[data-placeholder-en]').forEach(el=>{const k='placeholder'+l.charAt(0).toUpperCase()+l.slice(1);el.placeholder=el.dataset[k]||el.dataset.placeholderEn});document.documentElement.lang=l;}
+setLang('tr');
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>{q.parentElement.classList.toggle('open')}));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})}));
+</script>
+</body></html>

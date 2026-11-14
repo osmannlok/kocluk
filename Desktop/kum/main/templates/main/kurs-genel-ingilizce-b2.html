@@ -1,0 +1,132 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Genel İngilizce Kursları - Intermediate (B2) - KUM Academy{% endblock %}
+{% block meta_description %}Genel İngilizce (B2) kursu ile ileri düzey İngilizce öğrenin! KUM Academy ile tartışma ve akademik yazım becerileri geliştirin.{% endblock %}
+{% block og_title %}Genel İngilizce Kursları - Intermediate (B2) - KUM Academy{% endblock %}
+{% block og_description %}KUM Academy’nin B2 İngilizce kursu ile ileri gramer ve profesyonel iletişim becerileri kazanın. Hemen kaydolun!{% endblock %}
+{% block canonical_url %}{% url 'kurs-genel-ingilizce-b2' %}{% endblock %}
+
+{% block content %}
+<section id="kurs-genel-ingilizce-b2" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Genel İngilizce Kursları - Intermediate (B2)</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p class="text-muted mb-4">
+                    <small>
+                        <strong>Yayın Tarihi:</strong> August 08, 2025, 16:58 | 
+                        <strong>Yazar:</strong> kumacademy | 
+                        <strong>Kategori:</strong> Genel İngilizce | 
+                        <strong>Yorum:</strong> Yorum yapılmamış
+                    </small>
+                </p>
+                <p>
+                    İngilizce, küresel iletişimin ve bilgi paylaşımının ana dilidir. İş dünyasından akademik çalışmalara, teknolojiden eğitime kadar pek çok alanda İngilizce bilmek, bireylere uluslararası fırsatlar sunar. İnternet üzerindeki kaynakların büyük bir kısmı İngilizce olduğu için, bu dili bilmek, bilgiye erişimi kolaylaştırır ve bireyin kendini geliştirmesine olanak tanır. Ayrıca, İngilizce bilmek, farklı kültürlerle iletişim kurmayı ve küresel düşünce yapısına sahip olmayı sağlar.
+                </p>
+                <img src="{% static 'main/images/kurs-genel-ingilizce.jpg' %}" class="img-fluid rounded mb-4" alt="Genel İngilizce (B2) Kursu">
+                <h2>Kurs Detayları</h2>
+                <ul>
+                    <li><strong>Kurs süresi:</strong> 12 hafta</li>
+                    <li><strong>Canlı Dersler:</strong> 100 saat</li>
+                    <li><strong>Canlı Ders Platformu:</strong> Zoom</li>
+                    <li><strong>Self Study:</strong> ellii.com</li>
+                    <li><strong>Seviye:</strong> B2</li>
+                    <li><strong>Only English Chat:</strong> Slack</li>
+                </ul>
+                <h2>Eğitimin Avantajları</h2>
+                <ul>
+                    <li><strong>Birebir Destek:</strong> Kurs boyunca, eğitmenlerimizle birebir destek alabilirsiniz. Dilediğiniz zaman sorularınızı sormak için Discord ortamından eğitmenimize ulaşabilirsiniz.</li>
+                    <li><strong>Ücretsiz Birebir Görüşmeler:</strong> Eğitim sürecinde, iki kez 30 dakikalık ücretsiz birebir online görüşme hakkına sahipsiniz. Bu görüşmelerde özel sorularınızı sorabilir ve öğreniminizi hızlandırabilirsiniz.</li>
+                    <li><strong>Sürekli Güncellenen İçerik:</strong> Dil bilgisi ve konuşma pratiği gibi konularda sürekli güncellenen içerikler sunuyoruz. Dil becerilerinizi her zaman güncel tutabilirsiniz.</li>
+                    <li><strong>Katılım Belgesi:</strong> Eğitimi başarıyla tamamladığınızda, eğitmen imzalı katılım belgesine sahip olursunuz.</li>
+                    <li><strong>Başlangıçtan İleri Seviyeye:</strong> Hiç İngilizce bilginiz olmasa bile endişe etmeyin. Eğitim sıfırdan başlayarak, tamamen anlaşılır bir dille anlatılmaktadır.</li>
+                    <li><strong>Uygulamalı Öğrenme:</strong> Günlük konuşma örnekleri, diyaloglar ve pratiklerle öğrendiklerinizi hemen uygulama fırsatı bulacaksınız. Discord ortamında sizleri her gün konuşturup, sadece ders saatlerinde değil, günün her vaktinde İngilizce’yi hayatınıza dahil edeceğiz.</li>
+                    <li><strong>Self-Learning:</strong> Evde, işte, kütüphanede ya da mobil bir cihaza erişiminizin olduğu herhangi bir yerde kendinizi geliştirebileceğiniz self-learning uygulamaları ile İngilizce’yi hayatınızın bir parçası haline getireceğiz.</li>
+                </ul>
+                <!-- Sekmeli Bölüm Başlangıcı -->
+                <ul class="nav nav-tabs mb-3" id="generalEnglishB2Tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Tanım</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Müfredat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">SSS</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Yorumlar</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="generalEnglishB2TabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>
+                            Genel İngilizce Kursları - Intermediate (B2) kursu, orta düzey İngilizce bilgisine sahip olanlar için tasarlanmıştır. KUM Academy’nin uzman eğitmenleri eşliğinde, ileri gramer yapıları, akademik terimler ve etkili iletişim becerileri öğretilir. 12 haftalık bu program, B2 seviyesindeki katılımcılara hitap eder ve profesyonel veya akademik ortamlarda İngilizceyi güvenle kullanma yetkinliği kazandırır.
+                        </p>
+                        <p>
+                            Kurs, 15 yaş ve üzeri, B1 seviyesini tamamlamış veya orta düzeyde İngilizce bilgisi olan herkese uygundur. Tartışmalar, sunumlar ve self-learning materyalleriyle, öğrenme sürecini zenginleştirir.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <h3>Kurs İçeriği</h3>
+                        <ul>
+                            <li><strong>İleri Gramer:</strong> Relative clauses, conditionals, passive voice.</li>
+                            <li><strong>Kelime Bilgisi:</strong> Akademik ve profesyonel terimler.</li>
+                            <li><strong>Dinleme ve Konuşma:</strong> Tartışmalar, sunumlar, münazaralar.</li>
+                            <li><strong>Okuma ve Yazma:</strong> Akademik makaleler, araştırma raporları, eleştiriler.</li>
+                        </ul>
+                        <h3>Öğrenim Hedefleri</h3>
+                        <ul>
+                            <li>Akademik ve profesyonel konularda iletişim kurabilme.</li>
+                            <li>Tartışmalara katılma ve fikirlerini savunabilme.</li>
+                            <li>İleri düzey metinleri okuma ve anlama.</li>
+                            <li>Yazılı çalışmalar yapabilme ve akademik dil kullanabilme.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <h3>1. Genel İngilizce kursları kimler için uygundur?</h3>
+                        <p>
+                            Genel İngilizce kurslarımız 15 yaş ve üzeri her seviyedeki öğrenciye açıktır. Başlangıç seviyesinden ileri seviyeye kadar farklı kur seçeneklerimizle, günlük hayatta İngilizceyi daha akıcı ve güvenli bir şekilde kullanmak isteyen, herkese hitap ediyoruz.
+                        </p>
+                        <h3>2. Kursların süresi ne kadar?</h3>
+                        <p>
+                            Kurslarımız, 3, 6 ve 9 aylık periyotlarla kayıt yaptırabilirsiniz. Süre, seviyenize ve hedeflerinize bağlı olarak değişebilir.
+                        </p>
+                        <h3>3. Dersler nasıl işleniyor?</h3>
+                        <p>
+                            Derslerimiz, speaking pratiği üzerine yoğunlaşarak bir kitap ve platform takibi ile işlenmektedir. Canlı derslerde interaktif alıştırmalarla dil öğrenmenizi destekliyoruz. Ayrıca, platform üzerinden sürekli takip yaparak, öğrendiklerinizi pekiştirmenizi sağlıyoruz.
+                        </p>
+                        <h3>4. Hangi seviyede olduğumu nasıl bilebilirim?</h3>
+                        <p>
+                            Kayıt öncesinde, seviyenizi belirlemek için ücretsiz bir seviye tespit sınavı yapıyoruz. Bu sınav sonucuna göre, sizin için en uygun kura yönlendiriliyoruz. Böylece doğru seviyeden başlayarak daha verimli bir öğrenme süreci geçirebilirsiniz.
+                        </p>
+                        <h3>5. Kurs sonunda sertifika veriliyor mu?</h3>
+                        <p>
+                            Evet, kursu tamamlayan tüm öğrencilerimize, katılım sertifikası veriyoruz.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                        <blockquote class="blockquote">
+                            <p>“B2 kursuyla sunum yapmayı öğrendim, kariyerim için çok faydalı oldu!”</p>
+                            <p>Mehmet Kaya</p>
+                        </blockquote>
+                        <hr>
+                        <blockquote class="blockquote">
+                            <p>“Akademik makaleleri anlamak artık kolay, KUM Academy’e teşekkürler!”</p>
+                            <p>Ayşe Öz</p>
+                        </blockquote>
+                        <hr>
+                    </div>
+                </div>
+                <!-- Sekmeli Bölüm Bitişi -->
+                <h2>Genel İngilizceye Başlamak İçin Hemen Kayıt Olun!</h2>
+                <div class="text-center mt-4">
+                    <a href="{% url 'kurs-genel-ingilizce-b2' %}" class="btn btn-primary">Kursa Katılın</a>
+                    <a href="{% url 'iletisim' %}" class="btn btn-outline-primary">Bize Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

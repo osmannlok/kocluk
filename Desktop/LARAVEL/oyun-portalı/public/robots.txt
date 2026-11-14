@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /favorilerim
+Disallow: /skorlarim
+Disallow: /rozetlerim
+Disallow: /giris
+Disallow: /kayit
+
+Sitemap: /sitemap.xml
