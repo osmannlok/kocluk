@@ -1,4 +1,0 @@
-- Use TypeScript everywhere
-- Use async/await
-- No console.log in production
-- Use clean naming conventions

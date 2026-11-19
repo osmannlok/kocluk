@@ -1,3 +1,0 @@
-- Write unit tests for critical logic
-- Use Jest or Vitest
-- Cover edge cases

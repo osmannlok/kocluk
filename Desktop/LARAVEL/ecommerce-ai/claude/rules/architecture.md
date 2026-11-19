@@ -1,4 +1,0 @@
-- Use feature-based folder structure
-- Separate frontend and backend clearly
-- Use service layer for business logic
-- Avoid monolithic files

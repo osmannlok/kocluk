@@ -1,4 +1,0 @@
-- Hash passwords (bcrypt)
-- Prevent SQL injection
-- Validate user input
-- Protect routes with auth
