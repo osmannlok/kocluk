@@ -1,5 +1,0 @@
-.env
-storage/logs/*.log
-uploads/*
-!uploads/.gitkeep
-.DS_Store

@@ -1,4 +1,0 @@
-<FilesMatch "\.(php|phtml|phar|php\d|cgi|pl|py|sh|asp|aspx|jsp)$">
-    Require all denied
-</FilesMatch>
-Options -ExecCGI
