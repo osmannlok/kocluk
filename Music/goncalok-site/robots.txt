@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.php
+Disallow: /portal.php
+
+Sitemap: https://www.goncalokofficial.com/sitemap.xml

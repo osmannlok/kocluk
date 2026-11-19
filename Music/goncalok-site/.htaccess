@@ -1,0 +1,12 @@
+# GONCA LÖK — Apache korumaları (docroot ayrımı yapılamıyorsa en az bu)
+<FilesMatch "^(\.env|\.env\.example|\.git|\.gitignore|\.htaccess)$">
+    Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/(database|storage|bin|uploads)(/|$)
+RedirectMatch 404 ^/migrate\.php$
+RedirectMatch 404 \.(sql|log|sh)$
+
+# mod_headers yüklüyse X-Powered-By başlığını da kaldırır (önerilir):
+# <IfModule mod_headers.c>
+#     Header unset X-Powered-By
+# </IfModule>
